@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { ButtonPrimary } from "./Buttons";
 import styled from "styled-components";
 
 const Header = styled.header`
@@ -7,16 +8,18 @@ const Header = styled.header`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const H1 = styled.h1`
   font-family: Lobster;
   font-size: 8rem;
+  color: ${(props) => props.theme.colors.black};
 `;
 
 const P = styled.p`
-  display: flex;
-  flex-wrap; 1;
+  font-size: 2vw;
+  color: ${(props) => props.theme.colors.black};
 `;
 
 const Home = () => {
@@ -24,13 +27,12 @@ const Home = () => {
     <Fragment>
       <Header>
         <H1>Majid Tech</H1>
-        <div style={{ width: "9rem" }}>
-          <P>
-            “If you hire people just because they can do a job, they’ll work for
-            your money. But if you hire people who believe what you believe,
-            they’ll work for you with blood, sweat and tears.” ― Simon Sinek
-          </P>
-        </div>
+        <P>
+          Learn the skills to become a professional Web Developer{" "}
+          <span role="img">👨🏽‍💻</span>
+        </P>
+        <P>land your dream job making over six figures 🤑</P>
+        <ButtonPrimary />
       </Header>
     </Fragment>
   );

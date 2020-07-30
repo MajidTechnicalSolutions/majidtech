@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
   font-family: "Lato";
@@ -11,3 +14,7 @@ code {
 ul {
   list-style-type: none;
 }
+
+`;
+
+export default GlobalStyle;
