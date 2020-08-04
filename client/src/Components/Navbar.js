@@ -4,12 +4,14 @@ import styled from "styled-components";
 import { MdSearch } from "react-icons/md";
 
 const Nav = styled.div`
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0 1rem 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1.3rem;
-  box-shadow: 0px 10px 47px -10px rgba(153, 153, 153, 0.2);
+  position: fixed;
+  width: 100%;
+  box-shadow: 0px 0px 10px -1px black;
 `;
 
 const Img = styled.img`
@@ -22,6 +24,7 @@ const Search = styled.input`
   width: 13rem;
   height: 2rem;
   ling-hight: 5px;
+  margin-right: 2rem;
   border: 1px solid ${(props) => props.theme.colors.black};
   border-radius: 2px;
   background-color: #f3f3f4;
@@ -38,9 +41,9 @@ const Li = styled.li`
   transition: all 0.2s;
   cursor: pointer;
   border-radius: 0.4rem;
-  // width: 6vw;
   height: 1.8rem;
   text-align: center;
+  position: relative;
   &:after {
     position: absolute;
     display: inline-block;
@@ -50,7 +53,7 @@ const Li = styled.li`
     width: 0;
     height: 2px;
     left: 0;
-    bottom: -6px;
+    bottom: -1.4rem;
     transition: all 0.3s;
   }
   &:hover:after {
@@ -58,7 +61,6 @@ const Li = styled.li`
   }
   &:hover {
     color: ${(props) => props.theme.colors.orange};
-    box-shadow: 0 1rem 1rem rgba(#000, 0.2);
     transform: translateY(-1.5px);
   }
 `;
@@ -67,10 +69,12 @@ const Ul = styled.ul`
   display: inline-block;
   // margin-left: 40%;
 `;
-const Icon = styled.div`
-  postition: relative;
-  top: 0rem;
-`;
+const style = {
+  position: "absolute",
+  top: "1.9rem",
+  right: "15.1rem",
+  fontSize: "1rem",
+};
 
 function Navbar() {
   return (
@@ -86,14 +90,7 @@ function Navbar() {
           <Li>Login</Li>
         </Ul>
         <Search type="text" value="" placeholder="     Search..." />
-        <MdSearch
-          style={{
-            position: "absolute",
-            top: "2.4rem",
-            right: "13.2rem",
-            fontSize: "1rem",
-          }}
-        />
+        <MdSearch style={style} />
       </div>
     </Nav>
   );

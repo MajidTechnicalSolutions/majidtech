@@ -11,15 +11,18 @@ const Button = styled.button`
   transition: all 0.2s;
   display: inline-block;
   cursor: pointer;
+  border: none;
   background-color: ${(props) => props.theme.colors.black};
   color: ${(props) => props.theme.colors.white};
-  border-radius: 0.4rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 10rem 10rem rgba(${(props) => props.theme.colors.black}, 0.2);
   &:hover {
-    box-shadow: 0 1rem 1rem rgba(${(props) => props.theme.colors.black}, 0.2);
-    transform: translateY(-2px);
+    box-shadow: 0 1rem 1rem rgba(${(props) => props.theme.colors.black},  0.2);
+    // transform: translateY(-2px);
   }
   &:active {
-    box-shadow: 0 0.5rem 1rem rgba(${(props) => props.theme.colors.black}, 0.2);
+    // box-shadow: 0 0.5rem 1rem rgba(${(props) =>
+      props.theme.colors.black}, 0.2);
     transform: translateY(2px);
   }
   &:focus {

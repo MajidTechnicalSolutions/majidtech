@@ -11,7 +11,7 @@ function App() {
       <Theme>
         <Navbar />
         <Home />
-        <header className="App-header"></header>
+        <header className="App-header" />
         <GlobalStyle />
       </Theme>
     </div>
