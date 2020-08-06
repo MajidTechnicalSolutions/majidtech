@@ -49,10 +49,8 @@ const MenuBar = () => {
         <MdSearch></MdSearch>
       </Search>
       <Ul>
-        <Li>Courses</Li>
-        <Li>Hire</Li>
-        <Li>Tutorials</Li>
-        <Li>Login</Li>
+        <Li>All</Li>
+        <Li>My Courses</Li>
       </Ul>
       <Filter></Filter>
     </Fragment>

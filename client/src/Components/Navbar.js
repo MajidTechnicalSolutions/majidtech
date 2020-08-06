@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../Resources/images/transparent-V1-HQ.png";
 import styled from "styled-components";
 import { MdSearch } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Nav = styled.div`
   padding: 0 1rem 0 1rem;
@@ -9,9 +10,9 @@ const Nav = styled.div`
   justify-content: space-between;
   align-items: center;
   font-size: 1.3rem;
-  position: fixed;
+  // position: fixed;
   width: 100%;
-  box-shadow: 0px 0px 10px -1px black;
+  // box-shadow: 0px 0px 10px -1px black;
 `;
 
 const Img = styled.img`
@@ -70,27 +71,51 @@ const Ul = styled.ul`
   // margin-left: 40%;
 `;
 const style = {
-  position: "absolute",
-  top: "1.9rem",
-  right: "15.1rem",
-  fontSize: "1rem",
+  search: {
+    position: "absolute",
+    top: "1.9rem",
+    right: "15.1rem",
+    fontSize: "1rem",
+  },
+
+  link: {
+    textDecoration: "none",
+  },
 };
 
 function Navbar() {
   return (
     <Nav>
       <div>
-        <Img src={Logo} alt="Majid Tech" />
+        <Link style={style.link} to="/">
+          <Img src={Logo} alt="Majid Tech" />
+        </Link>
       </div>
       <div>
         <Ul>
-          <Li>Courses</Li>
-          <Li>Hire</Li>
-          <Li>Tutorials</Li>
-          <Li>Login</Li>
+          <Li>
+            <Link style={style.link} to="/courses">
+              Courses
+            </Link>
+          </Li>
+          <Li>
+            <Link style={style.link} to="/hire">
+              Hire
+            </Link>
+          </Li>
+          <Li>
+            <Link style={style.link} to="/tutorials">
+              Tutorials
+            </Link>
+          </Li>
+          <Li>
+            <Link style={style.link} to="/login">
+              Login
+            </Link>
+          </Li>
         </Ul>
         <Search type="text" value="" placeholder="     Search..." />
-        <MdSearch style={style} />
+        <MdSearch style={style.search} />
       </div>
     </Nav>
   );
