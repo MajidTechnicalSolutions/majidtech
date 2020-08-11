@@ -4,18 +4,35 @@ import { MdSearch } from "react-icons/md";
 import MenuBar from "./MenuBar";
 
 const Header = styled.header`
-  width: 90vw;
-  height: 90vh;
+  font-size: 2rem;
+  text-align: center;
 `;
 
 const Title = styled.h1``;
+const Wrapper = styled.h1`
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -25%);
+  width: 100%;
+`;
+
+const Line = styled.div`
+  width: 100%;
+  height: 2px;
+  background-color: ${(props) => props.theme.colors.lightgrey};
+`;
 
 const Courses = () => {
   return (
     <Fragment>
-      <Header>
-        <Title>Courses</Title>
-      </Header>
+      <Wrapper>
+        <Header>
+          <Title>Courses</Title>
+        </Header>
+        <MenuBar />
+        <Line />
+      </Wrapper>
     </Fragment>
   );
 };

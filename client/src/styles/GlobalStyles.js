@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
   font-family: "Lato";
+  box-sizing: border-box;
 }
 
 code {
@@ -15,6 +16,9 @@ ul {
   list-style-type: none;
 }
 
+.active {
+  color: ${(props) => props.theme.colors.orange}
+}
 `;
 
 export default GlobalStyle;
