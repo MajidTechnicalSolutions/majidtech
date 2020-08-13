@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Logo from "../Resources/images/transparent-V1-HQ.png";
 import styled from "styled-components";
 import { MdSearch } from "react-icons/md";
+import { GrUserSettings } from "react-icons/gr";
+import { AiOutlineUserAdd } from "react-icons/ai";
+
 import { Link, NavLink } from "react-router-dom";
 
 const Nav = styled.div`
@@ -17,7 +20,7 @@ const Nav = styled.div`
 
 const Li = styled(NavLink)`
   display: inline-block;
-  margin: 0 1.2rem 0 1.2rem;
+  margin-right: 2rem;
   transition: all 0.2s;
   cursor: pointer;
   border-radius: 0.4rem;
@@ -54,7 +57,7 @@ const Search = styled.input`
 
 const Ul = styled.ul`
   display: inline-block;
-  // margin-left: 40%;
+  padding: 0px;
 `;
 const style = {
   search: {
@@ -68,19 +71,20 @@ const style = {
 function Navbar() {
   return (
     <Nav>
+      <Ul>
+        <Li to="/courses">Courses</Li>
+        <Li to="/hire">Hire</Li>
+        <Li to="/tutorials">Tutorials</Li>
+        <Li to="/login">Login</Li>
+      </Ul>
       <div>
         <Li to="/">
           <Img src={Logo} alt="Majid Tech" />
         </Li>
       </div>
       <div>
-        <Ul>
-          <Li to="/courses">Courses</Li>
-          <Li to="/hire">Hire</Li>
-          <Li to="/tutorials">Tutorials</Li>
-          <Li to="/login">Login</Li>
-        </Ul>
         <Search type="text" value="" placeholder="     Search..." />
+        <AiOutlineUserAdd />
         <MdSearch style={style.search} />
       </div>
     </Nav>

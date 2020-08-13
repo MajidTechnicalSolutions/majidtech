@@ -24,13 +24,14 @@ const Line = styled.div`
 `;
 
 const Courses = () => {
+  const options = ["Front-End", "Back-End", "Full-Stack", "Mobile"];
   return (
     <Fragment>
       <Wrapper>
         <Header>
           <Title>Courses</Title>
         </Header>
-        <MenuBar />
+        <MenuBar options={options} />
         <Line />
       </Wrapper>
     </Fragment>
