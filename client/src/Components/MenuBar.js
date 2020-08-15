@@ -13,7 +13,6 @@ const Li = styled.li`
   text-align: center;
   position: relative;
   cursor: pointer;
-
   &:after {
     position: absolute;
     display: inline-block;
@@ -33,13 +32,7 @@ const Li = styled.li`
 
 const Ul = styled.ul`
   display: inline-block;
-  margin-left: 9rem;
-`;
-
-const Filter = styled.div`
-  cursor: pointer;
-  margin-left: 1rem;
-  font-size: 1.2rem;
+  margin-left: 7rem;
 `;
 
 const BtnWrap = styled.div`
@@ -67,14 +60,29 @@ const Wrapper = styled.nav`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  font-weight: normal;
+`;
+
+const Filter = styled(BtnWrap)`
+  margin-left: 1rem;
+  font-size: 1.2rem;
+`;
+
+const FilterBtn = styled(MenuBtn)`
+  font-size: 1.2rem;
+  width: 2rem;
 `;
 
 const MenuBar = ({ options }) => {
   return (
     <Wrapper>
       <Filter>
-        <BsSearch />
-        <IoMdFunnel />
+        <FilterBtn>
+          <BsSearch />
+        </FilterBtn>
+        <FilterBtn>
+          <IoMdFunnel />
+        </FilterBtn>
       </Filter>
       <Ul>
         {options.map((item) => (

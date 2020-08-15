@@ -37,8 +37,8 @@ const Li = styled(NavLink)`
 
 const Img = styled.img`
   width: 7rem;
-  // position: relative;
-  // top: 0.4rem;
+  position: relative;
+  top: 0.3rem;
 `;
 
 const Search = styled.input`
@@ -62,9 +62,14 @@ const Ul = styled.ul`
 const style = {
   search: {
     position: "absolute",
+    // top: "1.9rem",
+    right: "4rem",
+    fontSize: "1.6rem",
+  },
+  user: {
+    fontSize: "1.6rem",
     top: "1.9rem",
-    right: "11.1rem",
-    fontSize: "1rem",
+    right: "2rem",
   },
 };
 
@@ -72,20 +77,19 @@ function Navbar() {
   return (
     <Nav>
       <Ul>
+        <Li to="/">
+          <Img src={Logo} alt="Majid Tech" />
+        </Li>
         <Li to="/courses">Courses</Li>
         <Li to="/hire">Hire</Li>
         <Li to="/tutorials">Tutorials</Li>
         <Li to="/login">Login</Li>
       </Ul>
       <div>
-        <Li to="/">
-          <Img src={Logo} alt="Majid Tech" />
-        </Li>
-      </div>
-      <div>
-        <Search type="text" value="" placeholder="     Search..." />
-        <AiOutlineUserAdd />
+        <AiOutlineUserAdd style={style.user} />
         <MdSearch style={style.search} />
+        {/* <Search type="text" value="" placeholder="     Search..." />
+         */}
       </div>
     </Nav>
   );
