@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
+import CourseComp from "./CourseComp";
 
-const Tutorials = (props) => {
+const Tutorials = () => {
+  const options = ["Tutorials"];
   return (
     <Fragment>
-      <h1>Tutorials</h1>
+      <CourseComp options={options} />
     </Fragment>
   );
 };

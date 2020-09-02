@@ -1,39 +1,16 @@
 import React, { Fragment } from "react";
-import styled from "styled-components";
-import { MdSearch } from "react-icons/md";
-import MenuBar from "./MenuBar";
-
-const Header = styled.header`
-  font-size: 2rem;
-  text-align: center;
-`;
-
-const Title = styled.h1``;
-const Wrapper = styled.h1`
-  position: absolute;
-  left: 50%;
-  top: 25%;
-  transform: translate(-50%, -25%);
-  width: 100%;
-`;
-
-const Line = styled.div`
-  width: 100%;
-  height: 2px;
-  background-color: ${(props) => props.theme.colors.lightgrey};
-`;
+import CourseComp from "./CourseComp";
 
 const Courses = () => {
-  const options = ["Front-End", "Back-End", "Full-Stack", "Mobile"];
+  const options = [
+    { key: 1, data: "Front-End" },
+    { key: 2, data: "Back-End" },
+    { key: 3, data: "Full-Stack" },
+    { key: 4, data: "Mobile" },
+  ];
   return (
     <Fragment>
-      <Wrapper>
-        <Header>
-          <Title>Courses</Title>
-        </Header>
-        <MenuBar options={options} />
-        <Line />
-      </Wrapper>
+      <CourseComp options={options} />
     </Fragment>
   );
 };

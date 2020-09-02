@@ -30,7 +30,6 @@ const Li = styled(NavLink)`
   text-decoration: none;
   color: ${(props) => props.theme.colors.black};
   &:hover {
-    // color: ${(props) => props.theme.colors.orange};
     transform: translateY(-1.5px);
   }
 `;
@@ -60,16 +59,9 @@ const Ul = styled.ul`
   padding: 0px;
 `;
 const style = {
-  search: {
-    position: "absolute",
-    // top: "1.9rem",
-    right: "4rem",
-    fontSize: "1.6rem",
-  },
   user: {
     fontSize: "1.6rem",
-    top: "1.9rem",
-    right: "2rem",
+    cursor: "pointer",
   },
 };
 
@@ -83,13 +75,11 @@ function Navbar() {
         <Li to="/courses">Courses</Li>
         <Li to="/hire">Hire</Li>
         <Li to="/tutorials">Tutorials</Li>
-        <Li to="/login">Login</Li>
       </Ul>
       <div>
-        <AiOutlineUserAdd style={style.user} />
-        <MdSearch style={style.search} />
-        {/* <Search type="text" value="" placeholder="     Search..." />
-         */}
+        <Link to="/login" style={{ color: "black" }}>
+          <AiOutlineUserAdd style={style.user} />
+        </Link>
       </div>
     </Nav>
   );
