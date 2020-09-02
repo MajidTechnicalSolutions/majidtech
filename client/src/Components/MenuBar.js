@@ -8,7 +8,7 @@ const MenuBar = ({ options }) => {
   const [activeSearch, setActiveSearch] = useState(false);
 
   const [activeMyCourses, setActiveMyCourses] = useState(false);
-  const [activeAllCourses, setActiveAllCourses] = useState(false);
+  const [activeAllCourses, setActiveAllCourses] = useState(true);
 
   const [active, setActive] = useState(null);
 
@@ -165,7 +165,7 @@ const MenuBar = ({ options }) => {
       <BtnWrap>
         <AllBtn
           onClick={() => {
-            setActiveAllCourses(!activeAllCourses);
+            setActiveAllCourses(true);
             setActiveMyCourses(false);
           }}
         >
@@ -173,7 +173,7 @@ const MenuBar = ({ options }) => {
         </AllBtn>
         <MyCourses
           onClick={() => {
-            setActiveMyCourses(!activeMyCourses);
+            setActiveMyCourses(true);
             setActiveAllCourses(false);
           }}
         >

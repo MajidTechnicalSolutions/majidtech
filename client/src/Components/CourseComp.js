@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
-import { MdSearch } from "react-icons/md";
 import MenuBar from "./MenuBar";
 
 const Header = styled.header`
@@ -25,9 +24,26 @@ const Body = styled.div`
   background-color: ${(props) => props.theme.colors.palegrey};
   width: 100%;
   height: 100vh;
+  // padding: 2rem 5rem;
 `;
 
-const CourseComp = ({ options }) => {
+const Card = styled.div`
+  width: 19rem;
+  height: 24rem;
+  border: 2px solid red;
+  color: red;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  text-align: center;
+  // grid-gap: -9rem;
+  padding: 15rem 20rem;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+`;
+
+const CourseComp = ({ options, courses }) => {
   return (
     <Fragment>
       <Wrapper>
@@ -37,7 +53,19 @@ const CourseComp = ({ options }) => {
         <MenuBar options={options} />
         <Line />
       </Wrapper>
-      <Body></Body>
+      <Body>
+        <Grid>
+          {courses.map((course) => (
+            <Card>
+              <img alt={course.title} src={course.image}></img>
+              <div>{course.title}</div>
+              <div>{course.dic}</div>
+              <div>{course.hours}</div>
+              <div>{course.minutes}</div>
+            </Card>
+          ))}
+        </Grid>
+      </Body>
     </Fragment>
   );
 };
