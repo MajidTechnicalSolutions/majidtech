@@ -14,6 +14,7 @@ const themes = {
     md: "1.5rem",
     sm: "1rem",
   },
+  images: {},
 };
 
 const Theme = ({ children }) => (

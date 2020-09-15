@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
 import MenuBar from "./MenuBar";
+import image1 from "../Resources/images/1.png";
+import image2 from "../Resources/images/2.png";
 
 const Header = styled.header`
   font-size: 2rem;
@@ -30,8 +32,16 @@ const Body = styled.div`
 const Card = styled.div`
   width: 19rem;
   height: 24rem;
-  border: 2px solid red;
+  border: 3px solid ${(props) => props.theme.colors.lightgrey};
   color: red;
+  border-radius: 1%;
+  position: relative;
+  transition: all 0.2s;
+  &:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 2rem 47px -1px rgba(153, 153, 153, 0.2)};
+
+  }
 `;
 
 const Grid = styled.div`
@@ -41,6 +51,13 @@ const Grid = styled.div`
   padding: 15rem 20rem;
   justify-items: center;
   grid-template-columns: repeat(4, 1fr);
+`;
+
+const Image = styled.div`
+  width: 100%;
+  height: 60%;
+  background-image: url(${(props) => props.img});
+  background-size: cover;
 `;
 
 const CourseComp = ({ options, courses }) => {
@@ -57,7 +74,7 @@ const CourseComp = ({ options, courses }) => {
         <Grid>
           {courses.map((course) => (
             <Card>
-              <img alt={course.title} src={course.image}></img>
+              <Image alt={course.title} img={course.image}></Image>
               <div>{course.title}</div>
               <div>{course.dic}</div>
               <div>{course.hours}</div>

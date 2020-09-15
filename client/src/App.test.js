@@ -1,9 +1,13 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { shallow, mount } from "enzyme";
+import { render } from "@testing-library/react";
+import App from "./App";
+import Theme from "./styles/theme";
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+it("renders without crashing", () => {
+  shallow(<App />);
+});
+
+it("renders all comp without crashing", () => {
+  mount(<App />);
 });
