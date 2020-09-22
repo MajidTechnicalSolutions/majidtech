@@ -3,7 +3,7 @@ import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import Hire from "./Components/Hire";
 import Tutorials from "./Components/Tutorials";
-import Courses from "./Components/Courses";
+import Courses from "./Components/Courses/Courses";
 import Login from "./Components/Login";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";

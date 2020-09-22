@@ -1,7 +1,8 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
+import { mount, shallow } from "enzyme";
 
-const themes = {
+export const themes = {
   colors: {
     orange: "#dd6b2d",
     white: "#fff",
@@ -20,5 +21,15 @@ const themes = {
 const Theme = ({ children }) => (
   <ThemeProvider theme={themes}>{children}</ThemeProvider>
 );
+
+export const shallowTheme = (tree) =>
+  shallow(tree, {
+    wrappingComponent: Theme,
+  });
+
+export const mountTheme = (tree) =>
+  mount(tree, {
+    wrappingComponent: Theme,
+  });
 
 export default Theme;

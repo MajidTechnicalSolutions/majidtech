@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
-import CourseComp from "./CourseComp";
-import image1 from "../Resources/images/1.png";
-import image2 from "../Resources/images/2.png";
-import image3 from "../Resources/images/3.png";
-import image4 from "../Resources/images/4.png";
+import CourseComp from "../CourseComp/CourseComp";
+import image1 from "../../Resources/images/1.png";
+import image2 from "../../Resources/images/2.png";
+import image3 from "../../Resources/images/3.png";
+import image4 from "../../Resources/images/4.png";
 
 const Courses = () => {
   const options = [
@@ -16,6 +16,7 @@ const Courses = () => {
     {
       image: image1,
       hours: 1,
+      lessons: 5,
       minutes: 30,
       id: 1,
       title: "sunt aut facere repellat provident ",
@@ -26,6 +27,7 @@ const Courses = () => {
       image: image2,
       id: 2,
       hours: 1,
+      lessons: 10,
       minutes: 30,
       title: "qui est esse",
       disc:
@@ -34,6 +36,7 @@ const Courses = () => {
     {
       image: image3,
       hours: 1,
+      lessons: 20,
       minutes: 30,
       id: 3,
       title: "ea molestias quasi exercitationem ",
@@ -43,6 +46,7 @@ const Courses = () => {
     {
       image: image4,
       hours: 1,
+      lessons: 15,
       minutes: 30,
       id: 4,
       title: "eum et est occaecati",

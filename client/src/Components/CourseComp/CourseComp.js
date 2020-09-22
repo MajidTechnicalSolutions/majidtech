@@ -1,8 +1,25 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
-import MenuBar from "./MenuBar";
-import image1 from "../Resources/images/1.png";
-import image2 from "../Resources/images/2.png";
+import MenuBar from "../MenuBar";
+import image1 from "../../Resources/images/1.png";
+import image2 from "../../Resources/images/2.png";
+import { RiStackLine, RiTimerLine } from "react-icons/ri";
+
+const defaultLightgrey = {
+  theme: {
+    colors: {
+      lightgrey: "#f3f3f4",
+    },
+  },
+};
+
+const defaultPalegrey = {
+  theme: {
+    colors: {
+      lightgrey: "#FAFAFB",
+    },
+  },
+};
 
 const Header = styled.header`
   font-size: 2rem;
@@ -22,12 +39,15 @@ const Line = styled.div`
   background-color: ${(props) => props.theme.colors.lightgrey};
 `;
 
+Line.defaultProps = defaultLightgrey;
+
 const Body = styled.div`
   background-color: ${(props) => props.theme.colors.palegrey};
   width: 100%;
   height: 100vh;
   // padding: 2rem 5rem;
 `;
+Body.defaultProps = defaultPalegrey;
 
 const Card = styled.div`
   width: 19rem;
@@ -40,10 +60,37 @@ const Card = styled.div`
   &:hover {
     transform: translateY(-20px);
     box-shadow: 0 2rem 47px -1px rgba(153, 153, 153, 0.2)};
-
   }
 `;
 
+Card.defaultProps = defaultLightgrey;
+
+const Cardinfo = styled.div`
+  text-align: left;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+`;
+
+const CardDiv = styled.div`
+  color: black;
+`;
+const CardDivBold = styled(CardDiv)`
+  fontweight: bold;
+`;
+const CardSpan = styled.div`
+  color: #696969;
+`;
+
+const CardIconStack = styled(RiStackLine)`
+  color: orange;
+`;
+
+const CardIconTimer = styled(RiTimerLine)`
+  color: orange;
+`;
 const Grid = styled.div`
   display: grid;
   text-align: center;
@@ -60,6 +107,15 @@ const Image = styled.div`
   background-size: cover;
 `;
 
+const shortenString = (str, n) => {
+  const newStr = str.slice(0, n);
+  return str.length > n ? (
+    <Fragment>{newStr.slice(0, newStr.lastIndexOf(" "))}&hellip;</Fragment>
+  ) : (
+    str
+  );
+};
+
 const CourseComp = ({ options, courses }) => {
   return (
     <Fragment>
@@ -75,10 +131,16 @@ const CourseComp = ({ options, courses }) => {
           {courses.map((course) => (
             <Card>
               <Image alt={course.title} img={course.image}></Image>
-              <div>{course.title}</div>
-              <div>{course.dic}</div>
-              <div>{course.hours}</div>
-              <div>{course.minutes}</div>
+              <Cardinfo>
+                <CardDiv className="test">{course.title}</CardDiv>
+                <CardDivBold>{shortenString(course.disc, 50)}</CardDivBold>
+                <CardSpan>
+                  <CardIconStack />
+                  {course.lessons}
+                  <CardIconTimer />
+                  {course.hours} {course.minutes}
+                </CardSpan>
+              </Cardinfo>
             </Card>
           ))}
         </Grid>
