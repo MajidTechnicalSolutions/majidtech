@@ -1,22 +1,15 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
 import MenuBar from "../MenuBar";
-import image1 from "../../Resources/images/1.png";
-import image2 from "../../Resources/images/2.png";
 import { RiStackLine, RiTimerLine } from "react-icons/ri";
 
-const defaultLightgrey = {
+const defaultColor = {
   theme: {
     colors: {
       lightgrey: "#f3f3f4",
-    },
-  },
-};
-
-const defaultPalegrey = {
-  theme: {
-    colors: {
-      lightgrey: "#FAFAFB",
+      palegrey: "#FAFAFB",
+      dimgrey: "#696969",
+      black: "#121212",
     },
   },
 };
@@ -39,7 +32,7 @@ const Line = styled.div`
   background-color: ${(props) => props.theme.colors.lightgrey};
 `;
 
-Line.defaultProps = defaultLightgrey;
+Line.defaultProps = defaultColor.lightgrey;
 
 const Body = styled.div`
   background-color: ${(props) => props.theme.colors.palegrey};
@@ -47,7 +40,7 @@ const Body = styled.div`
   height: 100vh;
   // padding: 2rem 5rem;
 `;
-Body.defaultProps = defaultPalegrey;
+Body.defaultProps = defaultColor.palegrey;
 
 const Card = styled.div`
   width: 19rem;
@@ -63,7 +56,7 @@ const Card = styled.div`
   }
 `;
 
-Card.defaultProps = defaultLightgrey;
+Card.defaultProps = defaultColor.lightgrey;
 
 const Cardinfo = styled.div`
   text-align: left;
@@ -75,22 +68,33 @@ const Cardinfo = styled.div`
 `;
 
 const CardDiv = styled.div`
-  color: black;
-`;
-const CardDivBold = styled(CardDiv)`
-  fontweight: bold;
-`;
-const CardSpan = styled.div`
-  color: #696969;
+  color: ${(props) => props.theme.colors.black};
 `;
 
+CardDiv.defaultProps = defaultColor.dimgrey;
+
+const CardDivBold = styled.div`
+  color: black;
+  font-weight: bold;
+`;
+
+const CardSpan = styled.div`
+  color: ${(props) => props.theme.colors.dimgrey};
+`;
+
+CardSpan.defaultProps = defaultColor.dimgrey;
+
 const CardIconStack = styled(RiStackLine)`
-  color: orange;
+  color: ${(props) => props.theme.colors.orange};
+  // positon: relative;
+  // top: 1rem;
 `;
 
 const CardIconTimer = styled(RiTimerLine)`
-  color: orange;
+  color: ${(props) => props.theme.colors.orange};
+  line-hight: -2rem;
 `;
+
 const Grid = styled.div`
   display: grid;
   text-align: center;

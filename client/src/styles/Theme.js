@@ -9,13 +9,13 @@ export const themes = {
     black: "#121212",
     lightgrey: "#f3f3f4;",
     palegrey: "#FAFAFB",
+    dimgrey: "#696969",
   },
   fontSize: {
     lg: "2rem",
     md: "1.5rem",
     sm: "1rem",
   },
-  images: {},
 };
 
 const Theme = ({ children }) => (
