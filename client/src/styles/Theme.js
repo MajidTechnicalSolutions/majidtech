@@ -15,6 +15,7 @@ export const themes = {
     lg: "2rem",
     md: "1.5rem",
     sm: "1rem",
+    xsm: ".5rem",
   },
 };
 

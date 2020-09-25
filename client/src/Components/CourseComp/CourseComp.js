@@ -80,28 +80,32 @@ const CardDivBold = styled.div`
 
 const CardSpan = styled.div`
   color: ${(props) => props.theme.colors.dimgrey};
+  display: flex;
+  justify-content: space-between;
+  // font-size: ${(props) => props.theme.fontSize.sm};
 `;
 
 CardSpan.defaultProps = defaultColor.dimgrey;
 
 const CardIconStack = styled(RiStackLine)`
   color: ${(props) => props.theme.colors.orange};
-  // positon: relative;
-  // top: 1rem;
+  position: relative;
+  bottom: -0.1rem;
 `;
 
 const CardIconTimer = styled(RiTimerLine)`
   color: ${(props) => props.theme.colors.orange};
-  line-hight: -2rem;
+  position: relative;
+  bottom: -0.1rem;
 `;
 
 const Grid = styled.div`
   display: grid;
   text-align: center;
-  // grid-gap: -9rem;
-  padding: 15rem 20rem;
+  grid-row-gap: 6rem;
+  padding: 12rem 20rem;
   justify-items: center;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(4, 1fr));
 `;
 
 const Image = styled.div`
@@ -139,10 +143,14 @@ const CourseComp = ({ options, courses }) => {
                 <CardDiv className="test">{course.title}</CardDiv>
                 <CardDivBold>{shortenString(course.disc, 50)}</CardDivBold>
                 <CardSpan>
-                  <CardIconStack />
-                  {course.lessons}
-                  <CardIconTimer />
-                  {course.hours} {course.minutes}
+                  <span>
+                    {" "}
+                    <CardIconStack /> {course.lessons} Lessons
+                  </span>
+                  <span>
+                    {" "}
+                    <CardIconTimer /> {course.hours} hr {course.minutes} min{" "}
+                  </span>
                 </CardSpan>
               </Cardinfo>
             </Card>
