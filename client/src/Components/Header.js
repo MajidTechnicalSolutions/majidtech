@@ -31,7 +31,9 @@ const Header = () => {
           Learn the skills to become a professional Web Developer{" "}
           <span role="img">👨🏽‍💻</span>
         </P>
-        <P>Need a website built?</P>
+        <P>
+          From a professional Web Developer <span role="img">🤯</span>
+        </P>
         <ButtonPrimary />
       </Wrapper>
     </Fragment>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Logo from "../Resources/images/transparent-V1-HQ.png";
 import styled from "styled-components";
 import { MdSearch } from "react-icons/md";
-import { GrUserSettings } from "react-icons/gr";
 import { AiOutlineUserAdd } from "react-icons/ai";
 
 import { Link, NavLink } from "react-router-dom";

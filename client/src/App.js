@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import Hire from "./Components/Hire";
-import Tutorials from "./Components/Tutorials";
+import Tutorials from "./Components/Tutorials/Tutorials";
 import Courses from "./Components/Courses/Courses";
 import Login from "./Components/Login";
 

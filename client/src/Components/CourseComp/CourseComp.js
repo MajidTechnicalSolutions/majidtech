@@ -103,9 +103,9 @@ const Grid = styled.div`
   display: grid;
   text-align: center;
   grid-row-gap: 6rem;
-  padding: 12rem 20rem;
+  padding: 12rem 10rem;
   justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(4, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
 `;
 
 const Image = styled.div`
@@ -113,6 +113,7 @@ const Image = styled.div`
   height: 60%;
   background-image: url(${(props) => props.img});
   background-size: cover;
+  object-fit: cover;
 `;
 
 const shortenString = (str, n) => {
@@ -138,7 +139,7 @@ const CourseComp = ({ options, courses }) => {
         <Grid>
           {courses.map((course) => (
             <Card>
-              <Image alt={course.title} img={course.image}></Image>
+              <Image alt={course.title} img={course.image} />
               <Cardinfo>
                 <CardDiv className="test">{course.title}</CardDiv>
                 <CardDivBold>{shortenString(course.disc, 50)}</CardDivBold>

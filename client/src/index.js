@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import WebFont from "webfontloader";
+import { Provider } from "react-redux";
+import store from "./store";
 import App from "./App";
 
 WebFont.load({
@@ -11,7 +13,9 @@ WebFont.load({
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
