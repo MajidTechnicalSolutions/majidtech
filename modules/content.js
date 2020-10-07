@@ -17,7 +17,7 @@ const ContentSchema = new Schema({
     ],
   },
   tutorials: {
-    options: [],
+    options: [{ id: { type: Number, default: Date.now() }, category: String }],
     tutorials: [
       {
         id: Date.Now(),

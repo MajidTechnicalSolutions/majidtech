@@ -16,4 +16,29 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  datJoined: {
+    type: Date,
+    default: Date.now(),
+  },
+  favTutorials: [
+    {
+      id: Number,
+      title: String,
+      image: Buffer,
+      disc: String,
+      notes: [String],
+    },
+  ],
+  favCourses: [
+    {
+      id: Number,
+      title: String,
+      image: Buffer,
+      hours: Number,
+      lessons: Number,
+      minutes: Number,
+      disc: String,
+      notes: [String],
+    },
+  ],
 });
