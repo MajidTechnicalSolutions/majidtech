@@ -1,7 +1,7 @@
 {
   "name": "majidtech",
   "version": "0.1.0",
-  "main": "server.js",
+  "main": "src/server.js",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -14,6 +14,7 @@
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.7",
+    "npm": "^6.14.8",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react": "^16.13.1",
@@ -45,5 +46,16 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamalabd/majidtech.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamalabd/majidtech/issues"
+  },
+  "homepage": "https://github.com/jamalabd/majidtech#readme"
 }

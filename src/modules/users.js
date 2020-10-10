@@ -16,7 +16,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  datJoined: {
+  dateJoined: {
     type: Date,
     default: Date.now(),
   },
@@ -42,3 +42,5 @@ const UserSchema = new Schema({
     },
   ],
 });
+
+module.exports = User = mongoose.model("users", UserSchema);
