@@ -7,9 +7,19 @@ const TutorialSchema = new Schema({
     tutorials: [
       {
         id: Date.Now(),
-        title: String,
+        title: {
+          type: String,
+          required: true,
+        },
         image: Buffer,
-        disc: String,
+        disc: {
+          type: String,
+          required: true,
+        },
+        date: {
+          type: Date,
+          default: Date.now(),
+        },
       },
     ],
   },

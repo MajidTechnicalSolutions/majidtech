@@ -8,12 +8,22 @@ const CourseSchema = new Schema({
     courses: [
       {
         id: Date.Now(),
-        title: String,
+        title: {
+          type: String,
+          required: true,
+        },
         image: Buffer,
         hours: Number,
         lessons: Number,
         minutes: Number,
-        disc: String,
+        disc: {
+          type: String,
+          required: true,
+        },
+        date: {
+          type: Date,
+          default: Date.now(),
+        },
       },
     ],
   },
