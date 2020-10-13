@@ -1,18 +1,23 @@
+// importing mongoos and makeing schema var
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // creating mongoose schema for site content
-const TutorialSchema = new Schema({
-  tutorials: {
+const CourseSchema = new Schema({
+  courses: {
     options: [{ id: { type: Number, default: Date.now() }, category: String }],
-    tutorials: [
+    courses: [
       {
-        id: Date.Now(),
+        id: { type: Number, default: Date.now() },
+        tags: [String],
         title: {
           type: String,
           required: true,
         },
         image: Buffer,
-        disc: {
+        hours: Number,
+        lessons: Number,
+        minutes: Number,
+        desc: {
           type: String,
           required: true,
         },
@@ -25,4 +30,4 @@ const TutorialSchema = new Schema({
   },
 });
 
-module.exports = Tutorial = mongoose.model("tutorials", TutorialSchema);
+module.exports = Course = mongoose.model("courses", CourseSchema);

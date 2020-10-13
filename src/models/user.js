@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   username: {
     type: String,
-    required: false,
+    required: true,
   },
   email: {
     type: String,
@@ -25,7 +25,7 @@ const UserSchema = new Schema({
       id: Number,
       title: String,
       image: Buffer,
-      disc: String,
+      desc: String,
       notes: [String],
     },
   ],
@@ -37,7 +37,7 @@ const UserSchema = new Schema({
       hours: Number,
       lessons: Number,
       minutes: Number,
-      disc: String,
+      desc: String,
       notes: [String],
     },
   ],

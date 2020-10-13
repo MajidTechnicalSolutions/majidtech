@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const courses = require("./routes/api/courses");
 const tutorials = require("./routes/api/tutorials");
@@ -10,14 +9,17 @@ require("dotenv").config({ path: __dirname + "/config/.env" });
 
 // initializing app
 const app = express();
-// using body parser middleware to parse req data to json and not stream
+
+// using express body parser middleware to parse req data from a stream to json
+
 app.use(
-  bodyParser.urlencoded({
+  express.urlencoded({
     extended: false,
   })
 );
 
-app.use(bodyParser.json());
+app.use(express.json());
+
 // connect to mongodb data base
 mongoose
   .connect(process.env.DB_CONNECTION, {
@@ -33,9 +35,9 @@ app.get("/", (req, res) => {
   res.send("Weclome to majidtech");
 });
 // middleware handling routes form these files
-app.use("/courses", courses);
-app.use("/tutorials", tutorials);
-app.use("/users", users);
+app.use("/api/courses", courses);
+app.use("/api/tutorials", tutorials);
+app.use("/api/users", users);
 
 // creating port for server
 const port = process.env.PORT || 5000;
