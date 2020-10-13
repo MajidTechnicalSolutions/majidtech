@@ -5,7 +5,7 @@ const tutorials = require("./routes/api/tutorials");
 const users = require("./routes/api/users");
 
 // access dontenv file for protected data
-require("dotenv").config({ path: __dirname + "/config/.env" });
+require("dotenv").config({ path: __dirname + "/.env" });
 
 // initializing app
 const app = express();
