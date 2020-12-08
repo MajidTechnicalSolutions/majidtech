@@ -9,7 +9,7 @@ module.exports = validateRegisterInput = (data) => {
   data.username = !isEmpty(data.username) ? data.username : "";
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
-  data.password2 = !isEmpty(data.name) ? data.name : "";
+  data.password2 = !isEmpty(data.password2) ? data.password2 : "";
 
   // validate fields and store in errors obj
   if (validator.isEmpty(data.username)) {
@@ -28,10 +28,10 @@ module.exports = validateRegisterInput = (data) => {
     errors.password2 = "Confirmation password field is required";
   }
 
-  if (!validator.islength(data.password, { ming: 6, max: 30 })) {
+  if (!validator.isLength(data.password, { min: 6, max: 30 })) {
     errors.password = "Password must be at least 6 characters";
   }
-  if (validator.equals(data.password, data.password2)) {
+  if (!validator.equals(data.password, data.password2)) {
     errors.password2 = "Passwords must match";
   }
 

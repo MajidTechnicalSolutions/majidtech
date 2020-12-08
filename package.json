@@ -24,7 +24,6 @@
     "validator": "^13.1.17"
   },
   "scripts": {
-    "start": "node server.js",
     "server": "nodemon server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",

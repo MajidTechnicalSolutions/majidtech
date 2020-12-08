@@ -9,6 +9,7 @@ const validateLoginInput = require("../../validation/login");
 
 // loading user model
 const User = require("../../models/user");
+const Tokens = require("../../models/tokens");
 
 // @route POST api/users/register
 // @desc register users
@@ -32,20 +33,22 @@ router.post("/register", (req, res) => {
       });
 
       // Hash passwords before saving it to the data base
-      const salt = bcrypt.genSalt();
-      bcrypt.hash(newUser.password, salt, (err, hash) => {
-        newUser.password = hash;
-        newUser
-          .save()
-          .then((user) => res.json(user))
-          .catch((err) => console.log(err));
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) return console.log(err);
+          newUser.password = hash;
+          newUser
+            .save()
+            .then((user) => res.json(user))
+            .catch((err) => console.log(err));
+        });
       });
     }
   });
 });
 
 // @route POST api/users/register
-// @desc login user return jwt token
+// @desc login user sign jwt token
 // @access Public
 router.post("/login", (req, res) => {
   // form validation for login
@@ -54,7 +57,56 @@ router.post("/login", (req, res) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
+  // store input email and password
+  const email = req.body.email;
+  const password = req.body.password;
   // look for user in database
+  User.findOne({ email }).then((user) => {
+    // check if user exist
+    if (!user) {
+      return res.status(404).json({ emailstatus: "Email not found" });
+    }
+    // check password
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (isMatch) {
+        // User matched create JWT payload
+        const payload = {
+          id: user.id,
+          role: user.role,
+        };
+        // create refresh token
+        const refreshToken = jwt.sign(payload, process.env.REFRESH_SECRET, {
+          expiresIn: "1w",
+        });
+        // store it in Data base
+        const newToken = new Tokens({
+          token: refreshToken,
+          isValid: true,
+        });
+        newToken.save((err, token) => {
+          if (err) return console.log(err);
+          console.log(`new token save and is valid is ${token.isValid}`);
+        });
+        // sign JWT
+        jwt.sign(
+          payload,
+          process.env.SECRET_OR_KEY,
+          {
+            expiresIn: "1w",
+          },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: "Bearer " + token,
+              refreshToken,
+            });
+          }
+        );
+      } else {
+        return res.status(400).json({ passwordStatus: "Password Incorrect" });
+      }
+    });
+  });
 });
 
 module.exports = router;
