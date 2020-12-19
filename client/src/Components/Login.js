@@ -22,9 +22,10 @@ const Login = (props) => {
           <input type='text' name='password' id='password' />
         </label>
         <label htmlFor='password2'>
-          Varify Password
+          Verify Password
           <input type='text' name='password2' id='password2' />
         </label>
+        <button type='submit'>Register</button>
       </form>
     </Fragment>
   );
