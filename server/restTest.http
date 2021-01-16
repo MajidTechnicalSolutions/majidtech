@@ -1,11 +1,22 @@
-POST http://localhost:5000/api/users/register
+@host =http://localhost:5000
 
-###
+@users =api/users
 
+POST {{host}}/{{users}}/register
 content-type: application/json
+
 {
     "username": "katherine",
     "email": "katherin@gmail.com",
-    "password":"pass",
-    "password2":"pass"
+    "password":"password",
+    "password2":"password"
+}
+
+###
+POST {{host}}/{{users}}/login
+content-type: application/json
+
+{
+    "email": "katherin@gmail.com",
+    "password":"password"
 }
