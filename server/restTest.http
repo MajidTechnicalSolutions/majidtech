@@ -19,4 +19,4 @@ content-type: application/json
 {
     "email": "katherin@gmail.com",
     "password":"password"
-}
+} 
