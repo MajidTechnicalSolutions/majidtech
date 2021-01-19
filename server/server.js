@@ -1,5 +1,5 @@
 // access dontenv file for protected data
-require('dotenv').config({ path: __dirname + '/.env' });
+const { db, port } = require('./envConfig');
 // requires
 const express = require('express');
 const mongoose = require('mongoose');
@@ -30,7 +30,7 @@ passportConfig(passport);
 
 // connect to mongodb data base
 mongoose
-  .connect(process.env.DB_CONNECTION, {
+  .connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -48,7 +48,6 @@ app.use('/api/tutorials', tutorials);
 app.use('/api/users', users);
 app.use('/api/tokens', tokens);
 // creating port for server
-const port = process.env.PORT || 5000;
 
 //listinig to that port
 app.listen(port, () => {

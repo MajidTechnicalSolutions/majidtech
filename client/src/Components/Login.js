@@ -1,34 +1,81 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+import styled from 'styled-components';
 
-const Login = (props) => {
+function Login(props) {
+  // styles
+  const Loginwrapper = styled.div`
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    right: 0;
+  `;
+
+  const Label = styled.label`
+    display: block;
+    margin-bottom: 1rem;
+  `;
+  // declorations
+  const [state, setState] = useState('');
+  // Functions
+  const handleOnChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value,
+    });
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
   };
   return (
     <Fragment>
       <h1>Register</h1>
-      {/* Registration form for users */}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='name'>
-          Enter Name
-          <input type='text' name='name' id='name' />
-        </label>
-        <label htmlFor='email'>
-          Enter Email
-          <input type='email' name='email' id='email' />
-        </label>
-        <label htmlFor='password'>
-          Enter Password
-          <input type='text' name='password' id='password' />
-        </label>
-        <label htmlFor='password2'>
-          Verify Password
-          <input type='text' name='password2' id='password2' />
-        </label>
-        <button type='submit'>Register</button>
-      </form>
+      <div id='sidewall'>Social logins</div>
+      <Loginwrapper>
+        {/* Registration form for users */}
+        <form onSubmit={handleSubmit}>
+          <Label>
+            <div>Enter Name:</div>
+            <input
+              type='text'
+              onChange={handleOnChange}
+              name='name'
+              onChange={handleOnChange}
+            />
+          </Label>
+          <Label>
+            <div>Enter Email:</div>
+            <input
+              type='email'
+              name='email'
+              value={state.email || ''}
+              onChange={handleOnChange}
+            />
+          </Label>
+          <Label>
+            <div>Enter Password:</div>
+            <input
+              type='text'
+              name='password'
+              value={state.password || ''}
+              onChange={handleOnChange}
+            />
+          </Label>
+          <Label>
+            <div>Verify Password:</div>
+            <input
+              type='text'
+              name='password2'
+              value={state.password2 || ''}
+              onChange={handleOnChange}
+            />
+          </Label>
+          <button type='submit'>Register</button>
+        </form>
+      </Loginwrapper>
     </Fragment>
   );
-};
+}
 
 export default Login;

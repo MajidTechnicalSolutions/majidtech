@@ -1,3 +1,4 @@
+const { secret, refreshSecret } = require('../../envConfig');
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
@@ -75,7 +76,7 @@ router.post('/login', (req, res) => {
           role: user.role,
         };
         // create refresh token
-        const refreshToken = jwt.sign(payload, process.env.REFRESH_SECRET, {
+        const refreshToken = jwt.sign(payload, refreshSecret, {
           expiresIn: '1w',
         });
         // store it in Data base
@@ -90,7 +91,7 @@ router.post('/login', (req, res) => {
         // sign JWT
         jwt.sign(
           payload,
-          process.env.SECRET_OR_KEY,
+          secret,
           {
             expiresIn: '.5h',
           },
