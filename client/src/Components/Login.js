@@ -1,24 +1,43 @@
 import React, { Fragment, useState } from 'react';
 import styled from 'styled-components';
+import { ButtonSecondary } from './Buttons';
 
 function Login(props) {
   // styles
-  const Loginwrapper = styled.div`
+  const Wrapper = styled.div`
     width: 50%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
     position: absolute;
     align-items: center;
+    justify-content: center;
+  `;
+
+  const Input = styled.input`
+    width: 25rem;
+    height: 1.5rem;
+    display: block;
+  `;
+
+  const SocialWrapper = styled(Wrapper)`
+    flex-direction: column;
+    left: 0;
+  `;
+
+  const Loginwrapper = styled(Wrapper)`
+    flex-direction: column;
     right: 0;
   `;
 
   const Label = styled.label`
-    display: block;
-    margin-bottom: 1rem;
+    display: flex;
+    height: 3.5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 4rem;
   `;
-  // declorations
-  const [state, setState] = useState('');
   // Functions
+  const [state, setState] = useState('');
   const handleOnChange = (event) => {
     setState({
       ...state,
@@ -30,14 +49,14 @@ function Login(props) {
   };
   return (
     <Fragment>
-      <h1>Register</h1>
-      <div id='sidewall'>Social logins</div>
+      <SocialWrapper>Social logins</SocialWrapper>
       <Loginwrapper>
+        <h1>Register</h1>
         {/* Registration form for users */}
         <form onSubmit={handleSubmit}>
           <Label>
             <div>Enter Name:</div>
-            <input
+            <Input
               type='text'
               onChange={handleOnChange}
               name='name'
@@ -46,7 +65,7 @@ function Login(props) {
           </Label>
           <Label>
             <div>Enter Email:</div>
-            <input
+            <Input
               type='email'
               name='email'
               value={state.email || ''}
@@ -55,7 +74,7 @@ function Login(props) {
           </Label>
           <Label>
             <div>Enter Password:</div>
-            <input
+            <Input
               type='text'
               name='password'
               value={state.password || ''}
@@ -64,14 +83,16 @@ function Login(props) {
           </Label>
           <Label>
             <div>Verify Password:</div>
-            <input
+            <Input
               type='text'
               name='password2'
               value={state.password2 || ''}
               onChange={handleOnChange}
             />
           </Label>
-          <button type='submit'>Register</button>
+          <ButtonSecondary type='submit' text='Register'>
+            Register
+          </ButtonSecondary>
         </form>
       </Loginwrapper>
     </Fragment>

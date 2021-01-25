@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import styled from "styled-components";
-import { ButtonPrimary } from "./Buttons";
+import React, { Fragment } from 'react';
+import styled from 'styled-components';
+import { ButtonPrimary } from './Buttons';
 
 const Wrapper = styled.header`
   height: 80vh;
@@ -28,13 +28,13 @@ const Header = () => {
       <Wrapper>
         <H1>Majid Tech</H1>
         <P>
-          Learn the skills to become a professional Web Developer{" "}
-          <span role="img">👨🏽‍💻</span>
+          Learn the skills to become a professional Web Developer{' '}
+          <span role='img'>👨🏽‍💻</span>
         </P>
         <P>
-          From a professional Web Developer <span role="img">🤯</span>
+          From a professional Web Developer <span role='img'>🤯</span>
         </P>
-        <ButtonPrimary />
+        <ButtonPrimary text='Sign up' />
       </Wrapper>
     </Fragment>
   );
