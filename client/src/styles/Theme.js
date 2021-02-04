@@ -1,21 +1,21 @@
-import React from "react";
-import { ThemeProvider } from "styled-components";
-import { mount, shallow } from "enzyme";
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import { mount, shallow } from 'enzyme';
 
 export const themes = {
   colors: {
-    orange: "#dd6b2d",
-    white: "#fff",
-    black: "#121212",
-    lightgrey: "#f3f3f4;",
-    palegrey: "#FAFAFB",
-    dimgrey: "#696969",
+    orange: '#dd6b2d',
+    white: '#fff',
+    black: '#121212',
+    lightgrey: '#f3f3f3',
+    palegrey: '#FAFAFA',
+    dimgrey: '#696969',
   },
   fontSize: {
-    lg: "2rem",
-    md: "1.5rem",
-    sm: "1rem",
-    xsm: ".5rem",
+    lg: '2rem',
+    md: '1.5rem',
+    sm: '1rem',
+    xsm: '.5rem',
   },
 };
 
