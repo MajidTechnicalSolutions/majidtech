@@ -1,31 +1,28 @@
 import React from "react";
-import Navbar from "./Components/Navbar";
-import Home from "./Components/Home";
-import Hire from "./Components/Hire";
-import Tutorials from "./Components/Tutorials/Tutorials";
-import Courses from "./Components/Courses/Courses";
-import Login from "./Components/Login";
+import {Header} from "./Header";
+import { MainPattern } from './Resources/Svgs'
+// import Testimonials from "./Testimonials";
+// import Work from "./Work";
+// import Services from "./Services";
+// import Blog from "./Blog";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-import GlobalStyle from "./styles/GlobalStyles";
-import Theme from "./styles/Theme";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { HashLink as Link } from 'react-router-hash-link'
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Theme>
-          <Navbar />
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/courses" exact component={Courses} />
-            <Route path="/hire" exact component={Hire} />
-            <Route path="/tutorials" exact component={Tutorials} />
-            <Route path="/login" exact component={Login} />
-          </Switch>
-          <GlobalStyle />
-        </Theme>
+      <MainPattern/>
+        {/* <Theme> */}
+            <Link to="/header" exact component={Header} />
+            {/* <Link path="/work" exact component={Work} />
+            <Link path="/services" exact component={Services} />
+            <Link path="/testimonials" exact component={Testimonials} />
+            <Link path="/blog" exact component={Blog} />
+            <Link path="/contact" exact component={Contact} /> */}
+          {/* <GlobalStyle /> */}
+        {/* </Theme> */}
       </div>
     </Router>
   );

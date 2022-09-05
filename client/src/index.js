@@ -1,23 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
 import WebFont from 'webfontloader';
-import { Provider } from 'react-redux';
-import store from './store';
 import App from './App';
+import './index.css';
+const container = document.getElementById('root');
+const root = createRoot(container);
 
-WebFont.load({
-  google: {
-    families: ['Lato:300,400,700', 'Lobster:300,400,700', 'sans-serif'],
-  },
-});
+  WebFont.load({
+    google: {
+      families: ['Lato:300,400,700', 'Lobster:300,400,700', 'sans-serif', 'Modern Era Mono'],
+    },
+  });
 
-ReactDOM.render(
+
+
+root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+      <App/>
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
