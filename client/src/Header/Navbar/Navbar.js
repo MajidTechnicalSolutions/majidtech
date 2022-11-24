@@ -11,7 +11,7 @@ function Navbar() {
     <nav className="flex flex-row justify-between items-center">
       <Logo/>
       <ul className="flex flex-row items-center h-4 p-0 gap-10 w-[629px] absolute right-40 font-modernEra not-italic">
-        {listItems.map((item, index) => (<li to={`/${item}`} key={index + '-id'} className="font-normal h-4 not-italic tracking-tight text-silverLight flex-none">{item}</li>))}
+        {listItems.map((item, index) => (<li to={`/${item}`} key={index + '-id'} className="font-normal cursor-pointer h-4 not-italic tracking-tight text-silverLight flex-none">{item}</li>))}
       </ul>
       <ResumeButton/>
     </nav>

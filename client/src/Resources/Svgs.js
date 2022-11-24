@@ -135,15 +135,14 @@ export const GetArrow = (props) => (
 export const MainPattern = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={1920}
-    height={4000}
+    width={'100%'}
+    height={'100%'}
     fill="none"
-    // style={{position: 'absolute'}}
   >
     <g
-      opacity={0.5}
+      opacity={2}
       stroke="#101010"
-      strokeWidth={.5}
+      strokeWidth={2}
       strokeMiterlimit={10}
       clipPath="url(#a)"
     >
