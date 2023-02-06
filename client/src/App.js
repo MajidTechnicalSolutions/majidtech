@@ -1,7 +1,7 @@
 import React from "react";
 import {Header} from "./Header";
 import  Pattern  from './Resources/images/Pattern.svg'
-import { MainPattern } from "./Resources/Svgs";
+// import { MainPattern } from "./Resources/Svgs";
 // import Testimonials from "./Testimonials";
 // import Work from "./Work";
 // import Services from "./Services";
@@ -13,9 +13,9 @@ import { HashLink as Link } from 'react-router-hash-link'
 function App() {
   return (
     <Router>
-      <div className="App w-screen h-screen bg-black" >
+      <div className="App w-screen h-screen bg-black" style={{backgroundImage: `url(${Pattern})`}}>
             <Link to="/header" exact component={Header} />
-            <MainPattern/>
+            {/* <MainPattern/> */}
             {/* <Link path="/work" exact component={Work} />
             <Link path="/services" exact component={Services} />
             <Link path="/testimonials" exact component={Testimonials} />
