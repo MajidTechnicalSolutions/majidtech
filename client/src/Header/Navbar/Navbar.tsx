@@ -3,11 +3,11 @@ import { Logo, GetArrow } from '../../Resources/Svgs';
 
 import { Link } from 'react-router-dom';
 
-const listItems = ['Selected Work', 'services', 'Testimonials', 'Blog', 'Contact'];
+const listItems = ['Selected Work', 'services', 'Testimonials', 'Blog'];
 
 const ResumeButton = (): JSX.Element => (
   <button className="font-normal h-8 not-italic tracking-tight ml-4 border-b-4 border-majidTech text-white flex-none top-[.8rem] right-0">
-    Download Resume
+    Contact Now
     <GetArrow className="inline" />
   </button>
 );
@@ -15,7 +15,7 @@ function Navbar(): JSX.Element {
   return (
     <nav className="flex flex-row justify-between items-center">
       <Logo />
-      <ul className="flex flex-row items-center h-4 p-0 space-x-5 w-[629px] absolute right-40 font-modernEra not-italic">
+      <ul className="flex flex-row items-center h-4 p-0 space-x-5 right-40 font-modernEra not-italic">
         {listItems.map((item, index) => (
           <li
             key={index + '-id'}
