@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-export const Logo = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={52} height={58} fill="none">
+export const Logo = ({ customStyle }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={52} height={58} style={customStyle} fill="none">
     <g filter="url(#a)">
       <path
         d="M24.297 7.45V1.893L25.887 1l1.589.892v5.616l3.454-2.022V4.229c0-.142.16-.227.28-.15l2.85 1.828v1.338l-.682.407-7.507 4.582-6.996-4.582-.707-.407V5.907l2.173-1.766c.118-.096.297-.013.297.138v.775l3.66 2.397Z"
@@ -69,7 +69,7 @@ export const Logo = () => (
   </svg>
 );
 
-export const GetArrow = (props) => (
+export const UpArrow = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={26}
@@ -114,6 +114,17 @@ export const GetArrow = (props) => (
         <feBlend in="SourceGraphic" in2="effect1_dropShadow_15_163" result="shape" />
       </filter>
     </defs>
+  </svg>
+);
+
+export const RightArrow = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="-10 -3 30 25" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M8.707.293a1 1 0 0 0-1.414 1.414L12.586 7H1a1 1 0 0 0 0 2h11.586l-5.293 5.293a1 1 0 1 0 1.414 1.414l7-7 .007-.006A.997.997 0 0 0 16 8.003v-.006a.996.996 0 0 0-.286-.698l-.008-.007m0 0-6.999-7 7 7Z"
+      fill="#fff"
+    />
   </svg>
 );
 

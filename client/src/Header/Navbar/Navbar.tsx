@@ -1,20 +1,15 @@
 import React from 'react';
-import { Logo, GetArrow } from '../../Resources/Svgs';
+import { Logo, UpArrow } from '../../Resources/Svgs';
+import { ButtonPrimary }  from '../../utils/buttons';
 
 import { Link } from 'react-router-dom';
 
 const listItems = ['Selected Work', 'services', 'Testimonials', 'Blog'];
 
-const ResumeButton = (): JSX.Element => (
-  <button className="font-normal h-8 not-italic tracking-tight ml-4 border-b-4 border-majidTech text-white flex-none top-[.8rem] right-0">
-    Contact Now
-    <GetArrow className="inline" />
-  </button>
-);
 function Navbar(): JSX.Element {
   return (
     <nav className="flex flex-row justify-between items-center">
-      <Logo />
+      <Logo customStyle={{paddingTop: '0.5rem'}}/>
       <ul className="flex flex-row items-center h-4 p-0 space-x-5 right-40 font-modernEra not-italic">
         {listItems.map((item, index) => (
           <li
@@ -24,7 +19,7 @@ function Navbar(): JSX.Element {
             <Link to={`/${item}`}>{item}</Link>
           </li>
         ))}
-        <ResumeButton />
+        <ButtonPrimary Arrow={UpArrow} text='Contact'/>
       </ul>
     </nav>
   );
