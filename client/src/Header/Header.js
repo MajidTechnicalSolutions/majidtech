@@ -10,12 +10,12 @@ const Header = () => {
     return (
       <section id="Header" className="relative top-[210px] left-0">
         <div className="w-3/6">
-          <h1 className="text-white font-medium not-italic text-8xl">
+          <h1 className="text-white font-medium not-italic text-2xl lg:text-8xl">
             Eat, sleep
             <br />
             <span className="text-majidTech">&lt;code&gt;</span>, repeat
           </h1>
-          <p className="text-silverDard break-keep font-modernEra mt-7 mb-14 text-xl">
+          <p className="text-silverDard break-keep font-modernEra mt-7 mb-14 text-xs lg:text-xl">
             I'm a creative developer with years of experience in building products and appealing web
             experiences. I've collaborated with individuals and teams to build experiences for SMEs
             and large enterprises including Wise, Google, Interswitch and Intelia.
@@ -23,13 +23,7 @@ const Header = () => {
         </div>
         <img
           alt="Brackets"
-          style={{
-            backgroundRepeat: "no-repeat",
-            position: "absolute",
-            right: 0,
-            top: "-5rem",
-            height: "150%",
-          }}
+          className="absolute right-0 top-[-5rem] h-[30%] lg:h-[150%] bg-no-repeat"
           src={Brackets}
         ></img>
         <ButtonPrimary Arrow={RightArrow} text="Start a Project" customClass="text-xl" />
