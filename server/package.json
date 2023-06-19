@@ -16,7 +16,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.7",
     "npm": "^6.14.9",
-    "passport": "^0.4.1",
+    "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
