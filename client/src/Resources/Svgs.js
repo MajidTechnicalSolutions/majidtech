@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 export const Logo = ({ customStyle }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={52} height={58} style={customStyle} fill="none">
@@ -144,5 +144,24 @@ export const Brackets = (props) => (
       </pattern>
       <image id="b" width={622} height={769} />
     </defs>
+  </svg>
+);
+
+export const ArrowDown = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={25}
+    height={25}
+    viewBox="-6 9 42 18"
+    className="inline"
+    {...props}
+  >
+    <path
+      fill="#FD5A1E"
+      stroke="#040405"
+      strokeMiterlimit={10}
+      strokeWidth={0.4}
+      d="M28.671 27.907h.483l-.342-.342-24.53-24.53L7.037.284l24.53 24.53.34.34V2.148H35.8V31.8H6.147v-3.893h22.524Z"
+    />
   </svg>
 );

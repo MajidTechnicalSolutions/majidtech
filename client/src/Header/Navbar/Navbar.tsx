@@ -3,12 +3,13 @@ import { Logo, UpArrow } from '../../Resources/Svgs';
 import { ButtonPrimary }  from '../../utils/buttons';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import Media from 'react-media';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 
 const listItems = ['Home','Selected Work', 'services', 'Testimonials', 'Blog'];
+
 
 const LongMenu =()=>{
   const ITEM_HEIGHT = 48;
@@ -17,6 +18,7 @@ const LongMenu =()=>{
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+  
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -69,22 +71,25 @@ const LongMenu =()=>{
 
 
 function Navbar(): JSX.Element {
+  const isMobile = useMediaQuery('(min-width:800px)');
+
   return (
-    // <nav className="flex flex-row justify-between items-center mb-10">
-    //   <Logo customStyle={{paddingTop: '0.5rem'}}/>
-    //   <ul className="flex flex-row items-center h-4 p-0 space-x-5 right-40 font-modernEra not-italic">
-    //     {listItems.map((item, index) => (
-    //       <li
-    //         key={index + '-id'}
-    //         className="font-normal cursor-pointer h-4 not-italic tracking-tight text-silverLight flex-none"
-    //       >
-    //         <Link to={`/${item}`}>{item}</Link>
-    //       </li>
-    //     ))}
-    //     <ButtonPrimary Arrow={UpArrow} text='Contact'/>
-    //   </ul>
-    // </nav>
-    <LongMenu/>
+    <nav className="flex flex-row justify-between items-center mb-10">
+      <Logo customStyle={{paddingTop: '0.5rem'}}/>
+      <ul className="flex flex-row items-center h-4 p-0 space-x-5 right-40 font-modernEra not-italic">
+      {isMobile ? <>{listItems.map((item, index) => (
+          <li
+            key={index + '-id'}
+            className="font-normal cursor-pointer h-4 not-italic tracking-tight text-silverLight flex-none"
+          >
+            <Link to={`/${item}`}>{item}</Link>
+          </li>
+        ))}
+        <ButtonPrimary Arrow={UpArrow} text='Contact'/>
+        </> : (<LongMenu/>)}
+      </ul>
+    </nav>
+    
   );
 }
 
