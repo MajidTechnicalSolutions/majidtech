@@ -10,13 +10,13 @@ const Header = () => {
     return (
       <div id="Header" className="flex justify-start items-center">
         <div className="">
-          <h1 className="text-white font-medium not-italic text-4xl lg:text-8xl font-modernEra">
+          <h1 className="text-white font-medium not-italic text-4xl lg:text-8xl">
             Eat,sleep
             <br />
             <span className="text-majidTech">&lt;code&gt;</span>
             <span>,repeat</span>
           </h1>
-          <p className="text-silverDard break-keep font-modernEra mb-7 mt-4 text-xs lg:text-base xl:w-4/5">
+          <p className="text-silverDard break-keep mb-7 mt-4 text-xs lg:text-base xl:w-4/5">
             I'm a creative developer with years of experience in building products and appealing web
             experiences. I've collaborated with individuals and teams to build experiences for SMEs
             and large enterprises including Wise, Google, Interswitch and Intelia.

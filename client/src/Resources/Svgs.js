@@ -1,3 +1,4 @@
+import { ClassNames } from "@emotion/react";
 import * as React from "react";
 
 export const Logo = ({ customStyle }) => (
@@ -69,20 +70,13 @@ export const Logo = ({ customStyle }) => (
   </svg>
 );
 
-export const UpArrow = (props) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={26}
-    height={26}
-    fill="none"
-    viewBox="-7 -1 30 25"
-    {...props}
-  >
+export const UpArrow = ({ customStyle }) => (
+  <svg {...customStyle.general} style={{ display: "inline" }}>
     <g clipPath="url(#a)" filter="url(#b)">
       <path
         d="M17.877 2.215h.483l-.341.341L4.283 16.292l1.425 1.425L19.444 3.981l.341-.341V16.705H21.8V.2H5.295v2.015h12.582Z"
-        fill="#fff"
-        stroke="#040405"
+        fill={customStyle.color}
+        stroke="#00000"
         strokeWidth={0.4}
         strokeMiterlimit={10}
       />
@@ -118,7 +112,14 @@ export const UpArrow = (props) => (
 );
 
 export const RightArrow = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="-10 -3 30 25" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={30}
+    height={30}
+    viewBox="-10 -3 30 25"
+    style={{ display: "inline" }}
+    {...props}
+  >
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -147,17 +148,16 @@ export const Brackets = (props) => (
   </svg>
 );
 
-export const ArrowDown = (props) => (
+export const ArrowDown = ({ color }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={25}
     height={25}
     viewBox="-6 9 42 18"
-    className="inline"
-    {...props}
+    style={{ display: "inline" }}
   >
     <path
-      fill="#FD5A1E"
+      fill={color}
       stroke="#040405"
       strokeMiterlimit={10}
       strokeWidth={0.4}

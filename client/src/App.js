@@ -13,7 +13,10 @@ import { HashLink as Link } from "react-router-hash-link";
 function App() {
   return (
     <Router>
-      <div className="App bg-backgroundDark " style={{ backgroundImage: `url(${Pattern})` }}>
+      <div
+        className="App bg-backgroundDark font-modernEra"
+        style={{ backgroundImage: `url(${Pattern})` }}
+      >
         <div className="m-auto w-9/12">
           {" "}
           <Link to="/header" exact component={Header} />
