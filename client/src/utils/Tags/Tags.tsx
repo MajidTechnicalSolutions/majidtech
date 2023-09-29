@@ -1,6 +1,10 @@
 import React from "react";
 
-function Tags({ tagNames }) {
+interface TagsProps {
+  tagNames: string[];
+}
+
+const Tags = ({ tagNames }: TagsProps): JSX.Element => {
   return (
     <div className="flex">
       {tagNames.map((tagName) => (
@@ -10,6 +14,6 @@ function Tags({ tagNames }) {
       ))}
     </div>
   );
-}
+};
 
 export default Tags;

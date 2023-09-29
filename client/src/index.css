@@ -18,3 +18,7 @@
     font-weight: normal;
     text-rendering: optimizeLegibility;
 }
+
+Nav a.active {
+    color: green
+}

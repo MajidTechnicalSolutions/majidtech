@@ -1,9 +1,10 @@
+// @ts-ignore
 import React from "react";
 import { ArrowDown, UpArrow } from "../Resources/Svgs";
-import Tag from "../Components/Tags";
-import Mock1 from "../Resources/images/Mock.png";
+import Tag from "../utils/Tags";
+// import Mock1 from "../Resources/images/Mock.png";
 
-function SelectedWork() {
+const SelectedWork = (): JSX.Element => {
   return (
     <section>
       <div className="flex justify-between">
@@ -18,7 +19,7 @@ function SelectedWork() {
         </p>
       </div>
       <article className="w-96 h-[26rem] flex flex-column justify-between text-silverDard">
-        <img src={Mock1} alt="Mock" />
+        {/* <img src={Mock1} alt="Mock" /> */}
         <p>
           <span className="text-white">Settle — </span>The all-in-one platform built to help
           e-commerce brands scale seamlessly.
@@ -38,6 +39,6 @@ function SelectedWork() {
       </article>
     </section>
   );
-}
+};
 
 export default SelectedWork;

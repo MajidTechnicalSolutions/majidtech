@@ -1,13 +1,12 @@
 import React from "react";
-import Navbar from "./Navbar";
 
 import Brackets from "../Resources/images/Brackets.svg";
 import { RightArrow } from "../Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
 
 const Header = () => {
-  const Heading = () => {
-    return (
+  return (
+    <section className="h-screen pt-7">
       <div id="Header" className="flex justify-start items-center">
         <div className="">
           <h1 className="text-white font-medium not-italic text-4xl lg:text-8xl">
@@ -25,12 +24,6 @@ const Header = () => {
         </div>
         <img alt="Brackets" className=" w-[50%] xl:w-[100%] bg-no-repeat" src={Brackets}></img>
       </div>
-    );
-  };
-  return (
-    <section className="h-screen pt-7">
-      <Navbar />
-      <Heading />
     </section>
   );
 };
