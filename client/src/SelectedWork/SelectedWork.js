@@ -4,9 +4,9 @@ import { ArrowDown, UpArrow } from "../Resources/Svgs";
 import Tag from "../utils/Tags";
 // import Mock1 from "../Resources/images/Mock.png";
 
-const SelectedWork = (): JSX.Element => {
+const SelectedWork = () => {
   return (
-    <section>
+    <section id="Selectedwork">
       <div className="flex justify-between">
         <h1 className="text-white font-medium not-italic text-4xl lg:text-3xl">
           Selected Work <ArrowDown color="#FD5A1E" />

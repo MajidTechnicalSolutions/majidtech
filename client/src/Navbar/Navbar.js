@@ -6,15 +6,15 @@ import Menu from "@mui/material/Menu";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-scroll";
 
 const listItems = ["Home", "Selectedwork", "Services", "Testimonials", "Blog"];
 
 const LongMenu = () => {
   const ITEM_HEIGHT = 48;
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = (React.useState < null) | (HTMLElement > null);
   const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -67,13 +67,13 @@ const LongMenu = () => {
   );
 };
 
-const activeClass = ({ isActive }: { isActive: boolean }): string => {
+const activeClass = ({ isActive }) => {
   return isActive
     ? "active font-normal cursor-pointer h-4 not-italic tracking-tight text-silverLight flex-none"
     : "font-normal cursor-pointer h-4 not-italic tracking-tight text-silverLight flex-none";
 };
 
-function Navbar(): JSX.Element {
+function Navbar() {
   const isMobile = useMediaQuery("(min-width:800px)");
 
   return (
@@ -84,13 +84,31 @@ function Navbar(): JSX.Element {
           <>
             {listItems.map((item, index) =>
               item === "Home" ? (
-                <NavLink to={`/`} key={index + "-id"} className={activeClass}>
-                  {item}
-                </NavLink>
+                <li className={activeClass}>
+                  <Link
+                    to={`App`}
+                    key={index + "-id"}
+                    spy={true}
+                    smooth={true}
+                    offset={50}
+                    duration={500}
+                  >
+                    {item}
+                  </Link>
+                </li>
               ) : (
-                <NavLink to={`/${item}`} key={index + "-id"} className={activeClass}>
-                  {item === "Selectedwork" ? "Selected Work" : item}
-                </NavLink>
+                <li className={activeClass}>
+                  <Link
+                    to={`${item}`}
+                    key={index + "-id"}
+                    spy={true}
+                    smooth={true}
+                    offset={50}
+                    duration={500}
+                  >
+                    {item === "Selectedwork" ? "Selected-Work" : item}
+                  </Link>
+                </li>
               )
             )}
             <ButtonPrimary

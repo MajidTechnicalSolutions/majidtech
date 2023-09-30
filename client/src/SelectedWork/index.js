@@ -1,1 +1,1 @@
-export { default } from "./SelectedWork.tsx";
+export { default } from "./SelectedWork";
