@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Logo, UpArrow } from "../Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
 import IconButton from "@mui/material/IconButton";
@@ -8,9 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-scroll";
 
-const listItems = ["Home", "Selectedwork", "Services", "Testimonials", "Blog"];
-
-const LongMenu = () => {
+const LongMenu = (listItems) => {
   const ITEM_HEIGHT = 48;
   const [anchorEl, setAnchorEl] = (React.useState < null) | (HTMLElement > null);
   const open = Boolean(anchorEl);
@@ -57,9 +55,9 @@ const LongMenu = () => {
           horizontal: "right",
         }}
       >
-        {listItems.map((option) => (
-          <MenuItem key={option} selected={option === "Home"} onClick={handleClose}>
-            {option}
+        {listItems.objects.map((option) => (
+          <MenuItem key={option.id} selected={option.title === "Home"} onClick={handleClose}>
+            {option.title}
           </MenuItem>
         ))}
       </Menu>
@@ -67,46 +65,64 @@ const LongMenu = () => {
   );
 };
 
-const activeClass = ({ isActive }) => {
-  return isActive
-    ? "active font-normal cursor-pointer h-4 not-italic tracking-tight text-silverLight flex-none"
-    : "font-normal cursor-pointer h-4 not-italic tracking-tight text-silverLight flex-none";
-};
-
 function Navbar() {
   const isMobile = useMediaQuery("(min-width:800px)");
+  // Declarations
+  const [listItems, setListItems] = useState({
+    activeObject: null,
+    objects: [
+      { title: "Home", id: 0 },
+      { title: "Selectedwork", id: 1 },
+      { title: "Services", id: 2 },
+      { title: "Testimonials", id: 3 },
+      { title: "Blog", id: 4 },
+    ],
+  });
+
+  const activeClass = (id) => (id === listItems.activeObject ? "active" : "");
+
+  const toggleActive = (index) =>
+    setListItems({ ...listItems, activeObject: listItems.objects[index].id });
 
   return (
-    <nav className="Nav flex flex-row justify-between items-center mb-10">
+    <nav className="Nav flex flex-row justify-between items-center mb-10 pt-4">
       <Logo customStyle={{ paddingTop: "0.5rem" }} />
       <ul className="flex flex-row items-center h-4 p-0 space-x-5 right-40 font-modernEra not-italic">
         {isMobile ? (
           <>
-            {listItems.map((item, index) =>
-              item === "Home" ? (
-                <li className={activeClass}>
+            {listItems.objects.map((item, index) =>
+              item.title === "Home" ? (
+                <li>
                   <Link
+                    className={activeClass(index)}
                     to={`App`}
                     key={index + "-id"}
                     spy={true}
                     smooth={true}
-                    offset={50}
+                    offset={100}
                     duration={500}
+                    onClick={() => {
+                      toggleActive(index);
+                    }}
                   >
-                    {item}
+                    {item.title}
                   </Link>
                 </li>
               ) : (
-                <li className={activeClass}>
+                <li>
                   <Link
-                    to={`${item}`}
+                    className={activeClass(index)}
+                    to={`${item.title}`}
                     key={index + "-id"}
                     spy={true}
                     smooth={true}
                     offset={50}
                     duration={500}
+                    onClick={() => {
+                      toggleActive(index);
+                    }}
                   >
-                    {item === "Selectedwork" ? "Selected-Work" : item}
+                    {item.title === "Selectedwork" ? "Selected-Work" : item.title}
                   </Link>
                 </li>
               )
@@ -125,7 +141,7 @@ function Navbar() {
             />
           </>
         ) : (
-          <LongMenu />
+          <LongMenu listItems={listItems} />
         )}
       </ul>
     </nav>
