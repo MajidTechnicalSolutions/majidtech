@@ -20,5 +20,19 @@
 }
 
 Nav a.active {
-    color: green
+right: 0; 
+flex: none; 
+border-bottom-width: 4px; 
+height: 2rem; 
+font-style: normal; 
+font-weight: 400; 
+border-color: #FD5A1E;
+letter-spacing: -0.025em; 
+color: #fff; 
+padding-bottom: .5rem;
+ }
+
+a:hover {
+text-decoration: none;
+color:#fff
 }

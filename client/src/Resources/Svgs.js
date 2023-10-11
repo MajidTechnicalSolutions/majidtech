@@ -71,7 +71,7 @@ export const Logo = ({ customStyle }) => (
 );
 
 export const UpArrow = ({ customStyle }) => (
-  <svg {...customStyle.general} style={{ display: "inline" }}>
+  <svg style={customStyle.general}>
     <g clipPath="url(#a)" filter="url(#b)">
       <path
         d="M17.877 2.215h.483l-.341.341L4.283 16.292l1.425 1.425L19.444 3.981l.341-.341V16.705H21.8V.2H5.295v2.015h12.582Z"

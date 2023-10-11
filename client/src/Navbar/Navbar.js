@@ -69,13 +69,14 @@ function Navbar() {
   const isMobile = useMediaQuery("(min-width:800px)");
   // Declarations
   const [listItems, setListItems] = useState({
-    activeObject: null,
+    activeObject: 0,
     objects: [
       { title: "Home", id: 0 },
       { title: "Selectedwork", id: 1 },
       { title: "Services", id: 2 },
       { title: "Testimonials", id: 3 },
       { title: "Blog", id: 4 },
+      { title: `Contact`, id: 5, component: UpArrow },
     ],
   });
 
@@ -92,7 +93,7 @@ function Navbar() {
           <>
             {listItems.objects.map((item, index) =>
               item.title === "Home" ? (
-                <li>
+                <li className="font-normal cursor-pointer h-4 not-italic tracking-tight flex-none text-silverLight">
                   <Link
                     className={activeClass(index)}
                     to={`App`}
@@ -109,7 +110,7 @@ function Navbar() {
                   </Link>
                 </li>
               ) : (
-                <li>
+                <li className="font-normal cursor-pointer h-4 not-italic tracking-tight flex-none text-silverLight">
                   <Link
                     className={activeClass(index)}
                     to={`${item.title}`}
@@ -123,22 +124,23 @@ function Navbar() {
                     }}
                   >
                     {item.title === "Selectedwork" ? "Selected-Work" : item.title}
+                    {item.component ? (
+                      <item.component
+                        customStyle={{
+                          general: {
+                            width: "23px",
+                            height: "17px",
+                            viewBox: "-7 -1 30 25",
+                            display: "inline",
+                          },
+                          color: "#fff",
+                        }}
+                      />
+                    ) : null}
                   </Link>
                 </li>
               )
             )}
-            <ButtonPrimary
-              Arrow={UpArrow}
-              customStyle={{
-                general: {
-                  width: 26,
-                  height: 26,
-                  viewBox: "-7 -1 30 25",
-                },
-                color: "#fff",
-              }}
-              text="Contact"
-            />
           </>
         ) : (
           <LongMenu listItems={listItems} />
