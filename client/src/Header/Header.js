@@ -15,12 +15,17 @@ const Header = () => {
             <span className="text-majidTech">&lt;code&gt;</span>
             <span>,repeat</span>
           </h1>
-          <p className="text-silverDard break-keep mb-7 mt-4 text-xs lg:text-base xl:w-4/5">
+          <p className="text-silverDark break-keep mb-7 mt-4 text-xs lg:text-base xl:w-4/5">
             I'm a creative developer with years of experience in building products and appealing web
             experiences. I've collaborated with individuals and teams to build experiences for SMEs
             and large enterprises including Wise, Google, Interswitch and Intelia.
           </p>
-          <ButtonPrimary Arrow={RightArrow} text="Start a Project" customClass="text-xl" />
+          <ButtonPrimary
+            Arrow={RightArrow}
+            text="Start a Project"
+            customClass="text-xl"
+            destination="Contact"
+          />
         </div>
         <img alt="Brackets" className=" w-[50%] xl:w-[100%] bg-no-repeat" src={Brackets}></img>
       </div>

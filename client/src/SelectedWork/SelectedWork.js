@@ -10,7 +10,7 @@ import Mock5 from "../Resources/images/Mock-5.png";
 
 const SelectedWork = () => {
   const WorkComponent = ({ title, text, tags, img, customStyle }) => (
-    <article className={`text-silverDard ${customStyle}`}>
+    <article className={`text-silverDark ${customStyle}`}>
       <img src={img} alt="Example of work done" />
       <p className="my-4">
         <span className="text-white">{title} — </span>
@@ -36,7 +36,7 @@ const SelectedWork = () => {
         <h1 className="text-white font-medium not-italic text-4xl lg:text-3xl">
           Selected Work <ArrowDown color="#FD5A1E" />
         </h1>
-        <p className="text-silverDard break-keep text-xs lg:text-base w-2/4">
+        <p className="text-silverDark break-keep text-xs lg:text-base w-2/4">
           Lorem psum dolor sit amet, consectetur adipiscing elit. Etiam at urna ac orci ullamcorper
           pretium. Aenean facilisis id sem sit amet cursus. Vivamus non fficitur nisl. Maecenas ut
           risus porttitor lectus porttitor dapibus vel at dui. Aliquam auctor odio sit amet tortor
