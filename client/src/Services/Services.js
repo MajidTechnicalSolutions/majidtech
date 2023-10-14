@@ -1,12 +1,21 @@
 import React from "react";
 import { ButtonPrimary } from "../utils/buttons";
+import { BoxBackgroundSm } from "../Resources/Svgs";
 
 function Services() {
   return (
     <>
-      <section id="Services">
-        <div className="iconSet1"></div>
-        <div className="services">
+      <section id="Services" className="w-full h-96 flex">
+        <div className="iconSet1">
+          {" "}
+          <BoxBackgroundSm />
+          <BoxBackgroundSm />
+          <BoxBackgroundSm />
+          <BoxBackgroundSm />
+          <BoxBackgroundSm />
+          <BoxBackgroundSm />
+        </div>
+        <div className="services flex flex-col justify-center items-center ">
           <h3 className="text-white">
             No matter the technology or architecture – I have you covered.
           </h3>
@@ -18,7 +27,15 @@ function Services() {
           </p>
           <ButtonPrimary text="Start a Project" customClass="text-xl" destination="Contact" />
         </div>
-        <div className="iconSet2"> </div>
+        <div className="iconSet2">
+          {" "}
+          <BoxBackgroundSm />
+          <BoxBackgroundSm />
+          <BoxBackgroundSm />
+          <BoxBackgroundSm />
+          <BoxBackgroundSm />
+          <BoxBackgroundSm />
+        </div>
       </section>
       ;
     </>

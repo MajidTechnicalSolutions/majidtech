@@ -1,4 +1,3 @@
-import { ClassNames } from "@emotion/react";
 import * as React from "react";
 
 export const Logo = ({ customStyle }) => (
@@ -163,5 +162,57 @@ export const ArrowDown = ({ color }) => (
       strokeWidth={0.4}
       d="M28.671 27.907h.483l-.342-.342-24.53-24.53L7.037.284l24.53 24.53.34.34V2.148H35.8V31.8H6.147v-3.893h22.524Z"
     />
+  </svg>
+);
+
+export const BoxBackgroundSm = ({ customStyle }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={80}
+    height={80}
+    viewBox="-10 31 121 55"
+    fill="none"
+    // style={customStyle.general}
+  >
+    <g filter="url(#a)">
+      <path
+        fill="#040405"
+        d="M108 84.364V35.635c0-4.144-2.17-7.955-5.843-9.945L59.926 1.49c-3.506-1.988-8.012-1.988-11.518 0L5.843 25.69C2.337 27.678 0 31.49 0 35.635V84.2c0 4.143 2.17 7.955 5.843 9.945l42.398 24.365c3.506 1.988 8.012 1.988 11.518 0l42.398-24.365a11.145 11.145 0 0 0 5.843-9.78Z"
+      />
+    </g>
+    <path
+      stroke="#141416"
+      d="M101.909 26.124h-.001l.011.005c3.505 1.9 5.581 5.538 5.581 9.506v48.73c0 3.798-2.072 7.44-5.581 9.34l-.011.005-42.396 24.364c-3.353 1.901-7.67 1.901-11.023 0h-.001L6.092 93.71l-.01-.006C2.575 91.805.5 88.166.5 84.2V35.635c0-3.957 2.234-7.607 5.59-9.51L48.655 1.925c3.352-1.901 7.67-1.901 11.023 0h.001l42.23 24.198Z"
+    />
+    <defs>
+      <filter
+        id="a"
+        width={112}
+        height={132}
+        x={0}
+        y={-12}
+        colorInterpolationFilters="sRGB"
+        filterUnits="userSpaceOnUse"
+      >
+        <feFlood floodOpacity={0} result="BackgroundImageFix" />
+        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+        <feColorMatrix
+          in="SourceAlpha"
+          result="hardAlpha"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+        />
+        <feMorphology
+          in="SourceAlpha"
+          operator="dilate"
+          radius={4}
+          result="effect1_innerShadow_10_231"
+        />
+        <feOffset dx={4} dy={-12} />
+        <feGaussianBlur stdDeviation={10} />
+        <feComposite in2="hardAlpha" k2={-1} k3={1} operator="arithmetic" />
+        <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+        <feBlend in2="shape" mode="soft-light" result="effect1_innerShadow_10_231" />
+      </filter>
+    </defs>
   </svg>
 );
