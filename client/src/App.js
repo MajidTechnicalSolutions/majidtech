@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <div
-        className="App bg-backgroundDark font-modernEra"
+        className="App bg-black font-modernEra"
         id="App"
         style={{ backgroundImage: `url(${Pattern})` }}
       >
@@ -24,8 +24,12 @@ function App() {
           <Navbar />
           <Header />
           <SelectedWork />
+        </div>
+        <div className="">
           <Services />
           <Blog />
+        </div>
+        <div className="m-auto w-9/12">
           <Testimonials />
           <Contact />
         </div>

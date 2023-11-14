@@ -36,3 +36,28 @@ a:hover {
 text-decoration: none;
 color:#fff
 }
+
+
+
+
+.rightBox form label {
+    width: 402px;
+    height: 86px;
+    color: #FD5A1E;
+    padding:0 1rem 0 1rem
+}
+.rightBox form input {
+    width: 100%;
+    height: 56px;
+}
+.rightBox form label.message{
+    width: 100%;
+}
+
+.rightBox form input.message{
+    height: 100% ;
+}
+.rightBox form select {
+    /* width: 100%; */
+    height: 56px;
+}

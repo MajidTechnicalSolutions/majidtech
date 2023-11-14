@@ -9,7 +9,7 @@ import Mock4 from "../Resources/images/Mock-4.png";
 import Mock5 from "../Resources/images/Mock-5.png";
 
 const SelectedWork = () => {
-  const WorkComponent = ({ title, text, tags, img, customStyle }) => (
+  const WorkComponent = ({ title, text, tags, img, customStyle, tagStyle }) => (
     <article className={`text-silverDark ${customStyle}`}>
       <img src={img} alt="Example of work done" />
       <p className="my-4">
@@ -26,7 +26,7 @@ const SelectedWork = () => {
             }}
           />
         </a>
-        <Tag tagNames={tags} />
+        <Tag tagNames={tags} tagStyle={tagStyle} />
       </div>
     </article>
   );
@@ -51,6 +51,7 @@ const SelectedWork = () => {
             tags={["React", "Front-End"]}
             img={Mock1}
             customStyle="mr-20 flex flex-column"
+            tagStyle="ml-1"
           />
           <WorkComponent
             title="Settle"
@@ -58,6 +59,7 @@ const SelectedWork = () => {
           e-commerce brands scale seamlessly."
             tags={["Bootstrap", "Front-End"]}
             img={Mock2}
+            tagStyle="ml-1"
           />
         </div>
 
@@ -68,6 +70,7 @@ const SelectedWork = () => {
             tags={["React", "Front-End"]}
             img={Mock3}
             customStyle="pr-80"
+            tagStyle="ml-1"
           />
         </div>
 
@@ -78,6 +81,7 @@ const SelectedWork = () => {
             tags={["Bootstrap", "Development"]}
             img={Mock4}
             customStyle="mr-10 flex flex-column"
+            tagStyle="ml-1"
           />
           <WorkComponent
             title="Current"
@@ -85,6 +89,7 @@ const SelectedWork = () => {
             tags={["React", "Development"]}
             img={Mock5}
             customStyle="flex flex-column"
+            tagStyle="ml-1"
           />
         </div>
       </div>
