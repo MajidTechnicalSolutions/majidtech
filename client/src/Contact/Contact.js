@@ -28,21 +28,21 @@ function Contact() {
         <form>
           <label for="name">
             Full Name
-            <input type="text" name="name" />
+            <input type="text" name="name" placeholder=" Enter name" />
           </label>
 
           <label for="email">
             Email
-            <input type="email" name="email" />
+            <input type="email" name="email" placeholder="Your email address ..." />
           </label>
           <label for="phone">
             Phone
-            <input type="tel" name="phone" />
+            <input type="tel" name="phone" placeholder="XXX - XXX - XXXX" />
           </label>
           <label for="interests">
             Interested In
             <select id="interests" name="interests">
-              <option value="">--Please choose one--</option>
+              <option value="">Please Select</option>
               <option value="Get a Website built"> Get a Website built </option>
               <option value="Redesign existing site"> Redesign existing site </option>
               <option value="Make changes to existing site"> Make changes to existing site </option>
@@ -52,22 +52,36 @@ function Contact() {
 
           <label for="budget">
             Budget
-            <input type="text" name="budget" />
+            <select id="budget" name="budget">
+              <option value="">Select Range</option>
+              <option value="Get a Website built"> Get a Website built </option>
+              <option value="Redesign existing site"> Redesign existing site </option>
+              <option value="Make changes to existing site"> Make changes to existing site </option>
+              <option value="Something else"> Something else </option>
+            </select>
           </label>
           <label for="website">
             How did you learn about us?
-            <input type="text" name="website" />
+            <select id="website" name="">
+              <option value="">Google</option>
+              <option value="Get a Website built"> Get a Website built </option>
+              <option value="Redesign existing site"> Redesign existing site </option>
+              <option value="Make changes to existing site"> Make changes to existing site </option>
+              <option value="Something else"> Something else </option>
+            </select>
           </label>
           <div className="flex flex-column  items-end">
             <label className="message" for="message">
               Message
-              <input className="message" type="text" name="message" />
+              <textarea className="message" type="text" id="message" name="message">
+                Your Message here ...
+              </textarea>
             </label>
             <ButtonPrimary
               text="Start a Project"
               destination="Contact"
               type="submit"
-              customClass="w-40"
+              customClass="mt-5"
             />
           </div>
         </form>
