@@ -13,10 +13,18 @@ import Blog from "./Blog";
 import Pattern from "./Resources/images/Pattern.svg";
 
 function App() {
+  const Footer = () => {
+    return (
+      <footer className="w-full tex-red">
+        <small>© 2023 All rights reserved – Privacy Policy • Terms & Conditions</small>
+      </footer>
+    );
+  };
+
   return (
     <>
-      <div
-        className="App bg-black font-modernEra"
+      <main
+        className="App bg-black font-modernEra py-4"
         id="App"
         style={{ backgroundImage: `url(${Pattern})` }}
       >
@@ -32,8 +40,9 @@ function App() {
         <div className="m-auto w-9/12">
           <Testimonials />
           <Contact />
+          <Footer />
         </div>
-      </div>
+      </main>
     </>
   );
 }

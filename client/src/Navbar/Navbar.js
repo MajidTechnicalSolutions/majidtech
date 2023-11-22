@@ -86,7 +86,7 @@ function Navbar() {
     setListItems({ ...listItems, activeObject: listItems.objects[index].id });
 
   return (
-    <nav className="Nav flex flex-row justify-between items-center mb-10 pt-4">
+    <nav className="Nav flex flex-row justify-between items-center mb-10">
       <Logo customStyle={{ paddingTop: "0.5rem" }} />
       <ul className="flex flex-row items-center h-4 p-0 space-x-5 right-40 font-modernEra not-italic">
         {isMobile ? (
