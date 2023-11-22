@@ -11,7 +11,7 @@ import Mock5 from "../Resources/images/Mock-5.png";
 const SelectedWork = () => {
   const WorkComponent = ({ title, text, tags, img, customStyle, tagStyle }) => (
     <article className={`text-silverDark ${customStyle}`}>
-      <img src={img} alt="Example of work done" />
+      <img src={img} className="w-full" alt="Example of work done" />
       <p className="my-4">
         <span className="text-white">{title} — </span>
         {text}

@@ -44,8 +44,8 @@ const Blog = () => {
       <div className="blog-feed flex flex-row">
         {data.map((item) => {
           return (
-            <article className="w-full h-full justify-between">
-              <img src={item.image} className="w-96" alt="Example of work done" />
+            <article className="w-full h-full justify-between p-4">
+              <img src={item.image} className="w-full" alt="Example of work done" />
               <Tags tagNames={item.tag} tagStyle="mt-4 mr-1" />
               <p className="my-4 text-white">{item.title}</p>
               <div id="additionalInfo" className="flex justify-between">
