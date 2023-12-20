@@ -39,12 +39,12 @@ const Blog = () => {
   ]);
 
   return (
-    <section id="Blog" className="w-full h-[36rem] p-20 flex justify-evenly my-40 flex-column">
+    <section id="Blog" className="w-full h-[36rem] p-20 flex justify-evenly my-52 flex-column">
       <h1 className="text-4xl text-white mb-5">From The Blog</h1>
       <div className="blog-feed flex flex-row">
         {data.map((item) => {
           return (
-            <article className="w-full h-full justify-between p-4">
+            <article className="w-full h-full justify-between pr-8">
               <img src={item.image} className="w-full" alt="Example of work done" />
               <Tags tagNames={item.tag} tagStyle="mt-4 mr-1" />
               <p className="my-4 text-white">{item.title}</p>

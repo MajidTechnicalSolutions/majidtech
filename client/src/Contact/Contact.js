@@ -1,31 +1,29 @@
 import React from "react";
 
-import { FaceBookIcon } from "../Resources/Svgs";
 import { GithubIcon } from "../Resources/../Resources/Svgs";
 import { TwitterIcon } from "../Resources/../Resources/Svgs";
-import { DiscordIcon } from "../Resources/../Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
 function Contact() {
   return (
-    <section id="Contact" className="w-full flex my-10 h-[43rem]">
+    <section id="Contact" className="w-full flex my-52  h-[43rem]">
       <div className="leftBox flex flex-column w-3/4">
-        <small className="text-majidTech uppercase mb-2 mt-4">Have a project in mind?</small>
-        <h1 className="text-white text-5xl mb-2 mt-4">Let's get down to business.</h1>
+        <small className="text-majidTech uppercase">Have a project in mind?</small>
+        <h1 className="text-white text-6xl mb-2 mt-4">Let's Get Started</h1>
         <div className="address py-4">
-          3576 Mitchells Glen Ct. <div>Ellenwood, GA</div>
+          <div className="mb-2">3576 Mitchells Glen Ct.</div>
+          <span>Ellenwood, GA</span>
         </div>
         <div className="email py-4">
-          jamalabdul47@gmail.com <div className="contactNumber"> +1(678)768-5875</div>
+          <div className="mb-2 underline">jamalabdul47@gmail.com</div>{" "}
+          <span className="contactNumber"> +1(678)768-5875</span>
         </div>
-        <div className="icons flex justify-between max-w-[12rem]">
-          <FaceBookIcon />
+        <div className="icons flex justify-start max-w-[12rem]">
           <GithubIcon />
-          <TwitterIcon />
-          <DiscordIcon />
+          <TwitterIcon customStyle={"marginRigt: 1rem"} />
         </div>
       </div>
       <div className="rightBox flex flex-column">
-        <form>
+        <form className="w-[47rem]">
           <label for="name">
             Full Name
             <input type="text" name="name" placeholder=" Enter name" />
