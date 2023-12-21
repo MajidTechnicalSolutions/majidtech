@@ -18,18 +18,18 @@ function Contact() {
           <span className="contactNumber"> +1(678)768-5875</span>
         </div>
         <div className="icons flex justify-start max-w-[12rem]">
-          <GithubIcon />
-          <TwitterIcon customStyle={"marginRigt: 1rem"} />
+          <GithubIcon customStyle={{ marginRight: "2rem" }} />
+          <TwitterIcon />
         </div>
       </div>
       <div className="rightBox flex flex-column">
         <form className="w-[47rem]">
-          <label for="name">
+          <label for="name" className="m-0">
             Full Name
             <input type="text" name="name" placeholder=" Enter name" />
           </label>
 
-          <label for="email">
+          <label for="email" className="m-0">
             Email
             <input type="email" name="email" placeholder="Your email address ..." />
           </label>
