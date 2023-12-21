@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 import { GithubIcon } from "../Resources/../Resources/Svgs";
 import { TwitterIcon } from "../Resources/../Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
+
 function Contact() {
+  const [value, setValue] = useState();
+
   return (
     <section id="Contact" className="w-full flex my-52  h-[43rem]">
       <div className="leftBox flex flex-column w-3/4">
@@ -35,7 +40,7 @@ function Contact() {
           </label>
           <label for="phone">
             Phone
-            <input type="tel" name="phone" placeholder="XXX - XXX - XXXX" />
+            <PhoneInput placeholder="Enter phone number" value={value} onChange={setValue} />
           </label>
           <label for="interests">
             Interested In
