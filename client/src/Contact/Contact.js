@@ -11,6 +11,7 @@ import { ButtonPrimary } from "../utils/buttons";
 function Contact() {
   const [value, setValue] = useState();
 
+  // Simple reusable error display, error display update waiting on email validation
   const isValidErrorDisplay = (phone) => (
     <>
       {value ? (
@@ -39,6 +40,7 @@ function Contact() {
 
   // International: {value && formatPhoneNumberIntl(value)}
 
+  // feature work: break ui up into components for readability
   return (
     <section id="Contact" className="w-full flex my-52  h-[43rem]">
       <div className="leftBox flex flex-column w-3/4">
@@ -76,7 +78,6 @@ function Contact() {
               onChange={setValue}
               international
               countryCallingCodeEditable={false}
-              style={{ border: "1px solid green" }}
               error={
                 value
                   ? isValidPhoneNumber(value)
