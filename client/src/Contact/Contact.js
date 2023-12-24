@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "react-phone-number-input/style.css";
+import { formatPhoneNumberIntl, isValidPhoneNumber } from "react-phone-number-input/max";
+
 import PhoneInput from "react-phone-number-input";
 
 import { GithubIcon } from "../Resources/../Resources/Svgs";
@@ -8,6 +10,34 @@ import { ButtonPrimary } from "../utils/buttons";
 
 function Contact() {
   const [value, setValue] = useState();
+
+  const isValidErrorDisplay = (phone) => (
+    <>
+      {value ? (
+        isValidPhoneNumber(value) ? (
+          <span>Valid ✅</span>
+        ) : (
+          <span>Not Valid 🙅🏾‍♂</span>
+        )
+      ) : null}
+    </>
+  );
+
+  // if input is focused and phone number is valid border is green
+  // else if input is focused and number is not valid border is read
+
+  // useEffect(() => {
+  //   const isFocusedInput = document.activeElement.childNodes;
+  //   console.log("elelemnt active", isFocusedInput);
+  //   // if (value){
+  //   //   isValidPhoneNumber(value) ?
+  //   // }
+
+  //   // value ? isValidPhoneNumber(value)  ? "Valid Phone number ✅" : "Phone Number Not Valid 🙅🏾‍♂️"
+  //   //   : "Phone Number Required 📞"
+  // }, []);
+
+  // International: {value && formatPhoneNumberIntl(value)}
 
   return (
     <section id="Contact" className="w-full flex my-52  h-[43rem]">
@@ -40,7 +70,22 @@ function Contact() {
           </label>
           <label for="phone">
             Phone
-            <PhoneInput placeholder="Enter phone number" value={value} onChange={setValue} />
+            <PhoneInput
+              placeholder="Enter phonae number"
+              value={value}
+              onChange={setValue}
+              international
+              countryCallingCodeEditable={false}
+              style={{ border: "1px solid green" }}
+              error={
+                value
+                  ? isValidPhoneNumber(value)
+                    ? "Valid Phone number ✅"
+                    : "Phone Number Not Valid 🙅🏾‍♂️"
+                  : "Phone Number Required 📞"
+              }
+            />
+            {isValidErrorDisplay("phone")}
           </label>
           <label for="interests">
             Interested In
