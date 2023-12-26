@@ -8,6 +8,8 @@ import { formatPhoneNumberIntl, isValidPhoneNumber } from "react-phone-number-in
 import { useForm } from "react-hook-form";
 // input field for phone #'s
 import PhoneInput from "react-phone-number-input";
+// converts object into form data
+import { serialize } from "object-to-formdata";
 
 import { GithubIcon } from "../Resources/../Resources/Svgs";
 import { TwitterIcon } from "../Resources/../Resources/Svgs";
@@ -31,23 +33,28 @@ function Contact() {
     </>
   );
 
-  const onSubmit = (data) => console.log(data);
+  // handling form submission
+  const onSubmit = async (data) => {
+    try {
+      const form = document.forms["contact-form"];
+      console.log(form);
+      const response = await fetch(url, {
+        method: "POST",
+        body: new serialize(data),
+      });
+      console.log(response.json());
+      const returnedData = await response.json();
+      if (!returnedData.ok) {
+        console.log(returnedData.description);
+        return;
+      }
+    } catch (error) {
+      console.log("Error Submitting Form to Google Sheets", error);
+    }
+  };
 
-  // if input is focused and phone number is valid border is green
-  // else if input is focused and number is not valid border is read
-
-  // useEffect(() => {
-  //   const isFocusedInput = document.activeElement.childNodes;
-  //   console.log("elelemnt active", isFocusedInput);
-  //   // if (value){
-  //   //   isValidPhoneNumber(value) ?
-  //   // }
-
-  //   // value ? isValidPhoneNumber(value)  ? "Valid Phone number ✅" : "Phone Number Not Valid 🙅🏾‍♂️"
-  //   //   : "Phone Number Required 📞"
-  // }, []);
-
-  // International: {value && formatPhoneNumberIntl(value)}
+  // will be executed in the event of a error on the form
+  const onError = (error) => console.log("Error Submitting Form", error);
 
   // feature work: break ui up into components for readability
   return (
@@ -69,14 +76,20 @@ function Contact() {
         </div>
       </div>
       <div className="rightBox flex flex-column">
-        <form className="w-[47rem]" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          action={url}
+          method="post"
+          className="w-[47rem]"
+          name="contact-form"
+          onSubmit={handleSubmit(onSubmit, onError)}
+        >
           <label for="name" className="m-0">
             Full Name
             <input
               type="text"
               name="name"
               placeholder=" Enter name"
-              {...register("Name", { required: true })}
+              {...register("name", { required: true })}
             />
           </label>
 
@@ -92,10 +105,11 @@ function Contact() {
           <label for="phone">
             Phone
             <PhoneInput
-              placeholder="Enter phonae number"
+              placeholder="Enter Phone number"
               value={value}
               onChange={setValue}
               international
+              name="phone"
               countryCallingCodeEditable={false}
               {...register("phone", {
                 setValueAs: (v) => formatPhoneNumberIntl(v),
@@ -108,7 +122,7 @@ function Contact() {
                   : "Phone Number Required 📞"
               }
             />
-            {isValidErrorDisplay("phone")}
+            {isValidErrorDisplay()}
           </label>
           <label for="interests">
             Interested In
@@ -132,7 +146,7 @@ function Contact() {
           </label>
           <label for="inbound">
             How did you learn about us?
-            <select id="inbound" name="inbound" {...register("inbound", { required: true })}>
+            <select id="inbound" name="inbound" {...register("inbound")}>
               <option value="Please Select">Please Select</option>
               <option value=""> offline </option>
               <option value="Get a Website built"> Google </option>
