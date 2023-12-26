@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
+// styling for react phone # input
 import "react-phone-number-input/style.css";
+// formatPhoneNumberIntl: E.164 format to human readable +12133734253 -> +1 213 373 4253
+// isValidPhoneNumber: checks if phone number is valid returns a boolean
 import { formatPhoneNumberIntl, isValidPhoneNumber } from "react-phone-number-input/max";
+// react-hook-form for input state management and validation
 import { useForm } from "react-hook-form";
+// input field for phone #'s
 import PhoneInput from "react-phone-number-input";
 
 import { GithubIcon } from "../Resources/../Resources/Svgs";
@@ -11,6 +16,7 @@ import { ButtonPrimary } from "../utils/buttons";
 function Contact() {
   const [value, setValue] = useState();
   const { register, handleSubmit } = useForm();
+  const url = process.env.REACT_APP_WEBAPP_URL;
 
   // Simple reusable error display, error display update waiting on email validation
   const isValidErrorDisplay = (phone) => (
