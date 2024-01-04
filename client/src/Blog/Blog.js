@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -9,6 +9,16 @@ import blogimage3 from "../Resources/images/blogimage3.png";
 import Tags from "../utils/Tags";
 
 const Blog = () => {
+  // get random image for each blog post
+  useEffect(() => {
+    const key = process.env.REACT_APP_API_KEY;
+    const fetchImage = async () => {
+      let response = await fetch(`https://api.unsplash.com/photos/?client_id=${key}`);
+      let data = await response.json();
+      console.log(data);
+    };
+    fetchImage();
+  }, []);
   const [data, setData] = useState([
     {
       image: `${blogimage1}`,
