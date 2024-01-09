@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import blogimage1 from "../Resources/images/blogimage1.png";
-import blogimage2 from "../Resources/images/blogimage2.png";
-import blogimage3 from "../Resources/images/blogimage3.png";
 
 import Tags from "../utils/Tags";
 
@@ -96,20 +93,17 @@ const Blog = () => {
 
       <div className="blog-feed">
         <Carousel
-          // centerMode={true}
-          // swipeable={true}
-          // draggable={true}
+          arrows={false}
+          swipeable={true}
+          draggable={true}
           responsive={responsive}
           // ssr={false} // means to render carousel on server-side.
-          // infinite={true}
-          // // autoPlay={deviceType !== "mobile" ? true : false}
-          // // autoPlaySpeed={1000}
-          // keyBoardControl={true}
+          infinite={true}
+          autoPlay={true}
+          autoPlaySpeed={1000}
           // customTransition="all .5"
-          // transitionDuration={500}
+          transitionDuration={5000}
           containerClass="carousel-container"
-          // removeArrowOnDeviceType={["tablet", "mobile"]}
-          // // deviceType={this.props.deviceType}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >
