@@ -9,54 +9,60 @@ import blogimage3 from "../Resources/images/blogimage3.png";
 import Tags from "../utils/Tags";
 
 const Blog = () => {
-  // get random image for each blog post
+  const [imageObject, setImageObject] = useState(null);
   useEffect(() => {
     const key = process.env.REACT_APP_API_KEY;
-    const fetchImage = async () => {
-      let response = await fetch(`https://api.unsplash.com/photos/?client_id=${key}`);
-      let data = await response.json();
-      console.log(data);
+    const getImage = async () => {
+      const res = await fetch(
+        `https://api.unsplash.com/collections/_7OuPnAqFt4/photos/?client_id=${key}`
+      );
+      let data = await res.json();
+
+      data = data.map((el) => el.urls.full);
+      if (data && imageObject == null) setImageObject(data);
     };
-    fetchImage();
-  }, []);
+    getImage();
+  }, [imageObject]);
+  // image efficiency ?
+  const getRandomImage = () => {
+    let image;
+    if (imageObject) {
+      image = imageObject[Math.floor(Math.random() * imageObject.length)];
+    }
+    return image;
+  };
   const [data, setData] = useState([
     {
-      image: `${blogimage1}`,
       tag: ["twitter", "Wireframes"],
       title: "12.08.22 — Why you should not forget wireframes",
       details:
         "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec non ante neque. Aliquam auctor, tortor eu eleifend scelerisque, quam purus pretium neque, nec tristique ex lacus pharetra.",
     },
     {
-      image: `${blogimage2}`,
       tag: ["blog", "webflow"],
       title: "12.08.22 — The Best 19 Webflow shortcuts for faster development workflow",
       details:
         "Phasellus dapibus mauris ut diam ultricies, vitae tincidunt ipsum luctus. Cras faucibus ex ac ligula sollicitudin lacinia. Nulla nunc mauris, gravida in eleifend sed, aliquam in massa. Integer luctus gravida tellus, vitae tristique velit maximus sed.",
     },
     {
-      image: `${blogimage3}`,
       tag: ["twitter", "webflow"],
       title: "12.08.22 — 27 Tips for great user experience",
       details:
         "Nam elementum porttitor elit sed accumsan. Nunc lobortis volutpat urna, eget fermentum sem. Fusce laoreet nec nisi in lacinia. Quisque at lacus sapien consequat velit non.",
     },
     {
-      image: `${blogimage1}`,
       tag: ["blog", "webflow"],
       title: "12.08.22 — Why you should not forget wireframes",
       details:
         "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec non ante neque. Aliquam auctor, tortor eu eleifend scelerisque, quam purus pretium neque, nec tristique ex lacus pharetra dui.",
     },
     {
-      image: `${blogimage3}`,
       tag: ["twitter", "webflow"],
       title: "12.08.22 — 27 Tips for great user experience",
       details:
         "Nam elementum porttitor elit sed accumsan. Nunc lobortis volutpat urna, eget fermentum sem. Fusce laoreet nec nisi in lacinia. Quisque at lacus sapien consequat velit non.",
     },
     {
-      image: `${blogimage1}`,
       tag: ["blog", "webflow"],
       title: "12.08.22 — Why you should not forget wireframes",
       details:
@@ -110,7 +116,7 @@ const Blog = () => {
           {data.map((item) => {
             return (
               <article className="w-full h-full justify-between pr-8">
-                <img src={item.image} className="w-full" alt="Example of work done" />
+                <img src={getRandomImage()} className="w-full" alt="Example of work done" />
                 <Tags tagNames={item.tag} tagStyle="mt-4 mr-1" />
                 <p className="my-4 text-white">{item.title}</p>
                 <div id="additionalInfo" className="flex justify-between">
