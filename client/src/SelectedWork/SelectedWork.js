@@ -7,7 +7,7 @@ import Mock2 from "../Resources/images/Mock-2.png";
 import Mock3 from "../Resources/images/Mock-3.png";
 import Mock4 from "../Resources/images/Mock-4.png";
 import Mock5 from "../Resources/images/Mock-5.png";
-
+// possoble get random images for these from unslplash
 const SelectedWork = () => {
   const WorkComponent = ({ title, text, tags, img, customStyle, tagStyle }) => (
     <article className={`text-silverDark ${customStyle}`}>

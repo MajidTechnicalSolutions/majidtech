@@ -26,7 +26,7 @@ function App() {
       <main
         className="App bg-black font-modernEra py-4"
         id="App"
-        style={{ backgroundImage: `url(${Pattern})` }}
+        style={{ backgroundImage: `url(${Pattern})`, backgroundRepeat: "no-repeat" }}
       >
         <div className="m-auto w-9/12">
           <Navbar />
