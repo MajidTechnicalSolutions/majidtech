@@ -8,13 +8,10 @@ import Tags from "../utils/Tags";
 const Blog = () => {
   const [imageObject, setImageObject] = useState(null);
   useEffect(() => {
-    const key = process.env.REACT_APP_API_KEY;
     const getImage = async () => {
-      const res = await fetch(
-        `https://api.unsplash.com/collections/_7OuPnAqFt4/photos/?client_id=${key}`
-      );
+      const res = await fetch(`http://localhost:8000/api/flowerImages`);
       let data = await res.json();
-
+      console.log(data);
       data = data.map((el) => el.urls.full);
       if (data && imageObject == null) setImageObject(data);
     };
