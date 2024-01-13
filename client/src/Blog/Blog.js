@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import useFetch from "../utils/useFetch";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -6,35 +7,16 @@ import "react-multi-carousel/lib/styles.css";
 import Tags from "../utils/Tags";
 
 const Blog = () => {
-  const [imageObject, setImageObject] = useState(null);
-  const [blogPost, setBlogPost] = useState(null);
-
-  useEffect(() => {
-    const getImage = async () => {
-      const res = await fetch(`http://localhost:8000/api/images`);
-      let data = await res.json();
-      console.log(data);
-      data = data.map((el) => el.urls.full);
-      if (data && imageObject == null) setImageObject(data);
-    };
-
-    const getBlogPost = async () => {
-      const res = await fetch(`http://localhost:8000/api/blog`);
-      let data = await res.json();
-      console.log(data);
-      data = data.map((el) => el.urls.full);
-      if (data && blogPost == null) setBlogPost(data);
-    };
-
-    getImage();
-    getBlogPost();
-  }, [imageObject, blogPost]);
+  const { data: blogPost } = useFetch(`http://localhost:8000/api/blog`);
+  let { data: imageObject } = useFetch(`http://localhost:8000/api/images`);
 
   // image efficiency ?
   const getRandomImage = () => {
     let image;
+    let urlObject;
     if (imageObject) {
-      image = imageObject[Math.floor(Math.random() * imageObject.length)];
+      urlObject = imageObject.map((el) => el.urls.full);
+      image = urlObject[Math.floor(Math.random() * urlObject.length)];
     }
     return image;
   };
@@ -78,7 +60,7 @@ const Blog = () => {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >
-          {data.map((item) => {
+          {blogPost.map((item) => {
             return (
               <article className="w-full h-full justify-between pr-8">
                 <img src={getRandomImage()} className="w-full" alt="Example of work done" />
