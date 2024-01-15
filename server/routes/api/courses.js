@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const dummyData = require("../../dumyData");
+const data = require("../../dumyData");
 
 router.route("/").get((req, res) => {
-  res.send(dummyData.courses);
+  res.send(data.courses);
 });
 
 module.exports = router;

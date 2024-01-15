@@ -12,8 +12,7 @@ const Blog = () => {
 
   // image efficiency ?
   const getRandomImage = () => {
-    let image;
-    let urlObject;
+    let image, urlObject;
     if (imageObject) {
       urlObject = imageObject.map((el) => el.urls.full);
       image = urlObject[Math.floor(Math.random() * urlObject.length)];
@@ -38,6 +37,7 @@ const Blog = () => {
       items: 1,
     },
   };
+
   return (
     <section
       id="Blog"
