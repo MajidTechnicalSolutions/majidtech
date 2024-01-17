@@ -4,12 +4,12 @@ const { db, port } = require("./envConfig");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const blog = require("./routes/api/blog");
-const images = require("./routes/api/images");
-const courses = require("./routes/api/courses");
-const tutorials = require("./routes/api/tutorials");
-const tokens = require("./routes/api/token");
-const users = require("./routes/api/users");
+const blog = require("./routes/blog");
+const images = require("./routes/images");
+const courses = require("./routes/courses");
+const tutorials = require("./routes/tutorials");
+const tokens = require("./routes/token");
+const users = require("./routes/users");
 const passport = require("passport");
 const passportConfig = require("./config/passport");
 // initializing app
@@ -35,6 +35,7 @@ app.use(cors());
 //     console.log('MongoDB successfully connected');
 //   })
 //   .catch((err) => console.log(err));
+
 // handling routes
 app.get("/", (req, res) => {
   res.send("Welcome to majidtech");

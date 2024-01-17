@@ -2,7 +2,7 @@
   "name": "src",
   "version": "0.1.0",
   "engines": {
-    "node": "18.14.0"
+    "node": "18.17.0"
   },
   "main": "server.js",
   "private": true,
@@ -28,10 +28,7 @@
   },
   "scripts": {
     "start:backend": "nodemon server.js",
-    "start:frontend": "cd ../client && npm run start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start:frontend": "cd ../client && npm run start"
   },
   "author": "",
   "license": "ISC"

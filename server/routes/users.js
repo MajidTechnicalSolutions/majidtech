@@ -1,21 +1,21 @@
-const { secret, refreshSecret } = require('../../envConfig');
-const express = require('express');
+const { secret, refreshSecret } = require("../envConfig");
+const express = require("express");
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 // load validation functions
-const validateRegisterInput = require('../../validation/register');
-const validateLoginInput = require('../../validation/login');
+const validateRegisterInput = require("../validation/register");
+const validateLoginInput = require("../validation/login");
 
 // loading user model
-const User = require('../../models/user');
-const Tokens = require('../../models/tokens');
+const User = require("../models/user");
+const Tokens = require("../models/tokens");
 
 // @route POST api/users/register
 // @desc register users
 // @access Public
-router.post('/register', (req, res) => {
+router.post("/register", (req, res) => {
   // form validation for register
   const { errors, isValid } = validateRegisterInput(req.body);
   // checking if user is valid and looking for them in database then adding then to database
@@ -24,7 +24,7 @@ router.post('/register', (req, res) => {
   }
   User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
-      return res.status(400).json({ email: 'Email already exists' });
+      return res.status(400).json({ email: "Email already exists" });
     } else {
       // if no user then storing data from client to database
       const newUser = new User({
@@ -51,7 +51,7 @@ router.post('/register', (req, res) => {
 // @route POST api/users/register
 // @desc login user sign jwt token
 // @access Public
-router.post('/login', (req, res) => {
+router.post("/login", (req, res) => {
   // form validation for login
   const { errors, isValid } = validateLoginInput(req.body);
   // checking if user is valid and looking for them in database
@@ -65,7 +65,7 @@ router.post('/login', (req, res) => {
   User.findOne({ email }).then((user) => {
     // check if user exist
     if (!user) {
-      return res.status(404).json({ emailstatus: 'Email not found' });
+      return res.status(404).json({ emailstatus: "Email not found" });
     }
     // check password
     bcrypt.compare(password, user.password).then((isMatch) => {
@@ -77,7 +77,7 @@ router.post('/login', (req, res) => {
         };
         // create refresh token
         const refreshToken = jwt.sign(payload, refreshSecret, {
-          expiresIn: '1w',
+          expiresIn: "1w",
         });
         // store it in Data base
         const newToken = new Tokens({
@@ -93,18 +93,18 @@ router.post('/login', (req, res) => {
           payload,
           secret,
           {
-            expiresIn: '.5h',
+            expiresIn: ".5h",
           },
           (err, token) => {
             res.json({
               success: true,
-              token: 'Bearer ' + token,
+              token: "Bearer " + token,
               refreshToken,
             });
           }
         );
       } else {
-        return res.status(400).json({ passwordStatus: 'Password Incorrect' });
+        return res.status(400).json({ passwordStatus: "Password Incorrect" });
       }
     });
   });
