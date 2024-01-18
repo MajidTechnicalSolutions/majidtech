@@ -43,7 +43,6 @@ function Contact() {
 
       const returnedData = await response.json();
       if (!returnedData.ok) {
-        console.log(returnedData.description);
         return;
       }
     } catch (error) {

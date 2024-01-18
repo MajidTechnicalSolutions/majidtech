@@ -9,7 +9,6 @@ function useFetch(url) {
     const fetchData = async () => {
       const response = await fetch(url);
       let jsonResponse = await response.json();
-      console.log(jsonResponse);
       if (jsonResponse.length > 0 && data.length <= 0) setData(jsonResponse);
     };
     fetchData();

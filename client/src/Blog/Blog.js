@@ -7,8 +7,9 @@ import "react-multi-carousel/lib/styles.css";
 import Tags from "../utils/Tags";
 
 const Blog = () => {
-  const { data: blogPost } = useFetch(`http://localhost:8000/api/blog`);
-  let { data: imageObject } = useFetch(`http://localhost:8000/api/images`);
+  const url = process.env.REACT_APP_API_URL;
+  const { data: blogPost } = useFetch(`${url}/blog`);
+  let { data: imageObject } = useFetch(`${url}/images`);
 
   // image efficiency ?
   const getRandomImage = () => {
