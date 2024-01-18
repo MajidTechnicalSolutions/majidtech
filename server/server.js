@@ -42,12 +42,12 @@ app.get("/", (req, res) => {
 });
 
 // middleware handling routes from these files
-app.use("/api/courses", courses);
-app.use("/api/tutorials", tutorials);
-app.use("/api/users", users);
-app.use("/api/tokens", tokens);
-app.use("/api/blog", blog);
-app.use("/api/images", images);
+app.use("/courses", courses);
+app.use("/tutorials", tutorials);
+app.use("/users", users);
+app.use("/tokens", tokens);
+app.use("/blog", blog);
+app.use("/images", images);
 // creating port for server
 
 // Listening to that port
