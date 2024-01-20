@@ -130,7 +130,7 @@ export default function MenuIconSideNavExample() {
     }, 200);
   };
   return (
-    <Sheet sx={{ borderRadius: "sm", py: 1, mr: 20 }}>
+    <Sheet sx={{ borderRadius: "sm", py: 0, mr: 0 }}>
       <List>
         <ListItem>
           <NavMenuButton
@@ -149,7 +149,7 @@ export default function MenuIconSideNavExample() {
             <Apps />
           </NavMenuButton>
         </ListItem>
-        <ListItem>
+        {/* <ListItem>
           <NavMenuButton
             label="Settings"
             open={menuIndex === 1}
@@ -182,7 +182,7 @@ export default function MenuIconSideNavExample() {
           >
             <Person />
           </NavMenuButton>
-        </ListItem>
+        </ListItem> */}
       </List>
     </Sheet>
   );
