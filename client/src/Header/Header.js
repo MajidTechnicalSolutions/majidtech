@@ -27,7 +27,11 @@ const Header = () => {
             destination="Contact"
           />
         </div>
-        <img alt="Brackets" className=" w-[50%] xl:w-[100%] bg-no-repeat" src={Brackets}></img>
+        <img
+          alt="Brackets"
+          className=" w-[20%] l:w-[50%] xl:w-[50%] bg-no-repeat"
+          src={Brackets}
+        ></img>
       </div>
     </section>
   );

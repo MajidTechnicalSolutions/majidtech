@@ -42,7 +42,7 @@ const Blog = () => {
   return (
     <section
       id="Blog"
-      className="w-full h-[36rem] pl-[12.5%] flex justify-evenly my-52 flex-column"
+      className="w-full h-[36rem] pl-[12.5%] max-[1200px]:flex-col justify-evenly my-52 flex-column"
     >
       <h1 className="text-4xl text-white mb-5">From The Blog</h1>
 
