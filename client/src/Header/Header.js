@@ -18,7 +18,7 @@ const Header = () => {
           <p className="text-silverDark break-keep mb-7 mt-4 text-xs lg:text-base xl:w-4/5">
             I'm a creative developer with years of experience in building products and appealing web
             experiences. I've collaborated with individuals and teams to build experiences for SMEs
-            and large enterprises including Wise, Google, Interswitch and Intelia.
+            and large enterprises including Macy's, Verizon, Cengage Group and Home Depot.
           </p>
           <ButtonPrimary
             Arrow={RightArrow}
@@ -29,7 +29,7 @@ const Header = () => {
         </div>
         <img
           alt="Brackets"
-          className=" w-[20%] l:w-[50%] xl:w-[50%] bg-no-repeat"
+          className="hidden xl:block w-[20%] lg:w-[50%] xl:w-[50%] bg-no-repeat"
           src={Brackets}
         ></img>
       </div>

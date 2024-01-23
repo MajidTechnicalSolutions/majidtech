@@ -61,26 +61,28 @@ function Contact() {
       name="contact-form"
       onSubmit={handleSubmit(onSubmit, onError)}
     >
-      <label for="name" className="m-0">
+      <label for="name" className="m-0 w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Full Name
         <input
           type="text"
           name="name"
           placeholder=" Enter name"
+          className="lg:w-full w-1/2 h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
           {...register("name", { required: true })}
         />
       </label>
 
-      <label for="email" className="m-0">
+      <label for="email" className="m-0 w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Email
         <input
           type="email"
           name="email"
           placeholder="Your email address ..."
+          className="lg:w-full w-1/2 h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
           {...register("email", { required: true })}
         />
       </label>
-      <label for="phone">
+      <label for="phone" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Phone
         <PhoneInput
           placeholder="Enter Phone number"
@@ -102,9 +104,14 @@ function Contact() {
         />
         {isValidErrorDisplay()}
       </label>
-      <label for="interests">
+      <label for="interests" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Interested In
-        <select id="interests" name="interests" {...register("interests", { required: true })}>
+        <select
+          id="interests"
+          name="interests"
+          className="w-1/2 lg:w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          {...register("interests", { required: true })}
+        >
           <option value="Please Select">Please Select</option>
           <option value="Get a Website built"> Build a Custom Website </option>
           <option value="Redesign existing site"> Redesign existing Website </option>
@@ -112,9 +119,14 @@ function Contact() {
           <option value="Something else"> Something else </option>
         </select>
       </label>
-      <label for="budget">
+      <label for="budget" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Budget
-        <select id="budget" name="budget" {...register("budget", { required: true })}>
+        <select
+          id="budget"
+          name="budget"
+          className="w-1/2 lg:w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          {...register("budget", { required: true })}
+        >
           <option value="Select Range">Select Range</option>
           <option value="Get a Website built"> 0 - 1k </option>
           <option value="Redesign existing site"> 1k - 5k </option>
@@ -122,9 +134,14 @@ function Contact() {
           <option value="Something else"> 10k+ </option>
         </select>
       </label>
-      <label for="inbound">
+      <label for="inbound" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         How did you learn about us?
-        <select id="inbound" name="inbound" {...register("inbound")}>
+        <select
+          id="inbound"
+          name="inbound"
+          className="w-1/2 lg:w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          {...register("inbound")}
+        >
           <option value="Please Select">Please Select</option>
           <option value=""> offline </option>
           <option value="Get a Website built"> Google </option>
@@ -134,28 +151,32 @@ function Contact() {
         </select>
       </label>
       <div className="flex flex-column  items-end">
-        <label className="message" for="message" {...register("message")}>
+        <label
+          className="message w-full h-[184px] text-[#FD5A1E] uppercase mt-8 px-4 py-0"
+          for="message"
+          {...register("message")}
+        >
           Message
           <textarea
-            className="message"
+            className="message h-full lg:w-full w-1/2 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
             type="text"
             id="message"
             name="message"
             placeholder="Your Message here ..."
           ></textarea>
         </label>
-        <ButtonPrimary
-          text="Start a Project"
-          type="submit"
-          customClass="mt-5"
-          callBack={handleSubmit(onSubmit)}
-        />
       </div>
+      <ButtonPrimary
+        text="Start a Project"
+        type="submit"
+        customClass="mt-5"
+        callBack={handleSubmit(onSubmit)}
+      />
     </form>
   );
 
   return (
-    <section id="Contact" className="w-full flex my-52  h-[43rem]">
+    <section id="Contact" className="w-full flex my-52  flex-col lg:flex-row">
       <div className="leftBox flex flex-column w-3/4">
         <small className="text-majidTech uppercase">Have a project in mind?</small>
         <h1 className="text-white text-6xl mb-2 mt-4">Let's Get Started</h1>
