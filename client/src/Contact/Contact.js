@@ -57,7 +57,7 @@ function Contact() {
     <form
       action={url}
       method="post"
-      className="w-[47rem]"
+      className="w-full lg:w-[47rem]"
       name="contact-form"
       onSubmit={handleSubmit(onSubmit, onError)}
     >
