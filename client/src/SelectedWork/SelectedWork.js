@@ -44,13 +44,13 @@ const SelectedWork = () => {
         </p>
       </div>
       <div className="containers grid grid-rows-3 grid-col-3">
-        <div className="flex justify-between">
+        <div className="flex justify-between flex-col lg:flex-row">
           <WorkComponent
             title="Aro"
             text="Aro makes it easy to put down your phone so you can focus on the things that really matter."
             tags={["React", "Front-End"]}
             img={Mock1}
-            customStyle="mr-20 flex flex-column"
+            customStyle="lg:mr-20 flex flex-column"
             tagStyle="ml-1"
           />
           <WorkComponent
@@ -63,24 +63,24 @@ const SelectedWork = () => {
           />
         </div>
 
-        <div className="col-span-2">
+        <div className="flex justify-between flex-col lg:flex-row">
           <WorkComponent
             title="Arcadia"
             text="A tech company empowering energy innovators and consumers to fight the climate crisis"
             tags={["React", "Front-End"]}
             img={Mock3}
-            customStyle="pr-80"
+            customStyle="lg:pr-80"
             tagStyle="ml-1"
           />
         </div>
 
-        <div className="flex  justify-between">
+        <div className="flex  justify-between flex-col lg:flex-row">
           <WorkComponent
             title="WeWork"
             text="Get the workspace you need, when and where you need it so you can focus on your business"
             tags={["Bootstrap", "Development"]}
             img={Mock4}
-            customStyle="mr-10 flex flex-column"
+            customStyle="lg:mr-10 flex flex-column"
             tagStyle="ml-1"
           />
           <WorkComponent

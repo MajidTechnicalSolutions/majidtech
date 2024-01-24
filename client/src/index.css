@@ -87,14 +87,16 @@ color:#fff
         display: block;
     }
 }
-/* 
-.rightBox form select {
+
+#Services {
+    /* box-shadow: 0 0 0 10px #b6bdc3; */
     width: 100%;
-    height: 56px;
-    background-color: black;
-    border: 1.5px solid #141416;
-    border-radius: 6px;
-    margin-top: 1rem;
-    color: #D7D7D8;
-    padding: 1rem;
-} */
+    /* background: #fff; */
+    margin: 0 auto;
+    /* just to get an apsect ratio same as the SVG's: */
+    /* padding-top: 48%;  */
+    /* height: 0;  */
+    background-image: url(./Resources/images/PatternHex.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}

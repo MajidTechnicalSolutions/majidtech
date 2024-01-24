@@ -26,13 +26,13 @@ function Services() {
       <section
         id="Services"
         className="w-full h-[36rem] flex justify-evenly my-40"
-        style={{ backgroundImage: `url(${PatternHex})` }}
+        // style={{ backgroundImage: `url(${PatternHex})` }}
       >
         <div className="iconSet1 relative">
           <HtmlCube
             customStyle={{
               backgroundColor: "black",
-              position: "absolute",
+              position: "relative",
               top: "0.5em",
               right: "5rem",
             }}
@@ -40,16 +40,23 @@ function Services() {
           <BootstrapCube
             customStyle={{
               backgroundColor: "black",
-              position: "absolute",
-              top: "10rem",
-              right: "0",
+              position: "relative",
+              top: "16rem",
+              right: "2rem",
             }}
           />
-          <CssCube customStyle={{ backgroundColor: "black", position: "absolute", left: "3rem" }} />
+          <CssCube
+            customStyle={{
+              backgroundColor: "black",
+              position: "relative",
+              left: "3rem",
+              bottom: "7rem",
+            }}
+          />
           <WebpackCube
             customStyle={{
               backgroundColor: "black",
-              position: "absolute",
+              position: "relative",
               bottom: "5rem",
               right: "5rem",
             }}
@@ -57,7 +64,7 @@ function Services() {
           <GithubCube
             customStyle={{
               backgroundColor: "black",
-              position: "absolute",
+              position: "relative",
               bottom: "10rem",
               left: "2rem",
             }}
@@ -65,7 +72,7 @@ function Services() {
           <GitCube
             customStyle={{
               backgroundColor: "black",
-              position: "absolute",
+              position: "relative",
               bottom: "0",
               right: "0",
             }}
@@ -103,7 +110,7 @@ function Services() {
             customStyle={{
               backgroundColor: "black",
               position: "absolute",
-              top: "18rem",
+              top: "22rem",
               left: "3rem",
             }}
           />
@@ -111,7 +118,7 @@ function Services() {
             customStyle={{
               backgroundColor: "black",
               position: "absolute",
-              bottom: "9rem",
+              bottom: "11rem",
               right: "8rem",
             }}
           />
@@ -120,29 +127,29 @@ function Services() {
               backgroundColor: "black",
               position: "absolute",
               top: "2rem",
-              left: "6rem",
+              right: "rem",
             }}
           />
           <JqueryCube
             customStyle={{
               backgroundColor: "black",
-              position: "absolute",
+              position: "relative",
               top: "2rem",
-              right: "7rem",
+              right: "9rem",
             }}
           />
           <SassCube
             customStyle={{
               backgroundColor: "black",
-              position: "absolute",
-              top: "10rem",
-              right: "2rem",
+              position: "relative",
+              top: "5rem",
+              right: "4rem",
             }}
           />
           <MongodbCube
             customStyle={{
               backgroundColor: "black",
-              position: "absolute",
+              position: "relative",
               bottom: "0",
               left: "5rem",
             }}
