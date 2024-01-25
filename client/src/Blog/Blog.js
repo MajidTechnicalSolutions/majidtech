@@ -7,7 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 import Tags from "../utils/Tags";
 
 const Blog = () => {
-  const url = process.env.REACT_APP_API_URL;
+  const url = process.env.REACT_APP_API_URL || process.env.REACT_APP_API_URL_DEF;
   const { data: blogPost } = useFetch(`${url}/blog`);
   let { data: imageObject } = useFetch(`${url}/images`);
 
