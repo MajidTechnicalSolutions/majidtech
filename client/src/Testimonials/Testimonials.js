@@ -4,14 +4,14 @@ const Testimonials = () => {
   return (
     <section
       id="Testimonials"
-      className="w-full h-96 border-2 border-[#FE5000] flex flex-row p-10 rounded-lg"
+      className="w-full border-2 border-[#FE5000] flex flex-row p-10 rounded-lg"
     >
       <div className="leftBox w-3/5">
         <small className="text-white uppercase">What clients Have to say</small>
         <h1 className="text-white text-4xl mb-2 mt-4">Testimonials</h1>
       </div>
       <div className="rightbox w-full">
-        <p className="mb-4 text-silverDark text-2xl">
+        <p className="mb-4 text-silverDark text-md lg:text-xl">
           “Jamal’s passion and dedication to the tasks is impressive. I can’t say enough good things
           about him. He was a great partner, really drove the creative direction and successfully
           delivered the web app which garnered love from millions of users. We enjoyed the sprint

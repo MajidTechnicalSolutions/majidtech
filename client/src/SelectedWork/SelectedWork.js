@@ -32,11 +32,11 @@ const SelectedWork = () => {
   );
   return (
     <section id="Selectedwork">
-      <div className="flex justify-between mb-10">
+      <div className="flex justify-between flex-col lg:flex-row mb-10">
         <h1 className="text-white font-medium not-italic text-4xl lg:text-3xl">
           Selected Work <ArrowDown color="#FD5A1E" />
         </h1>
-        <p className="text-silverDark break-keep text-xs lg:text-base w-2/4">
+        <p className="text-silverDark break-keep text-xs lg:text-base lg:w-2/4">
           Lorem psum dolor sit amet, consectetur adipiscing elit. Etiam at urna ac orci ullamcorper
           pretium. Aenean facilisis id sem sit amet cursus. Vivamus non fficitur nisl. Maecenas ut
           risus porttitor lectus porttitor dapibus vel at dui. Aliquam auctor odio sit amet tortor

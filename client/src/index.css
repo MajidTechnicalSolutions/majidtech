@@ -11,6 +11,14 @@
 }
 }
 
+@media screen and (max-width: 1024px){
+
+        html {
+        font-size: 12px;
+    }
+
+}
+
 @font-face {
     font-family: 'ModernEraMono-Regular';
     src: url('./Fonts/ModernEraMono-Regular.woff') format('woff'),
@@ -99,4 +107,8 @@ color:#fff
     background-image: url(./Resources/images/PatternHex.svg);
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+section {
+    margin: 20rem 0 20rem 0;
 }

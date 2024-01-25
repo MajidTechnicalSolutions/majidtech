@@ -16,18 +16,12 @@ import {
   RightArrow,
 } from "../Resources/Svgs";
 
-import PatternHex from "../Resources/images/PatternHex.svg";
-
 import { ButtonPrimary } from "../utils/buttons";
 
 function Services() {
   return (
     <>
-      <section
-        id="Services"
-        className="w-full h-[36rem] flex justify-evenly my-40"
-        // style={{ backgroundImage: `url(${PatternHex})` }}
-      >
+      <section id="Services" className="w-full flex justify-evenly">
         <div className="iconSet1 relative">
           <HtmlCube
             customStyle={{

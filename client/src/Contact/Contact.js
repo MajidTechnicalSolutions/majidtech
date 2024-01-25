@@ -176,7 +176,7 @@ function Contact() {
   );
 
   return (
-    <section id="Contact" className="w-full flex my-52  flex-col lg:flex-row">
+    <section id="Contact" className="w-full flex flex-col lg:flex-row">
       <div className="leftBox flex flex-column w-3/4">
         <small className="text-majidTech uppercase">Have a project in mind?</small>
         <h1 className="text-white text-6xl mb-2 mt-4">Let's Get Started</h1>
