@@ -57,7 +57,7 @@ function Contact() {
     <form
       action={url}
       method="post"
-      className="w-full lg:w-[47rem]"
+      className="w-full "
       name="contact-form"
       onSubmit={handleSubmit(onSubmit, onError)}
     >
@@ -67,7 +67,7 @@ function Contact() {
           type="text"
           name="name"
           placeholder=" Enter name"
-          className="lg:w-full w-1/2 h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
           {...register("name", { required: true })}
         />
       </label>
@@ -78,7 +78,7 @@ function Contact() {
           type="email"
           name="email"
           placeholder="Your email address ..."
-          className="lg:w-full w-1/2 h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
           {...register("email", { required: true })}
         />
       </label>
@@ -109,7 +109,7 @@ function Contact() {
         <select
           id="interests"
           name="interests"
-          className="w-1/2 lg:w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
           {...register("interests", { required: true })}
         >
           <option value="Please Select">Please Select</option>
@@ -124,7 +124,7 @@ function Contact() {
         <select
           id="budget"
           name="budget"
-          className="w-1/2 lg:w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
           {...register("budget", { required: true })}
         >
           <option value="Select Range">Select Range</option>
@@ -139,7 +139,7 @@ function Contact() {
         <select
           id="inbound"
           name="inbound"
-          className="w-1/2 lg:w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
           {...register("inbound")}
         >
           <option value="Please Select">Please Select</option>
@@ -158,7 +158,7 @@ function Contact() {
         >
           Message
           <textarea
-            className="message h-full lg:w-full w-1/2 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+            className="message h-full w-full bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
             type="text"
             id="message"
             name="message"
