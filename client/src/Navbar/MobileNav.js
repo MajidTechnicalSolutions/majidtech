@@ -11,6 +11,7 @@ import Settings from "@mui/icons-material/Settings";
 import Person from "@mui/icons-material/Person";
 import Dropdown from "@mui/joy/Dropdown";
 import MenuButton from "@mui/joy/MenuButton";
+import { Link } from "react-scroll";
 
 // The Menu is built on top of Popper v2, so it accepts `modifiers` prop that will be passed to the Popper.
 // https://popper.js.org/docs/v2/modifiers/offset/
@@ -113,6 +114,17 @@ NavMenuButton.propTypes = {
 
 export default function MenuIconSideNavExample() {
   const [menuIndex, setMenuIndex] = React.useState(null);
+  const [listItems, setListItems] = React.useState({
+    activeObject: 0,
+    objects: [
+      { title: "Home", id: 0 },
+      { title: "Selectedwork", id: 1 },
+      { title: "Services", id: 2 },
+      { title: "Testimonials", id: 3 },
+      { title: "Blog", id: 4 },
+      { title: `Contact`, id: 5 },
+    ],
+  });
   const itemProps = {
     onClick: () => setMenuIndex(null),
   };
@@ -140,9 +152,53 @@ export default function MenuIconSideNavExample() {
             onLeaveMenu={createHandleLeaveMenu(0)}
             menu={
               <Menu onClose={() => setMenuIndex(null)}>
-                <MenuItem {...itemProps}>Application 1</MenuItem>
-                <MenuItem {...itemProps}>Application 2</MenuItem>
-                <MenuItem {...itemProps}>Application 3</MenuItem>
+                {listItems.objects.map((item, index) =>
+                  item.title === "Home" ? (
+                    <li className="font-normal cursor-pointer not-italic w-full tracking-tight flex-none text-silverLight">
+                      <MenuItem {...itemProps}>
+                        {" "}
+                        <Link
+                          to={`App`}
+                          key={index + "-id"}
+                          spy={true}
+                          smooth={true}
+                          duration={500}
+                        >
+                          {item.title}
+                        </Link>
+                      </MenuItem>
+                    </li>
+                  ) : (
+                    <li className="font-normal cursor-pointer not-italic w-full tracking-tight flex-none text-silverLight">
+                      <MenuItem {...itemProps}>
+                        {" "}
+                        <Link
+                          to={`${item.title}`}
+                          key={index + "-id"}
+                          spy={true}
+                          smooth={true}
+                          offset={-100}
+                          duration={500}
+                        >
+                          {item.title === "Selectedwork" ? "Selected Work" : item.title}
+                          {item.component ? (
+                            <item.component
+                              customStyle={{
+                                general: {
+                                  width: "23px",
+                                  height: "17px",
+                                  display: "inline",
+                                },
+                                color: "#fff",
+                              }}
+                              viewBoxSetting="-7 -1 30 25"
+                            />
+                          ) : null}
+                        </Link>{" "}
+                      </MenuItem>
+                    </li>
+                  )
+                )}
               </Menu>
             }
           >
