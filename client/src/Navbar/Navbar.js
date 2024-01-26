@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Logo, UpArrow } from "../Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-scroll";
 import MobileNav from "./MobileNav";
 
@@ -43,7 +42,6 @@ function Navbar() {
                     key={index + "-id"}
                     spy={true}
                     smooth={true}
-                    offset={100}
                     duration={500}
                     onClick={() => {
                       toggleActive(index);
@@ -60,24 +58,24 @@ function Navbar() {
                     key={index + "-id"}
                     spy={true}
                     smooth={true}
-                    offset={50}
+                    offset={-100}
                     duration={500}
                     onClick={() => {
                       toggleActive(index);
                     }}
                   >
-                    {item.title === "Selectedwork" ? "Selected-Work" : item.title}
+                    {item.title === "Selectedwork" ? "Selected Work" : item.title}
                     {item.component ? (
                       <item.component
                         customStyle={{
                           general: {
                             width: "23px",
                             height: "17px",
-                            viewBox: "-7 -1 30 25",
                             display: "inline",
                           },
                           color: "#fff",
                         }}
+                        viewBoxSetting="-7 -1 30 25"
                       />
                     ) : null}
                   </Link>

@@ -24,6 +24,7 @@ const SelectedWork = () => {
               general: { width: 26, height: 26, fill: "none", viewBox: "-12 3 43 25" },
               color: "#686869",
             }}
+            viewBoxSetting="-5 -1 35 31"
           />
         </a>
         <Tag tagNames={tags} tagStyle={tagStyle} />

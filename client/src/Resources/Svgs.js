@@ -69,8 +69,8 @@ export const Logo = ({ customStyle }) => (
   </svg>
 );
 
-export const UpArrow = ({ customStyle }) => (
-  <svg style={customStyle.general}>
+export const UpArrow = ({ customStyle, viewBoxSetting }) => (
+  <svg style={customStyle.general} viewBox={viewBoxSetting}>
     <g clipPath="url(#a)" filter="url(#b)">
       <path
         d="M17.877 2.215h.483l-.341.341L4.283 16.292l1.425 1.425L19.444 3.981l.341-.341V16.705H21.8V.2H5.295v2.015h12.582Z"
