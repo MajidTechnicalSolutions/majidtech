@@ -113,3 +113,7 @@ color:#fff
 section {
     margin: 20rem 0 20rem 0;
 }
+
+.MuiPopper-root li a{
+    width: 100%
+}

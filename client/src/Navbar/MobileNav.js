@@ -154,8 +154,11 @@ export default function MenuIconSideNavExample() {
               <Menu onClose={() => setMenuIndex(null)}>
                 {listItems.objects.map((item, index) =>
                   item.title === "Home" ? (
-                    <li className="font-normal cursor-pointer not-italic w-full tracking-tight flex-none text-silverLight">
-                      <MenuItem {...itemProps}>
+                    <li
+                      {...itemProps}
+                      className="font-normal cursor-pointer not-italic w-full tracking-tight flex-none text-silverLight"
+                    >
+                      <MenuItem>
                         {" "}
                         <Link
                           to={`App`}
@@ -169,8 +172,11 @@ export default function MenuIconSideNavExample() {
                       </MenuItem>
                     </li>
                   ) : (
-                    <li className="font-normal cursor-pointer not-italic w-full tracking-tight flex-none text-silverLight">
-                      <MenuItem {...itemProps}>
+                    <li
+                      {...itemProps}
+                      className="font-normal cursor-pointer not-italic w-full tracking-tight flex-none text-silverLight"
+                    >
+                      <MenuItem>
                         {" "}
                         <Link
                           to={`${item.title}`}
