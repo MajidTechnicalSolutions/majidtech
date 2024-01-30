@@ -29,7 +29,7 @@
     text-rendering: optimizeLegibility;
 }
 
-input, textarea,select {
+input, textarea, select, li, a {
     outline: none;
 }
 
