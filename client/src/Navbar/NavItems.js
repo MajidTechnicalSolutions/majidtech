@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UpArrow } from "../Resources/Svgs";
+import { UpArrow } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Link } from "react-scroll";

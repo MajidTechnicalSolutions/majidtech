@@ -22,8 +22,8 @@
 
 @font-face {
     font-family: 'ModernEraMono-Regular';
-    src: url('./Fonts/ModernEraMono-Regular.woff') format('woff'),
-         url('./Fonts/ModernEraMono-Regular.woff2') format('woff2');
+    src: url('./utils/Fonts/ModernEraMono-Regular.woff') format('woff'),
+         url('./utils/Fonts/ModernEraMono-Regular.woff2') format('woff2');
     font-style: normal;
     font-weight: normal;
     text-rendering: optimizeLegibility;
@@ -105,7 +105,7 @@ color:#fff
     /* just to get an apsect ratio same as the SVG's: */
     /* padding-top: 48%;  */
     /* height: 0;  */
-    background-image: url(./Resources/images/PatternHex.svg);
+    background-image: url(./utils/Resources/images/PatternHex.svg);
     background-size: cover;
     background-repeat: no-repeat;
 }

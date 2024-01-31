@@ -1,7 +1,7 @@
 import React from "react";
 
-import Brackets from "../Resources/images/Brackets.svg";
-import { RightArrow } from "../Resources/Svgs";
+import Brackets from "../utils/Resources/images/Brackets.svg";
+import { RightArrow } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
 
 const Header = () => {
@@ -16,9 +16,10 @@ const Header = () => {
             <span>,repeat</span>
           </h1>
           <p className="text-silverDark break-keep mb-7 mt-4 lg:text-base xl:w-4/5">
-            I'm a creative developer with years of experience in building products and appealing web
-            experiences. I've collaborated with individuals and teams to build experiences for SMEs
-            and large enterprises including Macy's, Verizon, Cengage Group and Home Depot.
+            Majid Technical solutions strives for creative development in all of our work, with
+            years of experience in building responsive, modern, coherent web applications.
+            Experienced in collaborating with SMEs as well as large enterprises including Macy's,
+            Verizon, Cengage Group and Home Depot.
           </p>
           <ButtonPrimary
             Arrow={RightArrow}

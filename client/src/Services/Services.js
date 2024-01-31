@@ -14,7 +14,7 @@ import {
   ReduxCube,
   WebpackCube,
   RightArrow,
-} from "../Resources/Svgs";
+} from "../utils/Resources/Svgs";
 
 import { ButtonPrimary } from "../utils/buttons";
 

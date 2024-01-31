@@ -1,12 +1,12 @@
 // @ts-ignore
 import React from "react";
-import { ArrowDown, UpArrow } from "../Resources/Svgs";
+import { ArrowDown, UpArrow } from "../utils/Resources/Svgs";
 import Tag from "../utils/Tags";
-import Mock1 from "../Resources/images/Mock.png";
-import Mock2 from "../Resources/images/Mock-2.png";
-import Mock3 from "../Resources/images/Mock-3.png";
-import Mock4 from "../Resources/images/Mock-4.png";
-import Mock5 from "../Resources/images/Mock-5.png";
+import Mock1 from "../utils/Resources/images/Mock.png";
+import Mock2 from "../utils/Resources/images/Mock-2.png";
+import Mock3 from "../utils/Resources/images/Mock-3.png";
+import Mock4 from "../utils/Resources/images/Mock-4.png";
+import Mock5 from "../utils/Resources/images/Mock-5.png";
 // possoble get random images for these from unslplash
 const SelectedWork = () => {
   const WorkComponent = ({ title, text, tags, img, customStyle, tagStyle }) => (

@@ -10,7 +10,7 @@ import Services from "./Services";
 import Blog from "./Blog";
 
 // assets
-import Pattern from "./Resources/images/Pattern.svg";
+import Pattern from "./utils/Resources/images/Pattern.svg";
 
 function App() {
   const Footer = () => {

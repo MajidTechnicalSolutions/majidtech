@@ -11,8 +11,8 @@ import PhoneInput from "react-phone-number-input";
 // converts object into form data
 import { serialize } from "object-to-formdata";
 
-import { GithubIcon } from "../Resources/../Resources/Svgs";
-import { TwitterIcon } from "../Resources/../Resources/Svgs";
+import { GithubIcon } from "../utils//Resources/Svgs";
+import { TwitterIcon } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
 
 function Contact() {
