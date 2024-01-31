@@ -38,10 +38,9 @@ const SelectedWork = () => {
           Selected Work <ArrowDown color="#FD5A1E" />
         </h1>
         <p className="text-silverDark break-keep text-xs lg:text-base lg:w-2/4">
-          Lorem psum dolor sit amet, consectetur adipiscing elit. Etiam at urna ac orci ullamcorper
-          pretium. Aenean facilisis id sem sit amet cursus. Vivamus non fficitur nisl. Maecenas ut
-          risus porttitor lectus porttitor dapibus vel at dui. Aliquam auctor odio sit amet tortor
-          mollis, a bibendum lectus volutpat. Donec eu feugiat ante.
+          A selected group of our projects we have worked on and a few in the making. We are
+          dedicated to pushing new and creative ideas, not only for our clients for for ourselves as
+          well. See what interesting solutions we have planed for the future.
         </p>
       </div>
       <div className="containers grid grid-rows-3 grid-col-3">
@@ -50,7 +49,7 @@ const SelectedWork = () => {
             title="Aro"
             text="Aro makes it easy to put down your phone so you can focus on the things that really matter."
             tags={["React", "Front-End"]}
-            img={Mock1}
+            img={Mock2}
             customStyle="lg:mr-20 flex flex-column"
             tagStyle="ml-1"
           />
@@ -59,7 +58,7 @@ const SelectedWork = () => {
             text="The all-in-one platform built to help
           e-commerce brands scale seamlessly."
             tags={["Bootstrap", "Front-End"]}
-            img={Mock2}
+            img={Mock1}
             tagStyle="ml-1"
           />
         </div>
@@ -77,15 +76,15 @@ const SelectedWork = () => {
 
         <div className="flex  justify-between flex-col lg:flex-row">
           <WorkComponent
-            title="WeWork"
-            text="Get the workspace you need, when and where you need it so you can focus on your business"
+            title="Zawj"
+            text="Find you ideal match, with advance filtering you never have to settle"
             tags={["Bootstrap", "Development"]}
             img={Mock4}
             customStyle="lg:mr-10 flex flex-column"
             tagStyle="ml-1"
           />
           <WorkComponent
-            title="Current"
+            title="MaaL"
             text="Focused on creating better financial outcomes for people and their unique lives."
             tags={["React", "Development"]}
             img={Mock5}
