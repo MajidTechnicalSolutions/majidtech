@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useFetch from "../utils/useFetch";
 
 import Carousel from "react-multi-carousel";
@@ -7,6 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 import Tags from "../utils/Tags";
 
 const Blog = () => {
+  const [postNotOpen, setPostNotOpen] = useState(true);
   const url = process.env.REACT_APP_API_URL || process.env.REACT_APP_API_URL_DEF;
   const { data: blogPost } = useFetch(`${url}/blog`);
   let { data: imageObject } = useFetch(`${url}/images`);
@@ -39,6 +40,28 @@ const Blog = () => {
     },
   };
 
+  const openPost = (e) => {
+    setPostNotOpen(false);
+    e.currentTarget.classList.add("bg-tagDark");
+
+    console.log(e.currentTarget);
+  };
+
+  const PostModal = (toOpen) => {
+    return (
+      <dialog>
+        <div className="w-full h-full justify-between p-4 rounded-lg"></div>
+      </dialog>
+    );
+  };
+
+  // click on post background change & post expands
+  // click background changes to tag background
+  // access current element
+  // then: post should be come removed from of page, background expand, and is centered
+  // then: details, image, & tag should realign and post should show fully and be scrollable in its on box
+  // last: x in top corner to close post or click out side post.
+
   return (
     <section
       id="Blog"
@@ -53,7 +76,7 @@ const Blog = () => {
           responsive={responsive}
           // ssr={false} // means to render carousel on server-side.
           infinite={true}
-          autoPlay={true}
+          autoPlay={postNotOpen}
           autoPlaySpeed={1000}
           // customTransition="all .5"
           transitionDuration={5000}
@@ -61,9 +84,9 @@ const Blog = () => {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >
-          {blogPost.map((item) => {
+          {blogPost.map((item, index) => {
             return (
-              <article className="w-full h-full justify-between pr-8">
+              <article onClick={openPost} className="w-full h-full justify-between p-4 rounded-lg">
                 <img src={getRandomImage()} className="w-full" alt="Example of work done" />
                 <Tags tagNames={item.tag} tagStyle="mt-4 mr-1" />
                 <p className="my-4 text-white">{item.title}</p>
@@ -74,6 +97,7 @@ const Blog = () => {
             );
           })}
         </Carousel>
+        <PostModal toOpen={true} />
       </div>
     </section>
   );
