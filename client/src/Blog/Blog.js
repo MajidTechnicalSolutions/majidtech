@@ -50,7 +50,7 @@ const Blog = () => {
   const PostModal = (toOpen) => {
     return (
       <dialog>
-        <div className="w-full h-full justify-between p-4 rounded-lg"></div>
+        <div className="w-full h-full justify-between p-4 rounded-lg bg-tagDark"></div>
       </dialog>
     );
   };
@@ -58,7 +58,7 @@ const Blog = () => {
   // click on post background change & post expands
   // click background changes to tag background
   // access current element
-  // then: post should be come removed from of page, background expand, and is centered
+  // then: post should be come removed from of page, background expand, and is centered use dialog
   // then: details, image, & tag should realign and post should show fully and be scrollable in its on box
   // last: x in top corner to close post or click out side post.
 

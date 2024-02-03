@@ -26,15 +26,17 @@ app.use(cors());
 // passportConfig(passport);
 
 // connect to mongodb data base
-// mongoose
-//   .connect(db, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => {
-//     console.log('MongoDB successfully connected');
-//   })
-//   .catch((err) => console.log(err));
+console.log(db);
+mongoose
+  .connect(db, {
+    dbName: "majid-tech",
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("MongoDB successfully connected");
+  })
+  .catch((err) => console.log(err));
 
 // handling routes
 app.get("/", (req, res) => {
