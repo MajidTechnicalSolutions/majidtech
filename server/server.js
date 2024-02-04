@@ -26,7 +26,6 @@ app.use(cors());
 // passportConfig(passport);
 
 // connect to mongodb data base
-console.log(db);
 mongoose
   .connect(db, {
     dbName: "majid-tech",
