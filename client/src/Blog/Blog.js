@@ -48,6 +48,7 @@ const Blog = () => {
   };
 
   const PostModal = (toOpen) => {
+    console.log("blog post contains ....", blogPost);
     return (
       <dialog>
         <div className="w-full h-full justify-between p-4 rounded-lg bg-tagDark"></div>
@@ -88,10 +89,10 @@ const Blog = () => {
             return (
               <article onClick={openPost} className="w-full h-full justify-between p-4 rounded-lg">
                 <img src={getRandomImage()} className="w-full" alt="Example of work done" />
-                <Tags tagNames={item.tag} tagStyle="mt-4 mr-1" />
+                <Tags tagNames={item.tags} tagStyle="mt-4 mr-1" />
                 <p className="my-4 text-white">{item.title}</p>
                 <div id="additionalInfo" className="flex justify-between">
-                  <p className="text-silverDark mb-8">{item.details}</p>
+                  <p className="text-silverDark mb-8">{item.desc}</p>
                 </div>
               </article>
             );

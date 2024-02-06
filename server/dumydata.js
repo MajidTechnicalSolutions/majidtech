@@ -88,44 +88,6 @@ const dummyData = {
       disc: "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit",
     },
   ],
-  blogPost: [
-    {
-      tag: ["twitter", "Wireframes"],
-      title: "12.08.22 — Why you should not forget wireframes",
-      details:
-        "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec non ante neque. Aliquam auctor, tortor eu eleifend scelerisque, quam purus pretium neque, nec tristique ex lacus pharetra.",
-    },
-    {
-      tag: ["blog", "webflow"],
-      title: "12.08.22 — The Best 19 Webflow shortcuts for faster development workflow",
-      details:
-        "Phasellus dapibus mauris ut diam ultricies, vitae tincidunt ipsum luctus. Cras faucibus ex ac ligula sollicitudin lacinia. Nulla nunc mauris, gravida in eleifend sed, aliquam in massa. Integer luctus gravida tellus, vitae tristique velit maximus sed.",
-    },
-    {
-      tag: ["twitter", "webflow"],
-      title: "12.08.22 — 27 Tips for great user experience",
-      details:
-        "Nam elementum porttitor elit sed accumsan. Nunc lobortis volutpat urna, eget fermentum sem. Fusce laoreet nec nisi in lacinia. Quisque at lacus sapien consequat velit non.",
-    },
-    {
-      tag: ["blog", "webflow"],
-      title: "12.08.22 — Why you should not forget wireframes",
-      details:
-        "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec non ante neque. Aliquam auctor, tortor eu eleifend scelerisque, quam purus pretium neque, nec tristique ex lacus pharetra dui.",
-    },
-    {
-      tag: ["twitter", "webflow"],
-      title: "12.08.22 — 27 Tips for great user experience",
-      details:
-        "Nam elementum porttitor elit sed accumsan. Nunc lobortis volutpat urna, eget fermentum sem. Fusce laoreet nec nisi in lacinia. Quisque at lacus sapien consequat velit non.",
-    },
-    {
-      tag: ["blog", "webflow"],
-      title: "12.08.22 — Why you should not forget wireframes",
-      details:
-        "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec non ante neque. Aliquam auctor, tortor eu eleifend scelerisque, quam purus pretium neque, nec tristique ex lacus pharetra dui.",
-    },
-  ],
 };
 
 module.exports = dummyData;
