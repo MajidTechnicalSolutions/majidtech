@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useFetch from "../utils/useFetch";
 
 import Carousel from "react-multi-carousel";
@@ -7,10 +7,23 @@ import "react-multi-carousel/lib/styles.css";
 import Tags from "../utils/Tags";
 
 const Blog = () => {
-  const [postNotOpen, setPostNotOpen] = useState(true);
   const url = process.env.REACT_APP_API_URL || process.env.REACT_APP_API_URL_DEF;
   const { data: blogPost } = useFetch(`${url}/blog`);
   let { data: imageObject } = useFetch(`${url}/images`);
+
+  const [postNotOpen, setPostNotOpen] = useState(true);
+  const [currentBlog, setCurrentBlog] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    if (showModal) {
+      ref.current?.showModal();
+    } else {
+      ref.current?.close();
+    }
+  }, [showModal]);
 
   // image efficiency ?
   const getRandomImage = () => {
@@ -40,20 +53,26 @@ const Blog = () => {
     },
   };
 
-  const openPost = (e) => {
-    setPostNotOpen(false);
+  const openPost = (e, item) => {
+    setPostNotOpen(true);
+    setCurrentBlog(item);
+    setShowModal(true);
     e.currentTarget.classList.add("bg-tagDark");
-
-    console.log(e.currentTarget);
   };
 
   const PostModal = (toOpen) => {
-    console.log("blog post contains ....", blogPost);
-    return (
-      <dialog>
-        <div className="w-full h-full justify-between p-4 rounded-lg bg-tagDark"></div>
+    return currentBlog ? (
+      <dialog className="blogModal" ref={ref}>
+        <div className="w-full h-full justify-between p-4 rounded-lg bg-tagDark">
+          <img src={getRandomImage()} className="w-full" alt="Example of work done" />
+          <Tags tagNames={currentBlog.tags} tagStyle="mt-4 mr-1" />
+          <p className="my-4 text-white">{currentBlog.title}</p>
+          <div id="additionalInfo" className="flex justify-between">
+            <p className="text-silverDark mb-8">{currentBlog.desc}</p>
+          </div>
+        </div>
       </dialog>
-    );
+    ) : null;
   };
 
   // click on post background change & post expands
@@ -87,7 +106,10 @@ const Blog = () => {
         >
           {blogPost.map((item, index) => {
             return (
-              <article onClick={openPost} className="w-full h-full justify-between p-4 rounded-lg">
+              <article
+                onClick={(e) => openPost(e, item)}
+                className="w-full h-full justify-between p-4 rounded-lg"
+              >
                 <img src={getRandomImage()} className="w-full" alt="Example of work done" />
                 <Tags tagNames={item.tags} tagStyle="mt-4 mr-1" />
                 <p className="my-4 text-white">{item.title}</p>
@@ -98,7 +120,7 @@ const Blog = () => {
             );
           })}
         </Carousel>
-        <PostModal toOpen={true} />
+        <PostModal />
       </div>
     </section>
   );

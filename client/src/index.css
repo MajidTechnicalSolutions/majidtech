@@ -117,3 +117,7 @@ section {
 .MuiPopper-root li a{
     width: 100%
 }
+
+.blogModal::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }

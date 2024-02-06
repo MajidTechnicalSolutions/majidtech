@@ -4,7 +4,7 @@ const Blogpost = require("../models/blog");
 
 router.route("/").get((req, res) => {
   Blogpost.find()
-    .then((post) => console.log(post))
+    .then((post) => res.send(post))
     .catch((err) => console.log(err, "error in requesting blog data"));
 });
 
