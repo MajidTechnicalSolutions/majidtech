@@ -11,12 +11,12 @@ const Blog = () => {
   const { data: blogPost } = useFetch(`${url}/blog`);
   let { data: imageObject } = useFetch(`${url}/images`);
 
-  const [postNotOpen, setPostNotOpen] = useState(true);
+  const [autoScroll, setAutoScroll] = useState(true);
   const [currentBlog, setCurrentBlog] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   const ref = useRef();
-
+  const ref2 = useRef();
   useEffect(() => {
     if (showModal) {
       ref.current?.showModal();
@@ -54,15 +54,22 @@ const Blog = () => {
   };
 
   const openPost = (e, item) => {
-    setPostNotOpen(true);
+    setAutoScroll(false);
     setCurrentBlog(item);
-    setShowModal(true);
-    e.currentTarget.classList.add("bg-tagDark");
+    // setShowModal(true);
+    console.log(ref2);
+    ref2.current?.classList.add("bg-tagDark");
+  };
+
+  const closePost = () => {
+    setShowModal(false);
+    ref2.current?.classList.remove("bg-tagDark");
   };
 
   const PostModal = (toOpen) => {
     return currentBlog ? (
       <dialog className="blogModal" ref={ref}>
+        <button onClick={() => setShowModal(false)}> x </button>
         <div className="w-full h-full justify-between p-4 rounded-lg bg-tagDark">
           <img src={getRandomImage()} className="w-full" alt="Example of work done" />
           <Tags tagNames={currentBlog.tags} tagStyle="mt-4 mr-1" />
@@ -96,7 +103,7 @@ const Blog = () => {
           responsive={responsive}
           // ssr={false} // means to render carousel on server-side.
           infinite={true}
-          autoPlay={postNotOpen}
+          autoPlay={autoScroll}
           autoPlaySpeed={1000}
           // customTransition="all .5"
           transitionDuration={5000}
@@ -107,6 +114,7 @@ const Blog = () => {
           {blogPost.map((item, index) => {
             return (
               <article
+                ref={ref2}
                 onClick={(e) => openPost(e, item)}
                 className="w-full h-full justify-between p-4 rounded-lg"
               >
