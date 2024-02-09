@@ -15,8 +15,11 @@ const Blog = () => {
   const [currentBlog, setCurrentBlog] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
+  const [activeClass, setActiveClass] = useState(false);
+
   const ref = useRef();
   const ref2 = useRef();
+
   useEffect(() => {
     if (showModal) {
       ref.current?.showModal();
@@ -57,19 +60,18 @@ const Blog = () => {
     setAutoScroll(false);
     setCurrentBlog(item);
     // setShowModal(true);
-    console.log(ref2);
-    ref2.current?.classList.add("bg-tagDark");
+    setActiveClass(true);
   };
 
   const closePost = () => {
     setShowModal(false);
-    ref2.current?.classList.remove("bg-tagDark");
+    setActiveClass(false);
   };
 
   const PostModal = (toOpen) => {
     return currentBlog ? (
       <dialog className="blogModal" ref={ref}>
-        <button onClick={() => setShowModal(false)}> x </button>
+        <button onClick={closePost}> x </button>
         <div className="w-full h-full justify-between p-4 rounded-lg bg-tagDark">
           <img src={getRandomImage()} className="w-full" alt="Example of work done" />
           <Tags tagNames={currentBlog.tags} tagStyle="mt-4 mr-1" />
@@ -112,11 +114,12 @@ const Blog = () => {
           itemClass="carousel-item-padding-40-px"
         >
           {blogPost.map((item, index) => {
+            let addClass = activeClass ? "bg-tagDark" : "";
             return (
               <article
                 ref={ref2}
                 onClick={(e) => openPost(e, item)}
-                className="w-full h-full justify-between p-4 rounded-lg"
+                className={`w-full h-full justify-between p-4 rounded-lg ${addClass}`}
               >
                 <img src={getRandomImage()} className="w-full" alt="Example of work done" />
                 <Tags tagNames={item.tags} tagStyle="mt-4 mr-1" />
