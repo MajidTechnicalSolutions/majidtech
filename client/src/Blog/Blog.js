@@ -3,6 +3,8 @@ import useFetch from "../utils/useFetch";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import CancelIcon from "@mui/icons-material/Cancel";
+import CloseIcon from "@mui/icons-material/Close";
 
 import Tags from "../utils/Tags";
 
@@ -38,9 +40,9 @@ const Blog = () => {
     return image;
   };
 
-  // make each blog post expandable
   // make blog post searchable
   // allow comments on each post
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 800 },
@@ -57,22 +59,26 @@ const Blog = () => {
   };
 
   const openPost = (e, item) => {
+    e.preventDefault();
     setAutoScroll(false);
     setCurrentBlog(item);
-    // setShowModal(true);
-    setActiveClass(true);
+    setShowModal(true);
+    // setActiveClass(true);
   };
 
   const closePost = () => {
+    setAutoScroll(true);
     setShowModal(false);
     setActiveClass(false);
   };
 
   const PostModal = (toOpen) => {
     return currentBlog ? (
-      <dialog className="blogModal" ref={ref}>
-        <button onClick={closePost}> x </button>
-        <div className="w-full h-full justify-between p-4 rounded-lg bg-tagDark">
+      <dialog className="blogModal rounded-lg" ref={ref}>
+        <button className="absolute" onClick={closePost}>
+          <CloseIcon />
+        </button>
+        <div className="w-full h-full justify-between p-6 bg-tagDark">
           <img src={getRandomImage()} className="w-full" alt="Example of work done" />
           <Tags tagNames={currentBlog.tags} tagStyle="mt-4 mr-1" />
           <p className="my-4 text-white">{currentBlog.title}</p>
@@ -84,9 +90,6 @@ const Blog = () => {
     ) : null;
   };
 
-  // click on post background change & post expands
-  // click background changes to tag background
-  // access current element
   // then: post should be come removed from of page, background expand, and is centered use dialog
   // then: details, image, & tag should realign and post should show fully and be scrollable in its on box
   // last: x in top corner to close post or click out side post.
@@ -114,12 +117,13 @@ const Blog = () => {
           itemClass="carousel-item-padding-40-px"
         >
           {blogPost.map((item, index) => {
-            let addClass = activeClass ? "bg-tagDark" : "";
+            // let addClass =  activeClass ? "bg-tagDark" : "";
+
             return (
               <article
                 ref={ref2}
                 onClick={(e) => openPost(e, item)}
-                className={`w-full h-full justify-between p-4 rounded-lg ${addClass}`}
+                className={`w-full h-full justify-between p-4 rounded-lg`}
               >
                 <img src={getRandomImage()} className="w-full" alt="Example of work done" />
                 <Tags tagNames={item.tags} tagStyle="mt-4 mr-1" />
