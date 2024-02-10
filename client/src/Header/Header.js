@@ -30,7 +30,7 @@ const Header = () => {
         </div>
         <img
           alt="Brackets"
-          className="hidden xl:block w-[20%] lg:w-[50%] xl:w-[50%] bg-no-repeat"
+          className="hidden xl:block xl:w-[35%] bg-no-repeat"
           src={Brackets}
         ></img>
       </div>

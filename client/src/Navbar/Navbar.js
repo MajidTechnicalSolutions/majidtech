@@ -9,7 +9,7 @@ function Navbar() {
   const isMobile = useMediaQuery("(max-width:800px)");
   // Declarations
   const [listItems, setListItems] = useState({
-    activeObject: 0,
+    activeObject: null,
     objects: [
       { title: "Home", id: 0 },
       { title: "Selectedwork", id: 1 },
@@ -40,7 +40,7 @@ function Navbar() {
                     className={activeClass(index)}
                     to={`App`}
                     key={index + "-id"}
-                    spy={true}
+                    // spy={true}
                     smooth={true}
                     duration={500}
                     onClick={() => {
@@ -56,7 +56,7 @@ function Navbar() {
                     className={activeClass(index)}
                     to={`${item.title}`}
                     key={index + "-id"}
-                    spy={true}
+                    // spy={true}
                     smooth={true}
                     offset={-100}
                     duration={500}

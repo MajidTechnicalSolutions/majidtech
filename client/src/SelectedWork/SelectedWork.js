@@ -44,7 +44,7 @@ const SelectedWork = () => {
         </p>
       </div>
       <div className="containers grid grid-rows-3 grid-col-3">
-        <div className="flex justify-between flex-col lg:flex-row">
+        <div className="flex justify-between flex-col lg:flex-row gap-0">
           <WorkComponent
             title="Aro"
             text="Aro makes it easy to put down your phone so you can focus on the things that really matter."
@@ -63,7 +63,7 @@ const SelectedWork = () => {
           />
         </div>
 
-        <div className="flex justify-between flex-col lg:flex-row">
+        <div className="flex items-center">
           <WorkComponent
             title="Arcadia"
             text="A tech company empowering energy innovators and consumers to fight the climate crisis"

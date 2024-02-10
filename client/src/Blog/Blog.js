@@ -3,7 +3,6 @@ import useFetch from "../utils/useFetch";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import CancelIcon from "@mui/icons-material/Cancel";
 import CloseIcon from "@mui/icons-material/Close";
 
 import Tags from "../utils/Tags";
