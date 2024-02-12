@@ -17,7 +17,7 @@ const SelectedWork = () => {
         {text}
       </p>
       <div id="additionalInfo" className="flex justify-between">
-        <a href="" className="text-grayMid flex h-0 pt-2">
+        <a className="text-grayMid flex h-0 pt-2">
           Website{" "}
           <UpArrow
             customStyle={{

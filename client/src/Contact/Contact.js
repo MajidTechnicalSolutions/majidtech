@@ -169,7 +169,7 @@ function Contact() {
       <ButtonPrimary
         text="Start a Project"
         type="submit"
-        customClass="mt-5"
+        customClass="mt-24 ml-5"
         callBack={handleSubmit(onSubmit)}
       />
     </form>
@@ -177,7 +177,7 @@ function Contact() {
 
   return (
     <section id="Contact" className="w-full flex flex-col lg:flex-row">
-      <div className="leftBox flex flex-column w-3/4">
+      <div className="leftBox flex flex-column w-3/4 px-4 mb-24 xl:p-0">
         <small className="text-majidTech uppercase">Have a project in mind?</small>
         <h1 className="text-white text-6xl mb-2 mt-4">Let's Get Started</h1>
         <div className="address py-4">
