@@ -78,10 +78,14 @@ function Services() {
             No matter the technology or architecture – I have you covered.
           </h2>
           <p className="text-silverDark mb-8">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at urna ac orci
-            ullamcorper pretium. Aenean facilisis id sem sit amet cursus. Vivamus non effici nisl.
-            Maecenas ut risus porttitor lectus porttitor dapibus vel at dui. Aliquam auctor odio sit
-            amet tortor mollis, a bibendum lectus volutpat.
+            Whether you are envisioning a sleek and responsive website, a robust e-commerce
+            platform, or a dynamic web application, we thrive on embracing diverse technologies and
+            architectures. Our seasoned team of developers is well-versed in the latest industry
+            trends, ensuring that your digital presence not only meets but exceeds the ever-evolving
+            standards. From classic HTML/CSS designs to cutting-edge frameworks and cloud-based
+            solutions, we tailor our services to your unique needs. Partner with us, and let's turn
+            your digital dreams into reality, irrespective of the technological landscape you wish
+            to explore.
           </p>
           <ButtonPrimary
             text="Start a Project"
