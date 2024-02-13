@@ -43,14 +43,14 @@ const SelectedWork = () => {
           well. See what interesting solutions we have planed for the future.
         </p>
       </div>
-      <div className="containers grid grid-rows-3 grid-col-3">
+      <div className="containers xl:grid grid-rows-3 grid-col-3">
         <div className="flex justify-between flex-col lg:flex-row gap-0">
           <WorkComponent
             title="Aro"
             text="Aro makes it easy to put down your phone so you can focus on the things that really matter."
             tags={["React", "Front-End"]}
             img={Mock2}
-            customStyle="lg:mr-20 flex flex-column"
+            customStyle="my-20 lg:mr-20 flex flex-column"
             tagStyle="ml-1"
           />
           <WorkComponent
@@ -60,6 +60,7 @@ const SelectedWork = () => {
             tags={["Bootstrap", "Front-End"]}
             img={Mock1}
             tagStyle="ml-1"
+            customStyle="my-20"
           />
         </div>
 
@@ -69,7 +70,7 @@ const SelectedWork = () => {
             text="A tech company empowering energy innovators and consumers to fight the climate crisis"
             tags={["React", "Front-End"]}
             img={Mock3}
-            customStyle="lg:pr-80"
+            customStyle="my-20 lg:pr-80"
             tagStyle="ml-1"
           />
         </div>
@@ -80,7 +81,7 @@ const SelectedWork = () => {
             text="Find you ideal match, with advance filtering you never have to settle"
             tags={["Bootstrap", "Development"]}
             img={Mock4}
-            customStyle="lg:mr-10 flex flex-column"
+            customStyle="my-20 lg:mr-10 flex flex-column"
             tagStyle="ml-1"
           />
           <WorkComponent
@@ -88,7 +89,7 @@ const SelectedWork = () => {
             text="Focused on creating better financial outcomes for people and their unique lives."
             tags={["React", "Development"]}
             img={Mock5}
-            customStyle="flex flex-column"
+            customStyle="flex flex-column my-20"
             tagStyle="ml-1"
           />
         </div>
