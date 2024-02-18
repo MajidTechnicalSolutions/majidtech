@@ -189,8 +189,12 @@ function Contact() {
           <span className="contactNumber"> +1(678)768-5875</span>
         </div>
         <div className="icons flex justify-start max-w-[12rem]">
-          <GithubIcon customStyle={{ marginRight: "2rem" }} />
-          <TwitterIcon />
+          <a href="https://github.com/jamalabd">
+            <GithubIcon customStyle={{ marginRight: "2rem" }} />
+          </a>
+          <a href="https://twitter.com/_jamalMajid">
+            <TwitterIcon />{" "}
+          </a>
         </div>
       </div>
       <div className="rightBox flex flex-column">
