@@ -11,9 +11,10 @@ import PhoneInput from "react-phone-number-input";
 // converts object into form data
 import { serialize } from "object-to-formdata";
 
-import { GithubIcon } from "../utils//Resources/Svgs";
+import { GithubIcon } from "../utils/Resources/Svgs";
 import { TwitterIcon } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
+import { LinkedinIcon } from "../utils/Resources/Svgs";
 
 function Contact() {
   const [value, setValue] = useState();
@@ -189,6 +190,9 @@ function Contact() {
           <span className="contactNumber"> +1(678)768-5875</span>
         </div>
         <div className="icons flex justify-start max-w-[12rem]">
+          <a href="https://www.linkedin.com/in/jamal-majid-0ab9ab177/#/">
+            <LinkedinIcon customStyle={{ marginRight: "2rem" }} />
+          </a>
           <a href="https://github.com/jamalabd">
             <GithubIcon customStyle={{ marginRight: "2rem" }} />
           </a>
