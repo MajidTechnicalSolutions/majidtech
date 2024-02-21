@@ -3,13 +3,14 @@ import useFetch from "../utils/useFetch";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import CircularProgress from "@mui/material/CircularProgress";
 import CloseIcon from "@mui/icons-material/Close";
 
 import Tags from "../utils/Tags";
 
 const Blog = () => {
   const url = process.env.REACT_APP_API_URL || process.env.REACT_APP_API_URL_DEF;
-  const { data: blogPost } = useFetch(`${url}/blog`);
+  const { data: blogPost, pending: pendingBlogpost } = useFetch(`${url}/blog`);
   let { data: imageObject } = useFetch(`${url}/images`);
 
   const [autoScroll, setAutoScroll] = useState(true);
@@ -118,7 +119,9 @@ const Blog = () => {
           {blogPost.map((item, index) => {
             // let addClass =  activeClass ? "bg-tagDark" : "";
 
-            return (
+            return pendingBlogpost ? (
+              <CircularProgress style={{ color: "#FD5A1E" }} />
+            ) : (
               <article
                 ref={ref2}
                 onClick={(e) => openPost(e, item)}
@@ -134,6 +137,7 @@ const Blog = () => {
             );
           })}
         </Carousel>
+
         <PostModal />
       </div>
     </section>
