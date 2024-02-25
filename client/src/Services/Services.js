@@ -72,7 +72,7 @@ function Services() {
             }}
           />
         </div>
-        <div className="services flex flex-col justify-center items-center text-center flex-wrap w-[45%] z-50">
+        <div className="services flex flex-col justify-center items-center text-center flex-wrap w-[45%]">
           <small className="uppercase text-majidTech"> Skills & Offered services </small>
           <h2 className="text-white text-4xl mb-2 mt-4">
             No matter the technology or architecture – I have you covered.
