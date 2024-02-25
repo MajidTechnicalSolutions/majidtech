@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import useFetch from "../utils/useFetch";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import CloseIcon from "@mui/icons-material/Close";
+import { Modal } from "../utils/Modals/Modals";
 
 import Tags from "../utils/Tags";
 
@@ -15,20 +17,9 @@ const Blog = () => {
 
   const [autoScroll, setAutoScroll] = useState(true);
   const [currentBlog, setCurrentBlog] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-
-  const [activeClass, setActiveClass] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const ref = useRef();
-  const ref2 = useRef();
-
-  useEffect(() => {
-    if (showModal) {
-      ref.current?.showModal();
-    } else {
-      ref.current?.close();
-    }
-  }, [showModal]);
 
   // image efficiency ?
   const getRandomImage = () => {
@@ -38,6 +29,10 @@ const Blog = () => {
       image = urlObject[Math.floor(Math.random() * urlObject.length)];
     }
     return image;
+  };
+
+  const handleButtonClick = (value) => {
+    setModalOpen(false);
   };
 
   // make blog post searchable
@@ -62,32 +57,7 @@ const Blog = () => {
     e.preventDefault();
     setAutoScroll(false);
     setCurrentBlog(item);
-    setShowModal(true);
-    // setActiveClass(true);
-  };
-
-  const closePost = () => {
-    setAutoScroll(true);
-    setShowModal(false);
-    setActiveClass(false);
-  };
-
-  const PostModal = (toOpen) => {
-    return currentBlog ? (
-      <dialog className="blogModal rounded-lg" ref={ref}>
-        <button className="absolute" onClick={closePost}>
-          <CloseIcon />
-        </button>
-        <div className="w-full h-full justify-between p-6 bg-tagDark">
-          <img src={getRandomImage()} className="w-full" alt="Example of work done" />
-          <Tags tagNames={currentBlog.tags} tagStyle="mt-4 mr-1" />
-          <p className="my-4 text-white">{currentBlog.title}</p>
-          <div id="additionalInfo" className="flex justify-between">
-            <p className="text-silverDark mb-8">{currentBlog.desc}</p>
-          </div>
-        </div>
-      </dialog>
-    ) : null;
+    setModalOpen(true);
   };
 
   // then: post should be come removed from of page, background expand, and is centered use dialog
@@ -117,13 +87,11 @@ const Blog = () => {
           itemClass="carousel-item-padding-40-px"
         >
           {blogPost.map((item, index) => {
-            // let addClass =  activeClass ? "bg-tagDark" : "";
-
             return pendingBlogpost ? (
               <CircularProgress style={{ color: "#FD5A1E" }} />
             ) : (
               <article
-                ref={ref2}
+                ref={ref}
                 onClick={(e) => openPost(e, item)}
                 className={`w-full h-full justify-between p-4 rounded-lg`}
               >
@@ -138,7 +106,17 @@ const Blog = () => {
           })}
         </Carousel>
 
-        <PostModal />
+        {/* <PostModal /> */}
+        {modalOpen &&
+          createPortal(
+            <Modal
+              closeModal={handleButtonClick}
+              onSubmit={handleButtonClick}
+              data={currentBlog}
+              getImage={getRandomImage}
+            ></Modal>,
+            document.body
+          )}
       </div>
     </section>
   );
