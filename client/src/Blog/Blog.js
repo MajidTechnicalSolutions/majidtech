@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import useFetch from "../utils/useFetch";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CircularProgress from "@mui/material/CircularProgress";
-import CloseIcon from "@mui/icons-material/Close";
 import { Modal } from "../utils/Modals/Modals";
 
 import Tags from "../utils/Tags";
@@ -22,6 +21,9 @@ const Blog = () => {
   const ref = useRef();
 
   // image efficiency ?
+  // make blog post searchable
+  // allow comments on each post
+
   const getRandomImage = () => {
     let image, urlObject;
     if (imageObject) {
@@ -34,9 +36,6 @@ const Blog = () => {
   const handleButtonClick = (value) => {
     setModalOpen(false);
   };
-
-  // make blog post searchable
-  // allow comments on each post
 
   const responsive = {
     desktop: {
@@ -59,10 +58,6 @@ const Blog = () => {
     setCurrentBlog(item);
     setModalOpen(true);
   };
-
-  // then: post should be come removed from of page, background expand, and is centered use dialog
-  // then: details, image, & tag should realign and post should show fully and be scrollable in its on box
-  // last: x in top corner to close post or click out side post.
 
   return (
     <section
@@ -106,7 +101,6 @@ const Blog = () => {
           })}
         </Carousel>
 
-        {/* <PostModal /> */}
         {modalOpen &&
           createPortal(
             <Modal
