@@ -20,10 +20,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 // passport middleware
-// app.use(passport.initialize());
+app.use(passport.initialize());
 
 // passport config
-// passportConfig(passport);
+passportConfig(passport);
 
 // connect to mongodb data base
 mongoose
