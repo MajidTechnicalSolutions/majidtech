@@ -1,6 +1,7 @@
 // @ts-ignore
 import React from "react";
 import { ArrowDown, UpArrow } from "../utils/Resources/Svgs";
+import useIsMobile from '../hooks/useIsMobile';
 import Tag from "../utils/Tags";
 import Mock1 from "../utils/Resources/images/Mock.png";
 import Mock2 from "../utils/Resources/images/Mock-2.png";
@@ -9,15 +10,25 @@ import Mock4 from "../utils/Resources/images/Mock-4.png";
 import Mock5 from "../utils/Resources/images/Mock-5.png";
 // possoble get random images for these from unslplash
 const SelectedWork = () => {
+  const isMobile = useIsMobile();
   const WorkComponent = ({ title, text, tags, img, customStyle, tagStyle }) => (
     <article className={`text-silverDark ${customStyle}`}>
-      <img src={img} className="w-full" alt="Example of work done" />
+      <img 
+        src={img} 
+        className="w-full" 
+        alt={`${title} project screenshot`} 
+        loading="lazy"
+      />
       <p className="my-4">
         <span className="text-white">{title} — </span>
         {text}
       </p>
       <div id="additionalInfo" className="flex justify-between">
-        <a className="text-grayMid flex h-0 pt-2">
+        <a 
+          href="#" 
+          className="text-grayMid flex h-0 pt-2 hover:text-white transition-colors duration-200"
+          aria-label={`Visit ${title} website`}
+        >
           Website{" "}
           <UpArrow
             customStyle={{
@@ -32,8 +43,8 @@ const SelectedWork = () => {
     </article>
   );
   return (
-    <section id="Selectedwork">
-      <div className="flex justify-between flex-col lg:flex-row mb-10">
+    <section id="Selectedwork" className="container mx-auto px-4">
+      <div className={isMobile ? "flex justify-between flex-col lg:flex-row mb-4": "flex justify-between flex-col lg:flex-row mb-10" }>
         <h1 className="text-white font-medium not-italic text-2xl sm:text-3xl lg:text-3xl flex items-center justify-center gap-2 w-full lg:w-auto">
           <span className="whitespace-nowrap">Selected Work</span> <ArrowDown color="#FD5A1E" />
         </h1>
@@ -43,7 +54,7 @@ const SelectedWork = () => {
           well. See what interesting solutions we have planed for the future.
         </p>
       </div>
-      <div className="containers xl:grid grid-rows-3 grid-col-3">
+      <div className="containers xl:grid grid-rows-3 grid-col-3 ">
         <div className="flex justify-between flex-col lg:flex-row gap-0">
           <WorkComponent
             title="Aro"

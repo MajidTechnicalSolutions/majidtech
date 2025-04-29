@@ -16,9 +16,12 @@ import { TwitterIcon } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
 import { LinkedinIcon } from "../utils/Resources/Svgs";
 
+import "./Contact.css"; 
+
+
 function Contact() {
   const [value, setValue] = useState();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const url = process.env.REACT_APP_WEBAPP_URL;
 
   // Simple reusable error display, error display update waiting on email validation
@@ -26,9 +29,9 @@ function Contact() {
     <>
       {value ? (
         isValidPhoneNumber(value) ? (
-          <span>Valid ✅</span>
+          <span className="text-green-500">Valid ✅</span>
         ) : (
-          <span>Not Valid 🙅🏾‍♂</span>
+          <span className="text-red-500">Not Valid 🙅🏾‍♂</span>
         )
       ) : null}
     </>
@@ -39,53 +42,76 @@ function Contact() {
     try {
       const response = await fetch(url, {
         method: "POST",
-        body: new serialize(data),
+        body: serialize(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
 
       const returnedData = await response.json();
       if (!returnedData.ok) {
-        return;
+        throw new Error('Form submission failed');
       }
     } catch (error) {
-      console.log("Error Submitting Form to Google Sheets", error);
+      console.error("Error Submitting Form to Google Sheets", error);
+      // Consider adding user feedback here
     }
   };
 
   // will be executed in the event of a error on the form
-  const onError = (error) => console.log("Error Submitting Form", error);
+  const onError = (error) => {
+    console.error("Error Submitting Form", error);
+    // Consider adding user feedback here
+  };
 
   const Form = () => (
     <form
       action={url}
       method="post"
-      className="w-full "
+      className="w-full"
       name="contact-form"
       onSubmit={handleSubmit(onSubmit, onError)}
     >
-      <label for="name" className="m-0 w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+      <label htmlFor="name" className="m-0 w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Full Name
         <input
           type="text"
+          id="name"
           name="name"
-          placeholder=" Enter name"
-          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          placeholder="Enter name"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-silverDark"
           {...register("name", { required: true })}
         />
+        {errors.name && <span className="text-red-500">Name is required</span>}
       </label>
 
-      <label for="email" className="m-0 w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+      <label htmlFor="email" className="m-0 w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Email
         <input
           type="email"
+          id="email"
           name="email"
           placeholder="Your email address ..."
-          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
-          {...register("email", { required: true })}
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-silverDark"
+          {...register("email", { 
+            required: true,
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Invalid email address"
+            }
+          })}
         />
+        {errors.email && <span className="text-red-500">{errors.email.message || "Email is required"}</span>}
       </label>
-      <label for="phone" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+
+      <label htmlFor="phone" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Phone
         <PhoneInput
+          id="phone"
           placeholder="Enter Phone number"
           value={value}
           onChange={setValue}
@@ -93,24 +119,20 @@ function Contact() {
           name="phone"
           countryCallingCodeEditable={false}
           {...register("phone", {
-            setValueAs: (v) => formatPhoneNumberIntl(v),
+            required: true,
+            validate: (value) => isValidPhoneNumber(value) || "Invalid phone number"
           })}
-          error={
-            value
-              ? isValidPhoneNumber(value)
-                ? "Valid Phone number ✅"
-                : "Phone Number Not Valid 🙅🏾‍♂️"
-              : "Phone Number Required 📞"
-          }
         />
+        {errors.phone && <span className="text-red-500">{errors.phone.message}</span>}
         {isValidErrorDisplay()}
       </label>
+
       <label for="interests" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Interested In
         <select
           id="interests"
           name="interests"
-          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-silverDark"
           {...register("interests", { required: true })}
         >
           <option value="Please Select">Please Select</option>
@@ -125,7 +147,7 @@ function Contact() {
         <select
           id="budget"
           name="budget"
-          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-silverDark"
           {...register("budget", { required: true })}
         >
           <option value="Select Range">Select Range</option>
@@ -140,7 +162,7 @@ function Contact() {
         <select
           id="inbound"
           name="inbound"
-          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-silverDark"
           {...register("inbound")}
         >
           <option value="Please Select">Please Select</option>
@@ -159,7 +181,7 @@ function Contact() {
         >
           Message
           <textarea
-            className="message h-full w-full bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-[#141416]"
+            className="message h-full w-full bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-silverDark"
             type="text"
             id="message"
             name="message"
