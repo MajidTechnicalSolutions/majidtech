@@ -35,7 +35,7 @@ const Testimonials = () => {
           progress with them. Highly recommended."
         </p>
         <div className={`rightbox_subtext ${isMobile ? 'w-full' : 'flex flex-column w-1/3'}`}>
-          <small className="text-white mb-2">Hana Abdul</small>
+          <small className="text-white mb-2">Katherine A.</small>
           <small>Experience design & Innovation leader at Progressive Insurance</small>
         </div>
       </div>
