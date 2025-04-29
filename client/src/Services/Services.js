@@ -17,24 +17,11 @@ import {
 } from "../utils/Resources/Svgs";
 
 import { ButtonPrimary } from "../utils/buttons";
+import useIsMobile from "../hooks/useIsMobile";
 
 function Services() {
-  const [isMobile, setIsMobile] = useState(false);
+ const isMobile = useIsMobile();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    // Initial check
-    handleResize();
-
-    // Add event listener
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <>
