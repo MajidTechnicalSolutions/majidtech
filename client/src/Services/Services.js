@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   MongodbCube,
   SassCube,
@@ -19,10 +19,27 @@ import {
 import { ButtonPrimary } from "../utils/buttons";
 
 function Services() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <>
       <section id="Services" className="w-full flex justify-evenly">
-        <div className="iconSet1 relative">
+        <div className={`iconSet1 relative ${isMobile ? 'hidden' : ''}`}>
           <HtmlCube
             customStyle={{
               backgroundColor: "black",
@@ -94,7 +111,7 @@ function Services() {
             Arrow={RightArrow}
           />
         </div>
-        <div className="iconSet2 relative">
+        <div className={`iconSet2 relative ${isMobile ? 'hidden' : ''}`}>
           {" "}
           <NodeCube
             customStyle={{

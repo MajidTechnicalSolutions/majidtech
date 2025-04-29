@@ -186,7 +186,7 @@ function Contact() {
           <span>Ellenwood, GA</span>
         </div>
         <div className="email py-4">
-          <div className="mb-2 underline">jamalabdul47@gmail.com</div>{" "}
+          <div className="mb-2 underline">majidtechnicalsolutions@gmail.com</div>{" "}
           <span className="contactNumber"> +1(678)768-5875</span>
         </div>
         <div className="icons flex justify-start max-w-[12rem]">

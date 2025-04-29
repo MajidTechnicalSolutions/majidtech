@@ -34,8 +34,8 @@ const SelectedWork = () => {
   return (
     <section id="Selectedwork">
       <div className="flex justify-between flex-col lg:flex-row mb-10">
-        <h1 className="text-white font-medium not-italic text-4xl lg:text-3xl">
-          Selected Work <ArrowDown color="#FD5A1E" />
+        <h1 className="text-white font-medium not-italic text-2xl sm:text-3xl lg:text-3xl flex items-center justify-center gap-2 w-full lg:w-auto">
+          <span className="whitespace-nowrap">Selected Work</span> <ArrowDown color="#FD5A1E" />
         </h1>
         <p className="text-silverDark break-keep text-xs lg:text-base lg:w-2/4">
           A selected group of our projects we have worked on and a few in the making. We are
