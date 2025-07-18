@@ -27,7 +27,8 @@ const corsOptions = {
     'http://localhost:3001', 
     'http://localhost:3002',
     'https://majidtech-35d0c5c21559.herokuapp.com',
-    // Add your production domain here when deployed
+    'https://majidtech.com',
+    'https://www.majidtech.com'
   ],
   credentials: true,
   optionsSuccessStatus: 200,
