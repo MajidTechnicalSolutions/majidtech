@@ -6,7 +6,6 @@ import Tag from "../utils/Tags";
 import Mock1 from "../utils/Resources/images/1.png";
 import Mock7 from "../utils/Resources/images/7.png";
 import Mock4 from "../utils/Resources/images/Mock-4.png";
-import Mock5 from "../utils/Resources/images/Mock-5.png";
 import Mock6 from "../utils/Resources/images/6.png";
 import Mock8 from "../utils/Resources/images/8.png";
 // possoble get random images for these from unslplash

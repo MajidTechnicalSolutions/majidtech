@@ -6,9 +6,7 @@ import IconButton from "@mui/joy/IconButton";
 import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
 import Sheet from "@mui/joy/Sheet";
-import Apps from "@mui/icons-material/Apps";
-import Settings from "@mui/icons-material/Settings";
-import Person from "@mui/icons-material/Person";
+
 import Dropdown from "@mui/joy/Dropdown";
 import MenuButton from "@mui/joy/MenuButton";
 import { Link } from "react-scroll";

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Logo, UpArrow } from "../utils/Resources/Svgs";
-import { ButtonPrimary } from "../utils/buttons";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Link } from "react-scroll";
 import MobileNav from "./MobileNav";

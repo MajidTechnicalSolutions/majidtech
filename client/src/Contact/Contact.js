@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 // styling for react phone # input
 import "react-phone-number-input/style.css";
-// formatPhoneNumberIntl: E.164 format to human readable +12133734253 -> +1 213 373 4253
 // isValidPhoneNumber: checks if phone number is valid returns a boolean
-import { formatPhoneNumberIntl, isValidPhoneNumber } from "react-phone-number-input/max";
+import { isValidPhoneNumber } from "react-phone-number-input/max";
 // react-hook-form for input state management and validation
 import { useForm, Controller } from "react-hook-form";
 // input field for phone #'s
