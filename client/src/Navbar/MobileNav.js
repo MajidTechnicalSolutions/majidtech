@@ -30,9 +30,14 @@ const modifiers = [
   },
 ];
 
-function NavMenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props }) {
+function NavMenuButton({ children, menu, open, onOpen, onLeaveMenu, onClose, label, ...props }) {
   const isOnButton = React.useRef(false);
   const internalOpen = React.useRef(open);
+
+  // Update internalOpen ref when open prop changes
+  React.useEffect(() => {
+    internalOpen.current = open;
+  }, [open]);
 
   const handleButtonKeyDown = (event) => {
     internalOpen.current = open;
@@ -45,11 +50,7 @@ function NavMenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...pr
   return (
     <Dropdown
       open={open}
-      onOpenChange={(_, isOpen) => {
-        if (isOpen) {
-          onOpen?.();
-        }
-      }}
+      sx={{ zIndex: 9999 }}
     >
       <MenuButton
         {...props}
@@ -59,12 +60,13 @@ function NavMenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...pr
           internalOpen.current = open;
         }}
         onClick={() => {
-          if (!internalOpen.current) {
+          if (!open) {
             onOpen();
+          } else {
+            onClose();
           }
         }}
         onMouseEnter={() => {
-          onOpen();
           isOnButton.current = true;
         }}
         onMouseLeave={() => {
@@ -76,6 +78,10 @@ function NavMenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...pr
           "&:focus-visible": {
             bgcolor: "neutral.plainHoverBg",
           },
+          minWidth: "32px",
+          minHeight: "32px",
+          padding: "4px",
+          fontSize: "18px",
         }}
       >
         {children}
@@ -91,11 +97,15 @@ function NavMenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...pr
             "aria-label": label,
           },
         },
-        placement: "right-start",
+        placement: "bottom-end",
         sx: {
           width: 288,
+          maxHeight: "80vh",
+          overflowY: "auto",
+          zIndex: 9999,
           [`& .${menuClasses.listbox}`]: {
             "--List-padding": "var(--ListDivider-gap)",
+            maxHeight: "none",
           },
         },
       })}
@@ -109,22 +119,13 @@ NavMenuButton.propTypes = {
   menu: PropTypes.element.isRequired,
   onLeaveMenu: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
 };
 
-export default function MenuIconSideNavExample() {
+export default function MenuIconSideNavExample({ activeObject, toggleActive, listItems }) {
   const [menuIndex, setMenuIndex] = React.useState(null);
-  const [listItems, setListItems] = React.useState({
-    activeObject: 0,
-    objects: [
-      { title: "Home", id: 0 },
-      { title: "Selectedwork", id: 1 },
-      { title: "Services", id: 2 },
-      { title: "Testimonials", id: 3 },
-      { title: "Blog", id: 4 },
-      { title: `Contact`, id: 5 },
-    ],
-  });
+  const [mobileActiveObject, setMobileActiveObject] = React.useState(null);
   const itemProps = {
     onClick: () => setMenuIndex(null),
   };
@@ -149,66 +150,84 @@ export default function MenuIconSideNavExample() {
             label="Apps"
             open={menuIndex === 0}
             onOpen={() => setMenuIndex(0)}
+            onClose={() => setMenuIndex(null)}
             onLeaveMenu={createHandleLeaveMenu(0)}
             menu={
               <Menu onClose={() => setMenuIndex(null)}>
-                {listItems.objects.map((item, index) =>
-                  item.title === "Home" ? (
-                    <li
+                {listItems.map((item, index) => {
+                  const isSelected = mobileActiveObject === item.id;
+                  const menuItemStyle = {
+                    backgroundColor: isSelected ? "#FD5A1E" : "transparent",
+                    color: isSelected ? "white" : "black",
+                    "&:hover": {
+                      backgroundColor: "#FD5A1E !important",
+                      color: "white !important",
+                    },
+                    "&:focus": {
+                      backgroundColor: "#FD5A1E !important", 
+                      color: "white !important",
+                    },
+                    "&:active": {
+                      backgroundColor: "#FD5A1E !important",
+                      color: "white !important", 
+                    },
+                    "@media (hover: none)": {
+                      "&:active": {
+                        backgroundColor: "#FD5A1E !important",
+                        color: "white !important",
+                      },
+                    },
+                  };
+
+                  return (
+                    <MenuItem
+                      key={`menu-item-${item.id}`}
                       {...itemProps}
-                      className="font-normal cursor-pointer not-italic w-full tracking-tight flex-none text-silverLight"
+                      sx={menuItemStyle}
                     >
-                      <MenuItem>
-                        {" "}
-                        <Link
-                          to={`App`}
-                          key={index + "-id"}
-                          spy={true}
-                          smooth={true}
-                          duration={500}
-                        >
-                          {item.title}
-                        </Link>
-                      </MenuItem>
-                    </li>
-                  ) : (
-                    <li
-                      {...itemProps}
-                      className="font-normal cursor-pointer not-italic w-full tracking-tight flex-none text-silverLight"
-                    >
-                      <MenuItem>
-                        {" "}
-                        <Link
-                          to={`${item.title}`}
-                          key={index + "-id"}
-                          spy={true}
-                          smooth={true}
-                          offset={-100}
-                          duration={500}
-                        >
-                          {item.title === "Selectedwork" ? "Selected Work" : item.title}
-                          {item.component ? (
-                            <item.component
-                              customStyle={{
-                                general: {
-                                  width: "23px",
-                                  height: "17px",
-                                  display: "inline",
-                                },
-                                color: "#fff",
-                              }}
-                              viewBoxSetting="-7 -1 30 25"
-                            />
-                          ) : null}
-                        </Link>{" "}
-                      </MenuItem>
-                    </li>
-                  )
-                )}
+                      <Link
+                        to={item.title === "Home" ? "top" : item.title}
+                        spy={true}
+                        smooth={true}
+                        offset={item.title === "Home" ? 0 : -100}
+                        duration={500}
+                        onClick={() => {
+                          setMenuIndex(null);
+                          toggleActive(index);
+                          setMobileActiveObject(item.id);
+                          if (item.title === "Home") {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }
+                        }}
+                        style={{ 
+                          color: 'inherit',
+                          textDecoration: 'none',
+                          width: '100%',
+                          display: 'block'
+                        }}
+                      >
+                        {item.title === "Selectedwork" ? "Selected Work" : item.title}
+                        {item.component && (
+                          <item.component
+                            customStyle={{
+                              general: {
+                                width: "23px",
+                                height: "17px", 
+                                display: "inline",
+                              },
+                              color: "#fff",
+                            }}
+                            viewBoxSetting="-7 -1 30 25"
+                          />
+                        )}
+                      </Link>
+                    </MenuItem>
+                  );
+                })}
               </Menu>
             }
           >
-            <Apps />
+            <span style={{ fontSize: '18px' }}>☰</span>
           </NavMenuButton>
         </ListItem>
         {/* <ListItem>

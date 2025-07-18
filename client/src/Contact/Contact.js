@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import { toast } from "sonner";
 // styling for react phone # input
 import "react-phone-number-input/style.css";
 // formatPhoneNumberIntl: E.164 format to human readable +12133734253 -> +1 213 373 4253
 // isValidPhoneNumber: checks if phone number is valid returns a boolean
 import { formatPhoneNumberIntl, isValidPhoneNumber } from "react-phone-number-input/max";
 // react-hook-form for input state management and validation
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 // input field for phone #'s
 import PhoneInput from "react-phone-number-input";
-// converts object into form data
-import { serialize } from "object-to-formdata";
+
 
 import { GithubIcon } from "../utils/Resources/Svgs";
 import { TwitterIcon } from "../utils/Resources/Svgs";
@@ -20,45 +20,56 @@ import "./Contact.css";
 
 
 function Contact() {
-  const [value, setValue] = useState();
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const url = process.env.REACT_APP_WEBAPP_URL;
+  const { register, handleSubmit, control, formState: { errors }, reset } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Simple reusable error display, error display update waiting on email validation
-  const isValidErrorDisplay = (phone) => (
-    <>
-      {value ? (
-        isValidPhoneNumber(value) ? (
-          <span className="text-green-500">Valid ✅</span>
-        ) : (
-          <span className="text-red-500">Not Valid 🙅🏾‍♂</span>
-        )
-      ) : null}
-    </>
-  );
-
-  // handling form submission
+  // handling form submission with Resend
   const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    
+    // Show loading toast
+    const loadingToast = toast.loading("Sending your message...", {
+      description: "Please wait while we process your request.",
+    });
+
     try {
-      const response = await fetch(url, {
+      const response = await fetch(`http://localhost:8000/contact`, {
         method: "POST",
-        body: serialize(data),
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(data)
       });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+      const result = await response.json();
 
-      const returnedData = await response.json();
-      if (!returnedData.ok) {
-        throw new Error('Form submission failed');
+      if (response.ok) {
+        toast.dismiss(loadingToast);
+        toast.success("Message sent successfully! 🚀", {
+          description: "Thank you for reaching out. We'll get back to you soon!",
+          duration: 5000,
+          action: {
+            label: "Close",
+            onClick: () => {},
+          },
+        });
+        reset(); // Clear the form
+      } else {
+        toast.dismiss(loadingToast);
+        toast.error("Failed to send message", {
+          description: result.message || "Please try again later.",
+          duration: 5000,
+        });
       }
     } catch (error) {
-      console.error("Error Submitting Form to Google Sheets", error);
-      // Consider adding user feedback here
+      console.error("Error submitting form:", error);
+      toast.dismiss(loadingToast);
+      toast.error("Something went wrong", {
+        description: "Please check your connection and try again.",
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -70,8 +81,6 @@ function Contact() {
 
   const Form = () => (
     <form
-      action={url}
-      method="post"
       className="w-full"
       name="contact-form"
       onSubmit={handleSubmit(onSubmit, onError)}
@@ -110,24 +119,33 @@ function Contact() {
 
       <label htmlFor="phone" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Phone
-        <PhoneInput
-          id="phone"
-          placeholder="Enter Phone number"
-          value={value}
-          onChange={setValue}
-          international
+        <Controller
           name="phone"
-          countryCallingCodeEditable={false}
-          {...register("phone", {
-            required: true,
+          control={control}
+          rules={{
+            required: "Phone number is required",
             validate: (value) => isValidPhoneNumber(value) || "Invalid phone number"
-          })}
+          }}
+          render={({ field: { onChange, value } }) => (
+            <PhoneInput
+              id="phone"
+              placeholder="Enter Phone number"
+              value={value}
+              onChange={onChange}
+              international
+              countryCallingCodeEditable={false}
+              defaultCountry="US"
+              labels={{
+                countrySelectAriaLabel: "Country",
+                phoneInputAriaLabel: "Phone number"
+              }}
+            />
+          )}
         />
         {errors.phone && <span className="text-red-500">{errors.phone.message}</span>}
-        {isValidErrorDisplay()}
       </label>
 
-      <label for="interests" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+      <label htmlFor="interests" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Interested In
         <select
           id="interests"
@@ -142,7 +160,7 @@ function Contact() {
           <option value="Something else"> Something else </option>
         </select>
       </label>
-      <label for="budget" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+      <label htmlFor="budget" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         Budget
         <select
           id="budget"
@@ -157,7 +175,7 @@ function Contact() {
           <option value="Something else"> 10k+ </option>
         </select>
       </label>
-      <label for="inbound" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+      <label htmlFor="inbound" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
         How did you learn about us?
         <select
           id="inbound"
@@ -176,7 +194,7 @@ function Contact() {
       <div className="flex flex-column  items-end">
         <label
           className="message w-full h-[184px] text-[#FD5A1E] uppercase mt-8 px-4 py-0"
-          for="message"
+          htmlFor="message"
           {...register("message")}
         >
           Message
@@ -190,9 +208,9 @@ function Contact() {
         </label>
       </div>
       <ButtonPrimary
-        text="Start a Project"
+        text={isSubmitting ? "Sending..." : "Start a Project"}
         type="submit"
-        customClass="mt-24 ml-5"
+        customClass={`mt-24 ml-5 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
         callBack={handleSubmit(onSubmit)}
       />
     </form>

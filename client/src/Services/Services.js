@@ -27,54 +27,66 @@ function Services() {
     <>
       <section id="Services" className="w-full flex justify-evenly">
         <div className={`iconSet1 relative ${isMobile ? 'hidden' : ''}`}>
-          <HtmlCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "relative",
-              top: "0.5em",
-              right: "5rem",
-            }}
-          />
-          <BootstrapCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "relative",
-              top: "16rem",
-              right: "2rem",
-            }}
-          />
-          <CssCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "relative",
-              left: "3rem",
-              bottom: "7rem",
-            }}
-          />
-          <WebpackCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "relative",
-              bottom: "5rem",
-              right: "5rem",
-            }}
-          />
-          <GithubCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "relative",
-              bottom: "10rem",
-              left: "2rem",
-            }}
-          />
-          <GitCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "relative",
-              bottom: "0",
-              right: "0",
-            }}
-          />
+          <div className="float-animation">
+            <HtmlCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "relative",
+                top: "0.5em",
+                right: "5rem",
+              }}
+            />
+          </div>
+          <div className="float-animation-delay-1">
+            <BootstrapCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "relative",
+                top: "16rem",
+                right: "2rem",
+              }}
+            />
+          </div>
+          <div className="float-animation-slow">
+            <CssCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "relative",
+                left: "12rem",
+                bottom: "7rem",
+              }}
+            />
+          </div>
+          <div className="float-animation-delay-2">
+            <WebpackCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "relative",
+                bottom: "5rem",
+                right: "5rem",
+              }}
+            />
+          </div>
+          <div className="float-animation-gentle">
+            <GithubCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "relative",
+                bottom: "10rem",
+                left: "9rem",
+              }}
+            />
+          </div>
+          <div className="float-animation-delay-3">
+            <GitCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "relative",
+                bottom: "5rem",
+                right: "0",
+              }}
+            />
+          </div>
         </div>
         <div className="services flex flex-col justify-center items-center text-center flex-wrap w-[45%]">
           <small className="uppercase text-majidTech"> Skills & Offered services </small>
@@ -100,62 +112,76 @@ function Services() {
         </div>
         <div className={`iconSet2 relative ${isMobile ? 'hidden' : ''}`}>
           {" "}
-          <NodeCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "absolute",
-              bottom: "1rem",
-              right: "3rem",
-            }}
-          />
-          <ReactCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "absolute",
-              top: "22rem",
-              left: "3rem",
-            }}
-          />
-          <ReduxCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "absolute",
-              bottom: "11rem",
-              right: "8rem",
-            }}
-          />
-          <JavascriptCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "absolute",
-              top: "2rem",
-              right: "rem",
-            }}
-          />
-          <JqueryCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "relative",
-              top: "2rem",
-              right: "9rem",
-            }}
-          />
-          <SassCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "relative",
-              top: "5rem",
-              right: "4rem",
-            }}
-          />
-          <MongodbCube
-            customStyle={{
-              backgroundColor: "black",
-              position: "relative",
-              bottom: "0",
-              left: "3rem",
-            }}
-          />
+          <div className="float-animation-delay-1">
+            <NodeCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "absolute",
+                bottom: "-5rem",
+                right: "3rem",
+              }}
+            />
+          </div>
+          <div className="float-animation-gentle">
+            <ReactCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "absolute",
+                top: "22rem",
+                left: "3rem",
+              }}
+            />
+          </div>
+          <div className="float-animation">
+            <ReduxCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "absolute",
+                bottom: "-5rem",
+                right: "11rem",
+              }}
+            />
+          </div>
+          <div className="float-animation-slow">
+            <JavascriptCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "absolute",
+                top: "5rem",
+                right: "rem",
+              }}
+            />
+          </div>
+          <div className="float-animation-delay-3">
+            <JqueryCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "relative",
+                top: "2rem",
+                right: "20rem",
+              }}
+            />
+          </div>
+          <div className="float-animation-delay-2">
+            <SassCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "relative",
+                top: "9rem",
+                right: "9rem",
+              }}
+            />
+          </div>
+          <div className="float-animation-gentle">
+            <MongodbCube
+              customStyle={{
+                backgroundColor: "black",
+                position: "relative",
+                bottom: "0",
+                left: "3rem",
+              }}
+            />
+          </div>
         </div>
       </section>
     </>

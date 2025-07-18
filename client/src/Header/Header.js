@@ -6,10 +6,10 @@ import { ButtonPrimary } from "../utils/buttons";
 
 const Header = () => {
   return (
-    <section className="pt-7">
+    <section className="mt-56 mb-80">
       <div id="Header" className="flex justify-start items-center">
         <div className="">
-          <h1 className="text-white font-medium not-italic text-4xl lg:text-8xl">
+          <h1 className="text-white font-medium not-italic text-3xl lg:text-[6rem] lg:leading-none">
             Eat,sleep
             <br />
             <span className="text-majidTech">&lt;code&gt;</span>

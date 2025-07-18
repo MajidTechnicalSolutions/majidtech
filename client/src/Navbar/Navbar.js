@@ -7,9 +7,11 @@ import MobileNav from "./MobileNav";
 
 function Navbar() {
   const isMobile = useMediaQuery("(max-width:800px)");
+  
+
   // Declarations
   const [listItems, setListItems] = useState({
-    activeObject: null,
+    activeObject: 0, // Home selected by default for desktop
     objects: [
       { title: "Home", id: 0 },
       { title: "Selectedwork", id: 1 },
@@ -19,18 +21,25 @@ function Navbar() {
       { title: `Contact`, id: 5, component: UpArrow },
     ],
   });
+  
+
 
   const activeClass = (id) => (id === listItems.activeObject ? "active" : "");
 
-  const toggleActive = (index) =>
+  const toggleActive = (index) => {
     setListItems({ ...listItems, activeObject: listItems.objects[index].id });
+  };
 
   return (
-    <nav className="Nav flex flex-row justify-between items-center mb-10">
-      <Logo customStyle={{ paddingTop: "0.5rem" }} />
-      <ul className="flex flex-row items-center h-4 p-0 space-x-5 right-40 font-modernEra not-italic">
+    <nav id="top" className="Nav relative z-50 bg-transparent flex flex-row justify-between items-center mb-10 m-0">
+        <Logo customStyle={{ paddingTop: "0.5rem" }} />
+        <ul className="flex flex-row items-center h-4 p-0 space-x-5 right-40 font-modernEra not-italic">
         {isMobile ? (
-          <MobileNav />
+          <MobileNav 
+            activeObject={listItems.activeObject}
+            toggleActive={toggleActive}
+            listItems={listItems.objects}
+          />
         ) : (
           <>
             {listItems.objects.map((item, index) =>
@@ -38,13 +47,14 @@ function Navbar() {
                 <li className="font-normal cursor-pointer h-4 not-italic tracking-tight flex-none text-silverLight">
                   <Link
                     className={activeClass(index)}
-                    to={`App`}
+                    to="top"
                     key={index + "-id"}
                     // spy={true}
                     smooth={true}
                     duration={500}
                     onClick={() => {
                       toggleActive(index);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
                   >
                     {item.title}

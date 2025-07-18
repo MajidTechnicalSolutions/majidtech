@@ -1,4 +1,5 @@
 import React from "react";
+import { Toaster } from "sonner";
 
 // Components
 import Header from "./Header";
@@ -22,12 +23,26 @@ function App() {
   };
 
   return (
-    <>
-      <main
-        className="App bg-black font-modernEra py-4"
-        id="App"
-        style={{ backgroundImage: `url(${Pattern})`, backgroundRepeat: "no-repeat" }}
-      >
+    <div 
+      className="bg-black min-h-screen m-0 p-0 font-modernEra"
+      style={{ backgroundImage: `url(${Pattern})`, backgroundRepeat: "no-repeat" }}
+    >
+      <Toaster 
+        position="top-right"
+        theme="dark"
+        richColors
+        expand={true}
+        duration={4000}
+        toastOptions={{
+          style: {
+            background: '#1a1a1a',
+            border: '1px solid #FD5A1E',
+            color: '#ffffff',
+          },
+          className: 'sonner-toast',
+        }}
+      />
+      <main className="App py-4" id="App">
         <div className="m-auto w-9/12">
           <Navbar />
           <Header />
@@ -43,7 +58,7 @@ function App() {
           <Footer />
         </div>
       </main>
-    </>
+    </div>
   );
 }
 
