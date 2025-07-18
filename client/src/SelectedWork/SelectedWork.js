@@ -12,11 +12,6 @@ import Mock8 from "../utils/Resources/images/8.png";
 // possoble get random images for these from unslplash
   const SelectedWork = () => {
   const isMobile = useIsMobile();
-  
-  // Helper function to ensure customStyle is never undefined
-  const getCustomStyle = (mobileStyle, desktopStyle = "") => {
-    return isMobile === true ? mobileStyle : desktopStyle;
-  };
   const WorkComponent = ({ title, text, tags, img, customStyle = "", tagStyle, link }) => (
     <article className={`text-silverDark ${customStyle || ""}`}>
       <img 
