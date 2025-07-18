@@ -10,6 +10,7 @@ const courses = require("./routes/courses");
 const tutorials = require("./routes/tutorials");
 const tokens = require("./routes/token");
 const users = require("./routes/users");
+const contact = require("./routes/contact");
 const passport = require("passport");
 const passportConfig = require("./config/passport");
 // initializing app
@@ -18,7 +19,23 @@ const app = express();
 // middlewares
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cors());
+
+// CORS configuration
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001', 
+    'http://localhost:3002',
+    'https://majidtech-35d0c5c21559.herokuapp.com',
+    // Add your production domain here when deployed
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 // passport middleware
 app.use(passport.initialize());
 
@@ -49,9 +66,11 @@ app.use("/users", users);
 app.use("/tokens", tokens);
 app.use("/blog", blog);
 app.use("/images", images);
+app.use("/contact", contact);
 // creating port for server
 
 // Listening to that port
-app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+const serverPort = port || 5001; // Use 5001 as fallback since 5000 is taken by Mac system
+app.listen(serverPort, () => {
+  console.log(`Server started on port ${serverPort}`);
 });

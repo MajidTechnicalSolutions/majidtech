@@ -57,7 +57,7 @@ import Mock8 from "../utils/Resources/images/8.png";
         <p className="text-silverDark break-keep text-xs lg:text-base lg:w-2/4">
           A selected group of our projects we have worked on and a few in the making. We are
           dedicated to pushing new and creative ideas, not only for our clients for for ourselves as
-          well. See what interesting solutions we have planed for the future.
+          well. See what interesting solutions we have planed for the future 😁.
         </p>
       </div>
       <div className="containers xl:grid grid-rows-3 grid-col-3 ">
@@ -81,6 +81,7 @@ import Mock8 from "../utils/Resources/images/8.png";
             link="https://mykahealthsystems.com/"
           />
         </div>
+
 
         <div className="flex items-center">
           <WorkComponent

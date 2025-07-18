@@ -6,4 +6,5 @@ module.exports = {
   port: process.env.PORT,
   secret: process.env.SECRET_OR_KEY,
   refreshSecret: process.env.REFRESH_SECRET,
+  resendApiKey: process.env.RESEND_API_KEY,
 };
