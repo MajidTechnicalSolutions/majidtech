@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 // Returns active index for the section whose top is at/above the current
 // scroll position (with an adjustable offset to account for fixed navbars).
 export default function useScrollSpy(sectionIds, offsetPx = 120) {
   const [activeIndex, setActiveIndex] = useState(0);
+  // Create a stable key so the effect dependency isn't a complex expression
+  const idsKey = useMemo(() => (Array.isArray(sectionIds) ? sectionIds.join(',') : ''), [sectionIds]);
 
   useEffect(() => {
-    const getElements = () => sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
+    const ids = idsKey ? idsKey.split(',') : [];
+    const getElements = () => ids.map((id) => document.getElementById(id)).filter(Boolean);
 
     const calcActive = () => {
       const elements = getElements();
@@ -36,7 +39,7 @@ export default function useScrollSpy(sectionIds, offsetPx = 120) {
       window.removeEventListener('scroll', calcActive);
       window.removeEventListener('resize', calcActive);
     };
-  }, [sectionIds.join(','), offsetPx]); // Convert array to string for stable dependency
+  }, [idsKey, offsetPx]);
 
   return activeIndex;
 }
