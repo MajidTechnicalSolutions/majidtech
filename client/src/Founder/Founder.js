@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavHashLink } from "react-router-hash-link";
 import useScrollSpy from "../hooks/useScrollSpy";
 import useRevealOnScroll from "../hooks/useRevealOnScroll";

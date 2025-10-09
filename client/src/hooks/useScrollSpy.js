@@ -36,7 +36,7 @@ export default function useScrollSpy(sectionIds, offsetPx = 120) {
       window.removeEventListener('scroll', calcActive);
       window.removeEventListener('resize', calcActive);
     };
-  }, [JSON.stringify(sectionIds), offsetPx]);
+  }, [sectionIds.join(','), offsetPx]); // Convert array to string for stable dependency
 
   return activeIndex;
 }
