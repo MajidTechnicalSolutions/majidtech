@@ -9,7 +9,8 @@ import Sheet from "@mui/joy/Sheet";
 
 import Dropdown from "@mui/joy/Dropdown";
 import MenuButton from "@mui/joy/MenuButton";
-import { Link } from "react-scroll";
+import { NavLink } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
 
 // The Menu is built on top of Popper v2, so it accepts `modifiers` prop that will be passed to the Popper.
 // https://popper.js.org/docs/v2/modifiers/offset/
@@ -183,42 +184,66 @@ export default function MenuIconSideNavExample({ activeObject, toggleActive, lis
                       {...itemProps}
                       sx={menuItemStyle}
                     >
-                      <Link
-                        to={item.title === "Home" ? "top" : item.title}
-                        spy={true}
-                        smooth={true}
-                        offset={item.title === "Home" ? 0 : -100}
-                        duration={500}
-                        onClick={() => {
-                          setMenuIndex(null);
-                          toggleActive(index);
-                          setMobileActiveObject(item.id);
-                          if (item.title === "Home") {
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                          }
-                        }}
-                        style={{ 
-                          color: 'inherit',
-                          textDecoration: 'none',
-                          width: '100%',
-                          display: 'block'
-                        }}
-                      >
-                        {item.title === "Selectedwork" ? "Selected Work" : item.title}
-                        {item.component && (
-                          <item.component
-                            customStyle={{
-                              general: {
-                                width: "23px",
-                                height: "17px", 
-                                display: "inline",
-                              },
-                              color: "#fff",
-                            }}
-                            viewBoxSetting="-7 -1 30 25"
-                          />
-                        )}
-                      </Link>
+                      {item.type === 'route' ? (
+                        <NavLink
+                          className={({ isActive }) => (isActive ? 'nav-active' : '')}
+                          to={item.href}
+                          onClick={() => {
+                            setMenuIndex(null);
+                            toggleActive(index);
+                            setMobileActiveObject(item.id);
+                          }}
+                          style={{ 
+                            color: 'inherit',
+                            textDecoration: 'none',
+                            width: '100%',
+                            display: 'block'
+                          }}
+                        >
+                          {item.title}
+                        </NavLink>
+                      ) : (
+                        <NavHashLink
+                          className={({ isActive }) => (isActive ? 'nav-active' : '')}
+                          to={item.title === "Home" ? "/#home" : `/#${item.title}`}
+                          scroll={(el) => {
+                            if (item.title === 'Home') {
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                            } else if (el) {
+                              const offset = item.title === 'Contact' ? 0 : 120;
+                              const top = el.getBoundingClientRect().top + window.scrollY - offset;
+                              const maxTop = document.documentElement.scrollHeight - window.innerHeight;
+                              window.scrollTo({ top: Math.max(0, Math.min(top, maxTop)), behavior: 'smooth' });
+                            }
+                          }}
+                          onClick={() => {
+                            setMenuIndex(null);
+                            toggleActive(index);
+                            setMobileActiveObject(item.id);
+                          }}
+                          style={{ 
+                            color: 'inherit',
+                            textDecoration: 'none',
+                            width: '100%',
+                            display: 'block'
+                          }}
+                        >
+                          {item.title === "Selectedwork" ? "Selected Work" : item.title}
+                          {item.component && (
+                            <item.component
+                              customStyle={{
+                                general: {
+                                  width: "23px",
+                                  height: "17px", 
+                                  display: "inline",
+                                },
+                                color: "#fff",
+                              }}
+                              viewBoxSetting="-7 -1 30 25"
+                            />
+                          )}
+                        </NavHashLink>
+                      )}
                     </MenuItem>
                   );
                 })}

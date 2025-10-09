@@ -38,6 +38,14 @@
         font-size: 12px;
     }
 
+    /* smoother transitions for UI interactions */
+    .smooth-trans {
+        transition-property: transform, opacity, width, margin, padding, gap;
+    }
+
+    .ease-smooth {
+        transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 }
 
 @font-face {
@@ -57,7 +65,7 @@ a {
     outline: none;
 }
 
-Nav a.active {
+.Nav a.nav-active {
     right: 0;
     flex: none;
     border-bottom-width: 4px;
@@ -144,6 +152,8 @@ a:hover {
     margin: 20rem 0 20rem 0;
 }
 
+/* (removed) anchor offset via CSS; handled by ScrollToHash JS for consistent behavior */
+
 /* Header section should have minimal top margin since it's right after navbar */
 section.pt-7 {
     margin: 2rem 0 20rem 0;
@@ -196,6 +206,32 @@ section.pt-7 {
 
     50% {
         transform: translateY(-6px);
+    }
+}
+
+/* Reveal on scroll utility */
+@layer utilities {
+    .animate-fade-in-up {
+        animation: fade-in-up 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* initial state for reveal elements */
+    [data-reveal] {
+        opacity: 0;
+        transform: translateY(24px);
+        will-change: opacity, transform;
+    }
+
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 }
 

@@ -1,0 +1,52 @@
+
+
+Jamal Abdul-Majid
+Software Engineer
+
+
+
+jamalabmajid@gmail.com
+
+
+(678) 768-5875
+
+
+Atlanta, GA
+
+
+linkedin.com/in/jamal-majid-0ab9ab177
+
+
+SKILLS
+JavaScript, HTML5,
+CSS, Sass, Bootstrap, jQuery GIT, GitHub, GitLab, Node js Restful API, Style Components, Glamorous Components, Jasmin, Vue.js, React.js, Express.js, Ember.js, Handlbars.js, Redux, Responsive Web design, Context API, Figma,
+adobe target, Java, Python,
+Typescript, React-Native
+
+
+EDUCATION
+Web Development Udemy, Online 2018 - 2019
+Front End Development Codecademy, Online 2018 - 2018
+General Education Georgia Perimeter College, Clarkston GA 2013 - 2015
+General Education Miller Grove HS, Lithonia GA 2011 - 2013
+ Summary
+
+Software engineer with professional experience building high-quality since 2020.
+EXPERIENCE
+
+Myka Health Systems  Atlanta, Ga / Aug 2024 – Present
+Software Engineer: Tasked with developing & designing a website for a healthcare startup using React JS, Figma, and Sketch collaborating with teams to implement scalable solutions.
+Cognizant Technology Solutions
+Boston, MA / February 2019 – Jul 1, 2024. Helping Cognizant in making important technological decisions related to current projects. Responsible for creating and maintaining client features as. well as recommending UI frameworks, UI libraries, layouts, software and other tools to support business objectives all while following standards and best practices.
+	•	Verizon (contracted June 26, 2023- Jul 1, 2024)
+	•	Software Engineer: Developing features in an agile environment, working in conjunction with fellow developers to drive customer satisfaction Leveraging Unit testing in jest on each feature as well as custom hooks, react, redux, Adobe Target, Typescript. 
+	•	Cengage (contracted May 2022– May 2023)
+	•	Software Engineer: Working in two-week sprints in collaboration with offshore team ensuring deliverables are completed on time. Appointed as a release manager to prepare new code changes for launch, monitor automated CI/CD pipeline, and ensure successful product Launch. Applications utilized react.js, next.js, bloomreach cms, node.js, Java, next js. and Typescript.
+	•	Home Depot (contracted Oct 2020 – May 2022)
+	•	Software Engineer: Apart of Home depots A/B testing team developing features across their site to optimize engagement and drive sales to promotions mentored less senior team members. Developed an internal test tracking app in react native to monitor test progress. Utilized adobe-target, Figma, Invision, JavaScript, and JQuery, Figma
+	•	Thought Industries  (contracted August 2020 – Oct 2020)
+	•	Software Engineer: Utilizing GraphQL, Typescript, React, and story book I created and maintained features for thought industries course creation software, Figma
+	•	Verizon (contracted April 2020 – Jul 2020)
+	•	Software Engineer: Lead React Developer of a small team migrating Angular to react.js. 
+	•	Macy’s (contracted Jan 2020 – April 2020)
+	•	Software Engineer: Migration of legacy applications from handlebars, ember.js, and backbone.js to vue.js.
