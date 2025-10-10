@@ -60,12 +60,11 @@ function Navbar() {
           <>
             {listItems.objects.map((item, index) =>
               item.title === "Home" ? (
-                <li className="font-normal cursor-pointer h-4 not-italic tracking-tight flex-none text-silverLight">
+                <li key={`nav-${item.title}`} className="font-normal cursor-pointer h-4 not-italic tracking-tight flex-none text-silverLight">
                   <NavHashLink
                     className={getActiveClassForItem(item)}
                     to="/#home"
                     scroll={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    key={index + "-id"}
                     onClick={() => {
                       toggleActive(index);
                     }}
@@ -74,11 +73,10 @@ function Navbar() {
                   </NavHashLink>
                 </li>
               ) : item.type === 'route' ? (
-                <li className="font-normal cursor-pointer h-4 not-italic tracking-tight flex-none text-silverLight">
+                <li key={`nav-${item.title}`} className="font-normal cursor-pointer h-4 not-italic tracking-tight flex-none text-silverLight">
                   <NavLink
                     className={getActiveClassForItem(item)}
                     to={item.href}
-                    key={index + "-id"}
                     onClick={() => {
                       toggleActive(index);
                     }}
@@ -87,7 +85,7 @@ function Navbar() {
                   </NavLink>
                 </li>
               ) : (
-                <li className="font-normal cursor-pointer h-4 not-italic tracking-tight flex-none text-silverLight">
+                <li key={`nav-${item.title}`} className="font-normal cursor-pointer h-4 not-italic tracking-tight flex-none text-silverLight">
                   <NavHashLink
                     className={getActiveClassForItem(item)}
                     to={`/#${item.title}`}
@@ -96,7 +94,6 @@ function Navbar() {
                       const block = item.title === 'Contact' ? 'end' : 'start';
                       el.scrollIntoView({ behavior: 'smooth', block });
                     }}
-                    key={index + "-id"}
                     onClick={() => {
                       toggleActive(index);
                     }}

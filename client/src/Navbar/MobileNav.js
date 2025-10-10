@@ -186,7 +186,7 @@ export default function MenuIconSideNavExample({ activeObject, toggleActive, lis
                     >
                       {item.type === 'route' ? (
                         <NavLink
-                          className={({ isActive }) => (isActive ? 'nav-active' : '')}
+                          className={({ isActive: active }) => (active ? 'nav-active' : '')}
                           to={item.href}
                           onClick={() => {
                             setMenuIndex(null);
@@ -204,7 +204,7 @@ export default function MenuIconSideNavExample({ activeObject, toggleActive, lis
                         </NavLink>
                       ) : (
                         <NavHashLink
-                          className={({ isActive }) => (isActive ? 'nav-active' : '')}
+                          className={({ isActive: active }) => (active ? 'nav-active' : '')}
                           to={item.title === "Home" ? "/#home" : `/#${item.title}`}
                           scroll={(el) => {
                             if (item.title === 'Home') {
