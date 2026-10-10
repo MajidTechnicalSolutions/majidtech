@@ -16,34 +16,57 @@ import InspirePoster from "../utils/Resources/work/inspire.jpg";
 
 // A device (phone or laptop) playing a short silent loop of the project in use.
 // It only loads and plays while on screen. When the browser won't autoplay
-// (Low Power Mode, a "never auto-play" setting) or the viewer has asked for
-// reduced motion, it stays on its poster frame with a play button instead.
+// (Safari in Low Power Mode, a "never auto-play" setting), Safari plays the same
+// MP4 as an image instead; elsewhere, or when the viewer has asked for reduced
+// motion, it stays on its poster frame with a play button.
 const DeviceVideo = ({ src, poster, device, title }) => {
   const ref = useRef(null);
-  const [needsTap, setNeedsTap] = useState(false);
+  // null while the video autoplays; "image" when Safari blocks autoplay (it can
+  // still play an MP4 as an image); "tap" when neither works or motion is reduced.
+  const [fallback, setFallback] = useState(null);
   const [playing, setPlaying] = useState(false);
   useEffect(() => {
     const video = ref.current;
     if (!video) return undefined;
+    // React sets `muted` only as a property; Safari also wants the attribute
+    // before it will autoplay.
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("muted", "");
     const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion || !("IntersectionObserver" in window)) {
-      setNeedsTap(true);
+      setFallback("tap");
       return undefined;
     }
+    // Safari in Low Power Mode can leave play() pending or pause the video
+    // straight away instead of rejecting, so check it actually started.
+    let check;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) video.play().catch(() => setNeedsTap(true));
-        else video.pause();
+        clearTimeout(check);
+        if (entry.isIntersecting) {
+          const blocked = () => setFallback((f) => f || "image");
+          video.play().catch(blocked);
+          check = setTimeout(() => {
+            if (video.paused || video.currentTime === 0) blocked();
+          }, 2000);
+        } else video.pause();
       },
       { threshold: 0.25 }
     );
     observer.observe(video);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(check);
+      observer.disconnect();
+    };
   }, []);
   const toggle = () => {
     const video = ref.current;
     if (!video) return;
-    if (video.paused) video.play().catch(() => {});
+    if (video.paused) {
+      video.muted = true;
+      video.play().catch(() => {});
+    }
     else video.pause();
   };
   const size = device === "phone"
@@ -64,7 +87,15 @@ const DeviceVideo = ({ src, poster, device, title }) => {
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
       />
-      {needsTap && (
+      {fallback === "image" && (
+        <img
+          className="absolute inset-0 w-full h-full"
+          src={src}
+          alt={`${title} in use`}
+          onError={() => setFallback("tap")}
+        />
+      )}
+      {fallback === "tap" && (
         <button
           type="button"
           onClick={toggle}
