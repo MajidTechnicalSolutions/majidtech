@@ -1,50 +1,182 @@
 // @ts-ignore
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowDown, UpArrow } from "../utils/Resources/Svgs";
 import useIsMobile from '../hooks/useIsMobile';
 import Tag from "../utils/Tags";
-import Mock1 from "../utils/Resources/images/1.png";
-import Mock7 from "../utils/Resources/images/7.png";
-import Mock4 from "../utils/Resources/images/Mock-4.png";
-import Mock6 from "../utils/Resources/images/6.png";
-import Mock8 from "../utils/Resources/images/8.png";
-// possoble get random images for these from unslplash
+import MykaVideo from "../utils/Resources/work/myka.mp4";
+import MykaPoster from "../utils/Resources/work/myka.jpg";
+import LingLingVideo from "../utils/Resources/work/lingling.mp4";
+import LingLingPoster from "../utils/Resources/work/lingling.jpg";
+import MyNightsVideo from "../utils/Resources/work/mynights.mp4";
+import MyNightsPoster from "../utils/Resources/work/mynights.jpg";
+import MuhaarybVideo from "../utils/Resources/work/muhaaryb.mp4";
+import MuhaarybPoster from "../utils/Resources/work/muhaaryb.jpg";
+import InspireVideo from "../utils/Resources/work/inspire.mp4";
+import InspirePoster from "../utils/Resources/work/inspire.jpg";
+
+// A device (phone or laptop) playing a short silent loop of the project in use.
+// It only loads and plays while on screen. When the browser won't autoplay
+// (Safari in Low Power Mode, a "never auto-play" setting), Safari plays the same
+// MP4 as an image instead; elsewhere, or when the viewer has asked for reduced
+// motion, it stays on its poster frame with a play button.
+const DeviceVideo = ({ src, poster, device, title }) => {
+  const ref = useRef(null);
+  // null while the video autoplays; "image" when Safari blocks autoplay (it can
+  // still play an MP4 as an image); "tap" when neither works or motion is reduced.
+  const [fallback, setFallback] = useState(null);
+  const [playing, setPlaying] = useState(false);
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return undefined;
+    // React sets `muted` only as a property; Safari also wants the attribute
+    // before it will autoplay.
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("muted", "");
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      setFallback("tap");
+      return undefined;
+    }
+    // Safari in Low Power Mode can leave play() pending or pause the video
+    // straight away instead of rejecting, so check it actually started.
+    let check;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        clearTimeout(check);
+        if (entry.isIntersecting) {
+          const blocked = () => setFallback((f) => f || "image");
+          video.play().catch(blocked);
+          check = setTimeout(() => {
+            if (video.paused || video.currentTime === 0) blocked();
+          }, 2000);
+        } else video.pause();
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(video);
+    return () => {
+      clearTimeout(check);
+      observer.disconnect();
+    };
+  }, []);
+  const toggle = () => {
+    const video = ref.current;
+    if (!video) return;
+    if (video.paused) {
+      video.muted = true;
+      video.play().catch(() => {});
+    }
+    else video.pause();
+  };
+  const size = device === "phone"
+    ? "w-[290px] lg:w-[352px] aspect-[528/1080]"
+    : "w-full aspect-[1140/706]";
+  return (
+    <div className={`relative ${size}`}>
+      <video
+        ref={ref}
+        className="block w-full h-full"
+        src={src}
+        poster={poster}
+        muted
+        loop
+        playsInline
+        preload="none"
+        aria-label={`${title} in use`}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+      />
+      {fallback === "image" && (
+        <img
+          className="absolute inset-0 w-full h-full"
+          src={src}
+          alt={`${title} in use`}
+          onError={() => setFallback("tap")}
+        />
+      )}
+      {fallback === "tap" && (
+        <button
+          type="button"
+          onClick={toggle}
+          aria-label={`${playing ? "Pause" : "Play"} ${title} demo`}
+          className={`absolute ${device === "phone" ? "bottom-[5%] right-[9%]" : "bottom-[15%] right-[11%]"} w-11 h-11 rounded-full bg-black/70 ring-1 ring-white/30 flex items-center justify-center hover:bg-black transition-colors duration-200`}
+        >
+          {playing ? (
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="#FD5A1E" /><rect x="8.5" y="1" width="3.5" height="12" fill="#FD5A1E" /></svg>
+          ) : (
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9.5-5.5z" fill="#FD5A1E" /></svg>
+          )}
+        </button>
+      )}
+    </div>
+  );
+};
+
   const SelectedWork = () => {
   const isMobile = useIsMobile();
-  const WorkComponent = ({ title, text, tags, img, customStyle = "", tagStyle, link }) => (
-    <article className={`text-silverDark ${customStyle || ""}`}>
-      <img 
-        src={img} 
-        className="w-full" 
-        alt={`${title} project screenshot`} 
-        loading="lazy"
-      />
-      <p className="my-4">
-        <span className="text-white">{title} — </span>
-        {text}
-      </p>
-      <div id="additionalInfo" className="flex justify-between">
-        <a 
-          href={link} 
-          className="text-grayMid flex h-0 pt-2 hover:text-white transition-colors duration-200"
-          aria-label={`Visit ${title} website`}
-        >
-          Website{" "}
-          <UpArrow
-            customStyle={{
-              general: { width: 26, height: 26, fill: "none", viewBox: "-12 3 43 25" },
-              color: "#686869",
-            }}
-            viewBoxSetting="-5 -1 35 31"
-          />
-        </a>
-        <Tag tagNames={tags} tagStyle={tagStyle} />
+  // Cards stack below Tailwind's lg breakpoint; there each laptop is followed by a phone.
+  const isStacked = useIsMobile(1023);
+  const WorkComponent = ({ title, text, tags, video, poster, device, customStyle = "", tagStyle, link }) => (
+    <article className={`text-silverDark flex flex-col ${device === "phone" ? "items-center" : ""} ${customStyle || ""}`}>
+      <DeviceVideo src={video} poster={poster} device={device} title={title} />
+      <div className={`w-full ${device === "phone" ? "max-w-[440px] mt-8" : "mt-6 lg:px-10"}`}>
+        <p className="mb-4">
+          <span className="text-white">{title} — </span>
+          {text}
+        </p>
+        <div id="additionalInfo" className="flex justify-between">
+          {link ? (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-grayMid flex h-0 pt-2 hover:text-white transition-colors duration-200"
+              aria-label={`Visit ${title} website`}
+            >
+              Website{" "}
+              <UpArrow
+                customStyle={{
+                  general: { width: 26, height: 26, fill: "none", viewBox: "-12 3 43 25" },
+                  color: "#686869",
+                }}
+                viewBoxSetting="-5 -1 35 31"
+              />
+            </a>
+          ) : (
+            <span />
+          )}
+          <Tag tagNames={tags} tagStyle={tagStyle} />
+        </div>
       </div>
     </article>
   );
+  const myNights = (
+    <WorkComponent
+      title="MyNights"
+      text="A calendar for web and mobile. It rotates time fairly by day, week or month, with prayer-time support and a ranking board."
+      tags={["Next.js", "Supabase", "Capacitor", "Mobile"]}
+      video={MyNightsVideo}
+      poster={MyNightsPoster}
+      device="phone"
+      tagStyle="ml-1"
+    />
+  );
+  const muhaaryb = (
+    <WorkComponent
+      title="Muhaaryb"
+      text="A faith based Brazilian jiu-jitsu school that provides a safe and supportive environment for students of all ages and skill levels."
+      tags={["Liquid", "Shopify"]}
+      video={MuhaarybVideo}
+      poster={MuhaarybPoster}
+      device="laptop"
+      tagStyle="ml-1"
+      link="https://muhaaryb.com/"
+    />
+  );
   return (
     <section id="Selectedwork" className="container mx-auto px-4">
-      <div className={isMobile ? "flex justify-between flex-col lg:flex-row mb-10": "flex justify-between flex-col lg:flex-row mb-[20rem]" }>
+      <div className={isMobile ? "flex justify-between flex-col lg:flex-row mb-10": "flex justify-between flex-col lg:flex-row mb-36" }>
         <h1 className="text-white font-medium not-italic text-2xl sm:text-3xl lg:text-3xl flex items-center justify-center gap-2 w-full lg:w-auto">
           <span className="whitespace-nowrap">Selected Work</span> <ArrowDown color="#FD5A1E" />
         </h1>
@@ -54,57 +186,43 @@ import Mock8 from "../utils/Resources/images/8.png";
           well. See what interesting solutions we have planed for the future 😁.
         </p>
       </div>
-      <div className="containers xl:grid grid-rows-3 grid-col-3 ">
-        <div className="flex justify-between flex-col lg:flex-row gap-0">
+      <div className="flex flex-col gap-16 lg:gap-36">
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-16 lg:gap-20 items-center">
           <WorkComponent
             title="MYKA-EMR"
             text="A comprehensive EMR platform designed specifically for nursing services, group homes, and assisted care facilities."
-            tags={["Next.js", "Full-Stack"]}
-            img={Mock6}
-            customStyle="lg:mr-20 flex flex-column"
+            tags={["Next.js", "Full-Stack", "AI", "Cursor"]}
+            video={MykaVideo}
+            poster={MykaPoster}
+            device="laptop"
             tagStyle="ml-1"
             link="https://myka-emr.com/"
           />
           <WorkComponent
-            title="Myka Health Systems"
-            text="Provides services to ensure individuals with disabilities have independence while helping them to improve their decision making skills. "
-            tags={["React", "Front-End"]}
-            img={Mock1}
-            customStyle={isMobile ? "mt-20" : ""}
+            title="LingLing Chat"
+            text="A messaging app that turns everyday conversations into language learning. Tap any word to translate it, rate its difficulty and review it later."
+            tags={["React", "Node.js", "Socket.IO", "Full-Stack"]}
+            video={LingLingVideo}
+            poster={LingLingPoster}
+            device="phone"
             tagStyle="ml-1"
-            link="https://mykahealthsystems.com/"
+            link="https://linglingchat.com/"
           />
         </div>
 
-
-        <div className="flex items-center">
-          <WorkComponent
-            title="Muhaaryb"
-            text="A faith based Brazilian jiu-jitsu school that provides a safe and supportive environment for students of all ages and skill levels."
-            tags={["Liquid", "Shopify"]}
-            img={Mock7}
-            customStyle={isMobile ? "mt-20" : "mt-[-34rem] lg:pr-48"}
-            tagStyle="ml-1"
-            link="https://muhaaryb.com/"
-            style={isMobile ? {} : {paddingRight: '9rem', marginTop: '-19rem'}}
-          />
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-16 lg:gap-20 items-center">
+          {isStacked ? <>{muhaaryb}{myNights}</> : <>{myNights}{muhaaryb}</>}
         </div>
 
-        <div className="flex  justify-between flex-col lg:flex-row">
-          <WorkComponent
-            title="DreamPages (Coming Soon)"
-            text="An AI-powered story telling app where the user can create ai generated books with moving  images for what ever story they create"
-            tags={["Next.js", "AI"]}
-            img={Mock4}
-            customStyle={isMobile ? "mt-20" : "my-20 lg:mr-10 flex flex-column w-4/5"}
-            tagStyle="ml-1"
-          />
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_3fr_1fr] gap-16 lg:gap-20">
           <WorkComponent
             title="Inspire"
             text="Inspire Salon and Boutique in Cincinnati! They curate high-end women’s fashion and accessories"
             tags={["Wix", "Development"]}
-            img={Mock8}
-            customStyle={isMobile ? "mt-20" :"flex flex-column my-20 w-4/5"}
+            video={InspireVideo}
+            poster={InspirePoster}
+            device="laptop"
+            customStyle="lg:col-start-2"
             tagStyle="ml-1"
             link="https://www.inspireboutique513.com/"
           />
