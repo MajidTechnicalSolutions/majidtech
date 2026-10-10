@@ -65,7 +65,8 @@ a {
     outline: none;
 }
 
-.Nav a.nav-active {
+.Nav a.nav-active,
+.Nav button.nav-active {
     right: 0;
     flex: none;
     border-bottom-width: 4px;
