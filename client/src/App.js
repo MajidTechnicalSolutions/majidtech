@@ -11,6 +11,7 @@ import SelectedWork from "./SelectedWork";
 import Services from "./Services";
 import Blog from "./Blog";
 import Founder from "./Founder/Founder";
+import AppCreation from "./AppCreation";
 import HomeScrollStatus from "./components/HomeScrollStatus";
 import ScrollToHash from "./components/ScrollToHash";
 
@@ -75,6 +76,17 @@ function App() {
               }
             />
             <Route path="/founder" element={<Founder />} />
+            <Route
+              path="/app-creation"
+              element={
+                <>
+                  <AppCreation />
+                  <div className="m-auto w-9/12">
+                    <Footer />
+                  </div>
+                </>
+              }
+            />
           </Routes>
         </main>
       </div>

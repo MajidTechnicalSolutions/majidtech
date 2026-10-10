@@ -5,6 +5,7 @@ import MenuItem from "@mui/joy/MenuItem";
 import IconButton from "@mui/joy/IconButton";
 import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
+import ListSubheader from "@mui/joy/ListSubheader";
 import Sheet from "@mui/joy/Sheet";
 
 import Dropdown from "@mui/joy/Dropdown";
@@ -153,9 +154,23 @@ export default function MenuIconSideNavExample({ activeObject, toggleActive, lis
             onLeaveMenu={createHandleLeaveMenu(0)}
             menu={
               <Menu onClose={() => setMenuIndex(null)}>
-                {listItems.map((item, index) => {
+                {listItems.flatMap((item, index) =>
+                  // A menu item with children (Services) shows as a heading over its links.
+                  item.children
+                    ? [{ heading: item.title, id: `heading-${item.id}` }, ...item.children.map((child) => ({ ...child, index, indent: true }))]
+                    : [{ ...item, index }]
+                ).map((item) => {
+                  if (item.heading) {
+                    return (
+                      <ListSubheader key={item.id} sx={{ color: "black", fontFamily: "inherit", letterSpacing: 0, textTransform: "none", fontSize: "inherit", fontWeight: 400 }}>
+                        {item.heading}
+                      </ListSubheader>
+                    );
+                  }
+                  const { index } = item;
                   const isSelected = mobileActiveObject === item.id;
                   const menuItemStyle = {
+                    ...(item.indent ? { pl: 4 } : {}),
                     backgroundColor: isSelected ? "#FD5A1E" : "transparent",
                     color: isSelected ? "white" : "black",
                     "&:hover": {
@@ -205,7 +220,7 @@ export default function MenuIconSideNavExample({ activeObject, toggleActive, lis
                       ) : (
                         <NavHashLink
                           className={({ isActive: active }) => (active ? 'nav-active' : '')}
-                          to={item.title === "Home" ? "/#home" : `/#${item.title}`}
+                          to={item.title === "Home" ? "/#home" : `/#${item.hash || item.title}`}
                           scroll={(el) => {
                             if (item.title === 'Home') {
                               window.scrollTo({ top: 0, behavior: 'smooth' });
