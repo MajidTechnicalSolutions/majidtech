@@ -1,5 +1,5 @@
 // @ts-ignore
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowDown, UpArrow } from "../utils/Resources/Svgs";
 import useIsMobile from '../hooks/useIsMobile';
 import Tag from "../utils/Tags";
@@ -15,18 +15,24 @@ import InspireVideo from "../utils/Resources/work/inspire.mp4";
 import InspirePoster from "../utils/Resources/work/inspire.jpg";
 
 // A device (phone or laptop) playing a short silent loop of the project in use.
-// It only loads and plays while on screen, and stays on its poster frame when
-// the viewer has asked for reduced motion.
+// It only loads and plays while on screen. When the browser won't autoplay
+// (Low Power Mode, a "never auto-play" setting) or the viewer has asked for
+// reduced motion, it stays on its poster frame with a play button instead.
 const DeviceVideo = ({ src, poster, device, title }) => {
   const ref = useRef(null);
+  const [needsTap, setNeedsTap] = useState(false);
+  const [playing, setPlaying] = useState(false);
   useEffect(() => {
     const video = ref.current;
     if (!video) return undefined;
     const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion || !("IntersectionObserver" in window)) return undefined;
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      setNeedsTap(true);
+      return undefined;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) video.play().catch(() => {});
+        if (entry.isIntersecting) video.play().catch(() => setNeedsTap(true));
         else video.pause();
       },
       { threshold: 0.25 }
@@ -34,21 +40,45 @@ const DeviceVideo = ({ src, poster, device, title }) => {
     observer.observe(video);
     return () => observer.disconnect();
   }, []);
+  const toggle = () => {
+    const video = ref.current;
+    if (!video) return;
+    if (video.paused) video.play().catch(() => {});
+    else video.pause();
+  };
   const size = device === "phone"
     ? "w-[290px] lg:w-[352px] aspect-[528/1080]"
-    : "w-full aspect-[1140/705]";
+    : "w-full aspect-[1140/706]";
   return (
-    <video
-      ref={ref}
-      className={`block ${size}`}
-      src={src}
-      poster={poster}
-      muted
-      loop
-      playsInline
-      preload="none"
-      aria-label={`${title} in use`}
-    />
+    <div className={`relative ${size}`}>
+      <video
+        ref={ref}
+        className="block w-full h-full"
+        src={src}
+        poster={poster}
+        muted
+        loop
+        playsInline
+        preload="none"
+        aria-label={`${title} in use`}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+      />
+      {needsTap && (
+        <button
+          type="button"
+          onClick={toggle}
+          aria-label={`${playing ? "Pause" : "Play"} ${title} demo`}
+          className={`absolute ${device === "phone" ? "bottom-[5%] right-[9%]" : "bottom-[15%] right-[11%]"} w-11 h-11 rounded-full bg-black/70 ring-1 ring-white/30 flex items-center justify-center hover:bg-black transition-colors duration-200`}
+        >
+          {playing ? (
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="#FD5A1E" /><rect x="8.5" y="1" width="3.5" height="12" fill="#FD5A1E" /></svg>
+          ) : (
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9.5-5.5z" fill="#FD5A1E" /></svg>
+          )}
+        </button>
+      )}
+    </div>
   );
 };
 
