@@ -3,11 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import HashLink from "../components/HashLink";
+import { openBookCall } from "../components/bookCallEvents";
 
 // "Ask Mr. Majid": the AI assistant in the corner of every page. A button (with a
 // one-time greeting) opens a chat panel, full screen on phones. Answers come
 // from Claude through /api/ask; from the chat Claude can write a project brief
 // (/api/ask/brief) that the visitor checks and sends to Majid (/api/ask/send).
+// "Book a call" opens the Google Calendar booker (BookCall.jsx), whose "Back to
+// chat" reopens this panel.
 // The conversation is kept for the browser tab in sessionStorage.
 
 const GREETING =
@@ -113,6 +116,13 @@ export default function AskMajid() {
     return () => clearTimeout(timer);
   }, []);
 
+  // "Back to chat" in the booker.
+  useEffect(() => {
+    const reopen = () => openChatRef.current();
+    window.addEventListener("ask-majid-open", reopen);
+    return () => window.removeEventListener("ask-majid-open", reopen);
+  }, []);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
@@ -146,6 +156,16 @@ export default function AskMajid() {
     setTeaser(false);
     setOpen(true);
     setTimeout(() => inputRef.current?.focus(), 50);
+  };
+
+  const openChatRef = useRef(openChat);
+  useEffect(() => {
+    openChatRef.current = openChat;
+  });
+
+  const bookCall = () => {
+    close();
+    openBookCall("chat");
   };
 
   function close() {
@@ -318,7 +338,9 @@ export default function AskMajid() {
           <p className="max-w-[280px]">
             He&apos;ll reply to {email}, usually within a working day. A copy of your brief is in your inbox.
           </p>
-          {contactLink("Book a call now", `${outline} justify-center border-majidTech text-white hover:bg-[#151516]`)}
+          <button type="button" onClick={bookCall} className={`${outline} justify-center border-majidTech text-white hover:bg-[#151516]`}>
+            Book a call now
+          </button>
           <button type="button" onClick={() => setView("chat")} className="min-h-11 underline hover:text-white">
             Keep chatting
           </button>
@@ -357,7 +379,9 @@ export default function AskMajid() {
                 <button type="button" onClick={writeBrief} className={`${chip} border-majidTech text-white hover:bg-[#151516]`}>
                   Write my brief
                 </button>
-                {contactLink("Book a call", `${chip} border-[#1f1f20] text-silverDark hover:text-white flex items-center`)}
+                <button type="button" onClick={bookCall} className={`${chip} border-[#1f1f20] text-silverDark hover:text-white`}>
+                  Book a call
+                </button>
                 <HashLink
                   to="/#Selectedwork"
                   onClick={close}
@@ -465,7 +489,9 @@ export default function AskMajid() {
                         >
                           {sendStatus === "sending" ? "Sending…" : "Send to Mr. Majid"}
                         </button>
-                        {contactLink("Book a call", `${outline} justify-center border-[#1f1f20] text-white hover:border-grayMid`)}
+                        <button type="button" onClick={bookCall} className={`${outline} justify-center border-[#1f1f20] text-white hover:border-grayMid`}>
+                          Book a call
+                        </button>
                       </div>
                       <button type="button" onClick={() => setView("chat")} className="self-start min-h-9 text-xs underline hover:text-white">
                         Keep chatting

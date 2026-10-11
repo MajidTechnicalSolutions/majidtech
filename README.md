@@ -47,11 +47,20 @@ A chat in the corner of every page (`client/src/askMajid`) that answers visitors
 
 - It answers only from the site's own copy (`client/src/content`) and the instructions in `client/src/askMajid/knowledge.js`: no prices (they are quoted on a call), no invented clients or results. It says it is an AI.
 - From the chat, "Write my brief" has Claude turn the conversation into a project brief (idea, users, must-haves, timeline, the package that fits). The visitor checks or edits it, adds their email, agrees to send it, and it is emailed to Majid with the conversation (and a copy to the visitor).
-- "Book a call" goes to the contact form.
+- "Book a call" opens the Google Calendar booker (below); "Back to chat" there reopens the chat.
 - Limits, per rolling day: 20 questions, 5 briefs and 3 sent briefs per visitor, and 400 questions for the whole site. After that the chat points to the contact form and email. Change them in `client/src/askMajid/server.js`.
 - Routes: `api/ask` (streams the answer), `api/ask/brief` (writes the brief), `api/ask/send` (emails it).
 
 To try it locally, put `ANTHROPIC_API_KEY` in `client/.env.local` and run `npm run dev`.
+
+## Booking a call
+
+After the contact form sends, a pop-up ("Message sent") offers a 30-minute video call with Mr. Majid. It shows his Google Calendar appointment schedule, so a visitor picks a slot and Google sends both of them the invite with a Meet link. Ask Mr. Majid's "Book a call" opens the same pop-up.
+
+- The booking page is Google's and keeps Google's styling. Its hours, call length and Meet link are set in Google Calendar (the "Call with Mr. Majid" appointment schedule), not in the code.
+- Its two addresses are in `client/src/site.js`: `BOOKING_LINK` (the share link) and `BOOKING_EMBED` (the full address with `gv=true`, the form Google allows other sites to embed). Making a new schedule means updating both.
+- If Google is blocked (some ad blockers and work networks), the pop-up offers "Open Google Calendar" and the email address instead.
+- The pop-up is `client/src/components/BookCall.jsx`; open it from anywhere with `openBookCall("contact" | "chat")` from `client/src/components/bookCallEvents.js`.
 
 ## Home page avatar
 
