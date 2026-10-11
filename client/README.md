@@ -2,11 +2,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Home page avatar
 
-The home page has an avatar of Majid that speaks one short clip per section as you scroll (`client/src/ScrollAvatar`). It sits in the hero on wide screens and becomes a bubble in the corner further down (pinned at the top on phones). Sound is off until the visitor taps the speaker; captions always show; with reduced motion on, only the captions show.
+The home page hero has an avatar of Majid, large and centred behind the text, with a caption bar underneath (`client/src/HeroAvatar`). It greets the visitor while the hero is on screen and stops when they scroll away. Sound is off until the visitor taps the speaker; the caption always shows; with reduced motion on, only the caption shows.
 
-It is off unless `REACT_APP_SCROLL_AVATAR=on`. Deploy previews turn it on (`netlify.toml`); production stays off until the real clips are in. To try it locally: `REACT_APP_SCROLL_AVATAR=on npm start` in `client/`.
+It is off unless `REACT_APP_HERO_AVATAR=on`. Deploy previews turn it on (`netlify.toml`); production stays off until the real clip is in. To try it locally: `REACT_APP_HERO_AVATAR=on npm start` in `client/`.
 
-Clips and captions live in `client/src/ScrollAvatar/clips.js`, one per section. For now each is a stock voice reading the caption over a placeholder frame; add the rendered avatar video (`video`, optional `webm`, and a `poster` still) there to replace it.
+The clip and caption are set at the top of `client/src/HeroAvatar/HeroAvatar.jsx`. For now a stock voice reads the caption over a placeholder; add the rendered avatar video there (`video`, optional `webm`, and a `poster` still) to replace it.
 
 ## Available Scripts
 

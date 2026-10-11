@@ -14,7 +14,6 @@ import Founder from "./Founder/Founder";
 import AppCreation from "./AppCreation";
 import HomeScrollStatus from "./components/HomeScrollStatus";
 import ScrollToHash from "./components/ScrollToHash";
-import { AVATAR_ON, ScrollAvatarProvider, AvatarBubble } from "./ScrollAvatar";
 
 // assets
 import Pattern from "./utils/Resources/images/Pattern.svg";
@@ -58,9 +57,8 @@ function App() {
             <Route
               path="/"
               element={
-                <ScrollAvatarProvider>
+                <>
                   <HomeScrollStatus />
-                  {AVATAR_ON && <AvatarBubble />}
                   <div className="m-auto w-9/12 relative" data-reveal>
                     <Header />
                     <SelectedWork />
@@ -74,7 +72,7 @@ function App() {
                     <Contact />
                     <Footer />
                   </div>
-                </ScrollAvatarProvider>
+                </>
               }
             />
             <Route path="/founder" element={<Founder />} />

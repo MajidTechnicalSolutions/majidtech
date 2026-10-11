@@ -6,10 +6,10 @@
   NODE_VERSION = "18"
   CI = "false"
 
-# The scroll avatar (client/src/ScrollAvatar) shows on deploy previews only,
-# until the real avatar clips are in.
+# The hero avatar (client/src/HeroAvatar) shows on deploy previews only,
+# until the real avatar clip is in.
 [context.deploy-preview.environment]
-  REACT_APP_SCROLL_AVATAR = "on"
+  REACT_APP_HERO_AVATAR = "on"
 
 [build.processing]
   skip_processing = true

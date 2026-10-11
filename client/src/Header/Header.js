@@ -3,13 +3,13 @@ import React from "react";
 import Brackets from "../utils/Resources/images/Brackets.svg";
 import { RightArrow } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
-import { AVATAR_ON, AvatarHero } from "../ScrollAvatar";
+import HeroAvatar, { AVATAR_ON } from "../HeroAvatar";
 
 const Header = () => {
   return (
-    <section id="home" className="mt-56 mb-80">
-      <div id="Header" className={`flex justify-start items-center ${AVATAR_ON ? "xl:gap-16" : ""}`}>
-        <div className={AVATAR_ON ? "xl:flex-1 min-w-0" : ""}>
+    <section id="home" className="relative mt-56 mb-80">
+      <div id="Header" className="flex justify-start items-center">
+        <div className="relative z-10">
           <h1 className="text-white font-medium not-italic text-3xl lg:text-[6rem] lg:leading-none">
             Eat,sleep
             <br />
@@ -29,16 +29,13 @@ const Header = () => {
             destination="Contact"
           />
         </div>
-        {AVATAR_ON ? (
-          <AvatarHero />
-        ) : (
-          <img
-            alt="Brackets"
-            className="hidden xl:block xl:w-[35%] bg-no-repeat"
-            src={Brackets}
-          ></img>
-        )}
+        <img
+          alt="Brackets"
+          className="hidden xl:block xl:w-[35%] bg-no-repeat relative z-10"
+          src={Brackets}
+        ></img>
       </div>
+      {AVATAR_ON && <HeroAvatar />}
     </section>
   );
 };
