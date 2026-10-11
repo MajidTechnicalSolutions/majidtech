@@ -6,6 +6,7 @@ import { ArrowDown, UpArrow } from "../utils/Resources/Svgs";
 import useIsMobile from '../hooks/useIsMobile';
 import Tag from "../utils/Tags";
 import DeviceVideo from "../components/DeviceVideo";
+import { WORK } from "../content/work";
 const MykaVideo = "/work/myka.mp4";
 const MykaPoster = "/work/myka.jpg";
 const LingLingVideo = "/work/lingling.mp4";
@@ -58,9 +59,7 @@ const SelectedWork = () => {
   const isStacked = useIsMobile(1023);
   const myNights = (
     <WorkComponent
-      title="MyNights"
-      text="A calendar for web and mobile. It rotates time fairly by day, week or month, with prayer-time support and a ranking board."
-      tags={["Next.js", "Supabase", "Capacitor", "Mobile"]}
+      {...WORK.myNights}
       video={MyNightsVideo}
       poster={MyNightsPoster}
       device="phone"
@@ -69,14 +68,11 @@ const SelectedWork = () => {
   );
   const muhaaryb = (
     <WorkComponent
-      title="Muhaaryb"
-      text="A faith based Brazilian jiu-jitsu school that provides a safe and supportive environment for students of all ages and skill levels."
-      tags={["Liquid", "Shopify"]}
+      {...WORK.muhaaryb}
       video={MuhaarybVideo}
       poster={MuhaarybPoster}
       device="laptop"
       tagStyle="ml-1"
-      link="https://muhaaryb.com/"
     />
   );
   return (
@@ -94,24 +90,18 @@ const SelectedWork = () => {
       <div className="flex flex-col gap-16 lg:gap-36">
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-16 lg:gap-20 items-center">
           <WorkComponent
-            title="MYKA-EMR"
-            text="A comprehensive EMR platform designed specifically for nursing services, group homes, and assisted care facilities."
-            tags={["Next.js", "Full-Stack", "AI", "Cursor"]}
+            {...WORK.myka}
             video={MykaVideo}
             poster={MykaPoster}
             device="laptop"
             tagStyle="ml-1"
-            link="https://myka-emr.com/"
           />
           <WorkComponent
-            title="LingLing Chat"
-            text="A messaging app that turns everyday conversations into language learning. Tap any word to translate it, rate its difficulty and review it later."
-            tags={["React", "Node.js", "Socket.IO", "Full-Stack"]}
+            {...WORK.lingLing}
             video={LingLingVideo}
             poster={LingLingPoster}
             device="phone"
             tagStyle="ml-1"
-            link="https://linglingchat.com/"
           />
         </div>
 
@@ -121,15 +111,12 @@ const SelectedWork = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_3fr_1fr] gap-16 lg:gap-20">
           <WorkComponent
-            title="Inspire"
-            text="Inspire Salon and Boutique in Cincinnati! They curate high-end women’s fashion and accessories"
-            tags={["Wix", "Development"]}
+            {...WORK.inspire}
             video={InspireVideo}
             poster={InspirePoster}
             device="laptop"
             customStyle="lg:col-start-2"
             tagStyle="ml-1"
-            link="https://www.inspireboutique513.com/"
           />
         </div>
       </div>

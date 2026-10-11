@@ -1,6 +1,6 @@
 # Majid Tech website
 
-The company site at [majidtech.com](https://majidtech.com): the home page (hero, Selected Work, Services, Blog, Testimonials, Contact), the App creation page (`/app-creation`) and the Founder page (`/founder`).
+The company site at [www.majidtechnicalsolutions.com](https://www.majidtechnicalsolutions.com): the home page (hero, Selected Work, Services, Blog, Testimonials, Contact), the App creation page (`/app-creation`) and the Founder page (`/founder`), with the "Ask Majid" AI assistant on every page.
 
 - `client/`: the website, a [Next.js](https://nextjs.org) app (App Router) styled with Tailwind CSS. It is deployed on Vercel.
 - `server/`: the Majid Tech API, an Express + MongoDB app on Heroku. The site's blog reads its posts and images from it.
@@ -19,8 +19,9 @@ In `client/`:
 
 Where things are:
 
-- `client/app/`: the pages (`page.jsx`, `founder/`, `app-creation/`), the shared layout with the nav, page titles and descriptions, the share image (`opengraph-image.jsx`), `sitemap.js`, `robots.js`, and the contact form's server route (`api/contact/route.js`).
-- `client/src/`: the page sections and components (`Header`, `SelectedWork`, `Services`, `Blog`, `Contact`, `Navbar`, …). Components that run in the browser start with `"use client"`.
+- `client/app/`: the pages (`page.jsx`, `founder/`, `app-creation/`), the shared layout with the nav, page titles and descriptions, the share image (`opengraph-image.jsx`), `sitemap.js`, `robots.js`, and the server routes: the contact form (`api/contact`) and Ask Majid (`api/ask`).
+- `client/src/`: the page sections and components (`Header`, `SelectedWork`, `Services`, `Blog`, `Contact`, `Navbar`, `AskMajid`, …). Components that run in the browser start with `"use client"`.
+- `client/src/content/`: the App creation and Selected Work copy. The pages show it and Ask Majid answers from it, so edit it there.
 - `client/public/`: files served as they are: the Selected Work loops and posters (`work/`), images, the founder photo, the résumé and the avatar's voice clip.
 
 ## Environment variables
@@ -29,7 +30,9 @@ Set these in Vercel (Project › Settings › Environment Variables), or in `cli
 
 | Variable | Needed for |
 | --- | --- |
-| `RESEND_API_KEY` | The contact form. It emails each message to majidtechnicalsolutions@gmail.com through [Resend](https://resend.com), with Reply-To set to the visitor. Without it, messages are only logged by the server. |
+| `RESEND_API_KEY` | The contact form and Ask Majid's briefs. They are emailed to majidtechnicalsolutions@gmail.com through [Resend](https://resend.com), with Reply-To set to the visitor. Without it, they are only logged by the server. |
+| `ANTHROPIC_API_KEY` | Ask Majid. Its answers come from Claude; the key stays on the server. Without it the chat says something went wrong. |
+| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Ask Majid's question limits, kept in Upstash Redis. Vercel sets both when you add Upstash from the project's Storage tab. Without them each server counts on its own, which is fine locally. |
 | `NEXT_PUBLIC_SITE_URL` | Optional. The site's address in links, the sitemap and share images. Defaults to https://majidtech.com. |
 | `BLOG_API_URL` | Optional. The Majid Tech API the blog reads from. Defaults to the Heroku app. The site proxies it at `/blog-api`, so the API's CORS list doesn't need the site's addresses. |
 | `NEXT_PUBLIC_HERO_AVATAR` | Optional. `on` shows the hero avatar outside preview deployments (see below). |
@@ -37,6 +40,18 @@ Set these in Vercel (Project › Settings › Environment Variables), or in `cli
 ## Deploying (Vercel)
 
 The Vercel project builds from this repo with **Root Directory** set to `client`; `client/vercel.json` pins the framework to Next.js, so no other settings are needed. Every pull request gets a preview deployment, and merging to `master` deploys to production.
+
+## Ask Majid (AI assistant)
+
+A chat in the corner of every page (`client/src/AskMajid`) that answers visitors' questions about Majid Tech with Claude (Claude Opus 5.5, low effort). On phones it opens full screen.
+
+- It answers only from the site's own copy (`client/src/content`) and the instructions in `client/src/askMajid/knowledge.js`: no prices (they are quoted on a call), no invented clients or results. It says it is an AI.
+- From the chat, "Write my brief" has Claude turn the conversation into a project brief (idea, users, must-haves, timeline, the package that fits). The visitor checks or edits it, adds their email, agrees to send it, and it is emailed to Majid with the conversation (and a copy to the visitor).
+- "Book a call" goes to the contact form.
+- Limits, per rolling day: 20 questions, 5 briefs and 3 sent briefs per visitor, and 400 questions for the whole site. After that the chat points to the contact form and email. Change them in `client/src/askMajid/server.js`.
+- Routes: `api/ask` (streams the answer), `api/ask/brief` (writes the brief), `api/ask/send` (emails it).
+
+To try it locally, put `ANTHROPIC_API_KEY` in `client/.env.local` and run `npm run dev`.
 
 ## Home page avatar
 
