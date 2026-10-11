@@ -2,7 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { SYSTEM_PROMPT } from "../../../src/askMajid/knowledge";
 import { FALLBACKS, MODEL, allow, claude, limitReached, readMessages } from "../../../src/askMajid/server";
 
-// "Ask Majid": answers a visitor's question with Claude, streamed back as
+// "Ask Mr. Majid": answers a visitor's question with Claude, streamed back as
 // newline-delimited JSON events the chat reads as they arrive:
 //   {"text": "..."}  more of the answer
 //   {"reset": true}  drop what was shown (the answer was declined part-way)

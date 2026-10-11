@@ -1,5 +1,5 @@
 // The Selected Work projects: what each is, its tags and its website. The home
-// page shows them, and the "Ask Majid" assistant answers from them.
+// page shows them, and the "Ask Mr. Majid" assistant answers from them.
 
 export const WORK = {
   myNights: {

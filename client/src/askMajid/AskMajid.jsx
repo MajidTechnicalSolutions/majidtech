@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import HashLink from "../components/HashLink";
 
-// "Ask Majid": the AI assistant in the corner of every page. A button (with a
+// "Ask Mr. Majid": the AI assistant in the corner of every page. A button (with a
 // one-time greeting) opens a chat panel, full screen on phones. Answers come
 // from Claude through /api/ask; from the chat Claude can write a project brief
 // (/api/ask/brief) that the visitor checks and sends to Majid (/api/ask/send).
@@ -270,12 +270,12 @@ export default function AskMajid() {
         <button
           type="button"
           onClick={openChat}
-          aria-label="Open Ask Majid, AI assistant"
+          aria-label="Open Ask Mr. Majid, AI assistant"
           className="min-h-[52px] flex items-center gap-2.5 pl-1.5 pr-[18px] py-1.5 bg-[#0b0b0c] border border-majidTech rounded-full text-white text-sm hover:bg-[#151516] transition-colors duration-150"
         >
           <Avatar />
           <span className="flex flex-col items-start leading-4">
-            <span>Ask Majid</span>
+            <span>Ask Mr. Majid</span>
             <span className="text-[11px] text-[#8a8a8b]">AI assistant</span>
           </span>
         </button>
@@ -286,13 +286,13 @@ export default function AskMajid() {
   return (
     <section
       role="dialog"
-      aria-label="Ask Majid, AI assistant"
+      aria-label="Ask Mr. Majid, AI assistant"
       className="fixed z-[70] inset-0 sm:inset-auto sm:right-8 sm:bottom-8 sm:w-[400px] sm:h-[620px] sm:max-h-[calc(100dvh-4rem)] bg-[#0b0b0c] sm:border border-[#1f1f20] sm:rounded-2xl flex flex-col overflow-hidden font-modernEra text-silverDark text-[13px] sm:text-sm leading-5 sm:leading-[21px]"
     >
       <header className="flex items-center gap-3 py-3 sm:py-3.5 pl-4 pr-2 sm:pr-3 border-b border-[#1f1f20]">
         <Avatar />
         <div className="flex-1 flex flex-col">
-          <span className="text-white">Ask Majid</span>
+          <span className="text-white">Ask Mr. Majid</span>
           <span className="text-[11px] sm:text-xs text-[#8a8a8b]">AI assistant · answers from this site</span>
         </div>
         <button
@@ -347,7 +347,7 @@ export default function AskMajid() {
                 {m.content}
               </Bubble>
             ))}
-            {status === "waiting" && <Dots label="Ask Majid is writing" />}
+            {status === "waiting" && <Dots label="Ask Mr. Majid is writing" />}
             {status === "error" && (
               <Bubble from="assistant">Something went wrong on our side. Try again, or use the contact form.</Bubble>
             )}

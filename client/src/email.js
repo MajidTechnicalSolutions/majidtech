@@ -1,5 +1,5 @@
 // Shared by the server routes that email Majid Tech through Resend (the
-// contact form and the "Ask Majid" brief). Server-side only.
+// contact form and the "Ask Mr. Majid" brief). Server-side only.
 
 export const TO = "majidtechnicalsolutions@gmail.com";
 export const FROM = "Jamal from MajidTech <mail@majidtechnicalsolutions.com>";

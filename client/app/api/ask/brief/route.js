@@ -2,7 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { BRIEF_PROMPT, PACKAGE_NAMES, packageTime } from "../../../../src/askMajid/knowledge";
 import { FALLBACKS, MODEL, allow, claude, limitReached, readMessages } from "../../../../src/askMajid/server";
 
-// "Ask Majid": turns the conversation so far into a project brief (idea, users,
+// "Ask Mr. Majid": turns the conversation so far into a project brief (idea, users,
 // must-haves, timeline and the package that fits) for the visitor to check
 // before it is sent. Nothing is sent from here.
 

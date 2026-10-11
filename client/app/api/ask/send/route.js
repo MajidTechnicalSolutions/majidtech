@@ -3,7 +3,7 @@ import { PACKAGE_NAMES, packageTime } from "../../../../src/askMajid/knowledge";
 import { allow, limitReached, readMessages } from "../../../../src/askMajid/server";
 import { FROM, TO, clean, escape, isEmail } from "../../../../src/email";
 
-// "Ask Majid": emails the brief the visitor checked, with the conversation, to
+// "Ask Mr. Majid": emails the brief the visitor checked, with the conversation, to
 // Majid Tech (Reply-To the visitor), and a copy of the brief to the visitor.
 // Only with their consent. Needs RESEND_API_KEY, like the contact form.
 
@@ -32,7 +32,7 @@ export async function POST(request) {
     pkg ? `<p><strong>Fits:</strong> ${escape(`${pkg} · ${packageTime(pkg)}`)}</p>` : "",
   ].join("\n");
   const conversation = messages
-    .map((m) => `<p><strong>${m.role === "user" ? "Visitor" : "Ask Majid"}:</strong> ${html(m.content)}</p>`)
+    .map((m) => `<p><strong>${m.role === "user" ? "Visitor" : "Ask Mr. Majid"}:</strong> ${html(m.content)}</p>`)
     .join("\n");
 
   if (!process.env.RESEND_API_KEY) {
@@ -45,8 +45,8 @@ export async function POST(request) {
     from: FROM,
     to: [TO],
     replyTo: email,
-    subject: `Ask Majid brief: ${brief.idea.replace(/[\r\n]+/g, " ").slice(0, 80)}`,
-    html: `<h2>New project brief from Ask Majid</h2>\n<p><strong>From:</strong> ${escape(email)}</p>\n${rows}\n<h3>Conversation</h3>\n${conversation}`,
+    subject: `Ask Mr. Majid brief: ${brief.idea.replace(/[\r\n]+/g, " ").slice(0, 80)}`,
+    html: `<h2>New project brief from Ask Mr. Majid</h2>\n<p><strong>From:</strong> ${escape(email)}</p>\n${rows}\n<h3>Conversation</h3>\n${conversation}`,
   });
   if (error) {
     console.error("Resend error:", error);

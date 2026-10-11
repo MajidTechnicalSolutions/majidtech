@@ -1,5 +1,5 @@
 // The App creation page's copy: how we work, what we build and the packages.
-// The page shows it, and the "Ask Majid" assistant answers from it.
+// The page shows it, and the "Ask Mr. Majid" assistant answers from it.
 
 export const STEPS = [
   { title: "Plan", text: "We agree what the app must do and who uses it. You get screen mock-ups and a fixed quote." },

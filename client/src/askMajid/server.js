@@ -1,4 +1,4 @@
-// Shared by the "Ask Majid" API routes (app/api/ask): the Claude client, the
+// Shared by the "Ask Mr. Majid" API routes (app/api/ask): the Claude client, the
 // question limits and the checks on what the browser sends. Server-side only;
 // ANTHROPIC_API_KEY never reaches the browser.
 
