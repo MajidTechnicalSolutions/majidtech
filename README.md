@@ -43,7 +43,7 @@ The Vercel project builds from this repo with **Root Directory** set to `client`
 
 ## Ask Majid (AI assistant)
 
-A chat in the corner of every page (`client/src/AskMajid`) that answers visitors' questions about Majid Tech with Claude (Claude Opus 5.5, low effort). On phones it opens full screen.
+A chat in the corner of every page (`client/src/askMajid`) that answers visitors' questions about Majid Tech with Claude (Claude Opus 5.5, low effort). On phones it opens full screen.
 
 - It answers only from the site's own copy (`client/src/content`) and the instructions in `client/src/askMajid/knowledge.js`: no prices (they are quoted on a call), no invented clients or results. It says it is an AI.
 - From the chat, "Write my brief" has Claude turn the conversation into a project brief (idea, users, must-haves, timeline, the package that fits). The visitor checks or edits it, adds their email, agrees to send it, and it is emailed to Majid with the conversation (and a copy to the visitor).

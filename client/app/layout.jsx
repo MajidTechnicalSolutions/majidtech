@@ -2,7 +2,7 @@ import localFont from "next/font/local";
 import { Toaster } from "sonner";
 import "../src/index.css";
 import Navbar from "../src/Navbar";
-import AskMajid from "../src/AskMajid/AskMajid";
+import AskMajid from "../src/askMajid/AskMajid";
 import ScrollToHash from "../src/components/ScrollToHash";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "../src/site";
 
