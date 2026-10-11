@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Home page avatar
+
+The home page hero has an avatar of Majid, large and centred behind the text, with a caption bar underneath (`client/src/HeroAvatar`). It greets the visitor while the hero is on screen and stops when they scroll away. Sound is off until the visitor taps the speaker; the caption always shows; with reduced motion on, only the caption shows.
+
+It is off unless `REACT_APP_HERO_AVATAR=on`. Deploy previews turn it on (`netlify.toml`); production stays off until the real clip is in. To try it locally: `REACT_APP_HERO_AVATAR=on npm start` in `client/`.
+
+The clip and caption are set at the top of `client/src/HeroAvatar/HeroAvatar.jsx`. For now a stock voice reads the caption over a placeholder; add the rendered avatar video there (`video`, optional `webm`, and a `poster` still) to replace it.
+
 ## Available Scripts
 
 In the project directory, you can run:

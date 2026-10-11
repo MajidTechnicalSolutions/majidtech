@@ -3,12 +3,13 @@ import React from "react";
 import Brackets from "../utils/Resources/images/Brackets.svg";
 import { RightArrow } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
+import HeroAvatar, { AVATAR_ON } from "../HeroAvatar";
 
 const Header = () => {
   return (
-    <section id="home" className="mt-56 mb-80">
+    <section id="home" className="relative mt-56 mb-80">
       <div id="Header" className="flex justify-start items-center">
-        <div className="">
+        <div className="relative z-10">
           <h1 className="text-white font-medium not-italic text-3xl lg:text-[6rem] lg:leading-none">
             Eat,sleep
             <br />
@@ -30,10 +31,11 @@ const Header = () => {
         </div>
         <img
           alt="Brackets"
-          className="hidden xl:block xl:w-[35%] bg-no-repeat"
+          className="hidden xl:block xl:w-[35%] bg-no-repeat relative z-10"
           src={Brackets}
         ></img>
       </div>
+      {AVATAR_ON && <HeroAvatar />}
     </section>
   );
 };
