@@ -2,10 +2,10 @@
 
 import React from "react";
 
-const Brackets = "/images/Brackets.svg";
 import { RightArrow } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
 import HeroAvatar, { AVATAR_ON } from "../HeroAvatar";
+import HeroBrackets from "./HeroBrackets";
 
 const Header = () => {
   return (
@@ -31,11 +31,7 @@ const Header = () => {
             destination="Contact"
           />
         </div>
-        <img
-          alt="Brackets"
-          className="hidden xl:block xl:w-[35%] bg-no-repeat relative z-10"
-          src={Brackets}
-        ></img>
+        <HeroBrackets />
       </div>
       {AVATAR_ON && <HeroAvatar />}
     </section>
