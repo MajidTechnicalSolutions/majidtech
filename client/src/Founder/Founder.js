@@ -1,10 +1,13 @@
+"use client";
+
 import React, { useState } from "react";
-import { NavHashLink } from "react-router-hash-link";
+import Image from "next/image";
+import HashLink from "../components/HashLink";
 import useScrollSpy from "../hooks/useScrollSpy";
 import useRevealOnScroll from "../hooks/useRevealOnScroll";
-import ResumeFile from "./Jamal Abdul Majid Updated Resume.docx";
+const ResumeFile = "/resume.docx";
 // Prefer public asset to avoid bundler caching issues in dev
-const Portrait = process.env.PUBLIC_URL + '/founder.png';
+const Portrait = "/founder.png";
 
 function Stat({ label, value }) {
   return (
@@ -17,12 +20,12 @@ function Stat({ label, value }) {
 
 function SectionTitle({ eyebrow, title, children, alignRight = false }) {
   return (
-    <div className={`mb-8 ${alignRight ? 'text-right' : ''}`}>
+    <div className={`mb-20 ${alignRight ? 'text-right' : ''}`}>
       {eyebrow ? (
         <small className="uppercase text-majidTech tracking-wider">{eyebrow}</small>
       ) : null}
       <h2 className="text-white text-3xl lg:text-4xl mt-2">{title}</h2>
-      {children ? <p className="text-silverDark mt-4 lg:w-3/4">{children}</p> : null}
+      {children ? <p className="text-silverDark mt-6 lg:w-3/4">{children}</p> : null}
     </div>
   );
 }
@@ -47,7 +50,7 @@ function Founder() {
   return (
     <section id="Founder" className="m-auto w-9/12 py-20">
       {/* Scroll status (left side) */}
-      <div className="fixed left-4 lg:left-6 top-1/2 -translate-y-1/2 z-40 hidden sm:flex flex-col gap-4">
+      <div className="fixed left-4 lg:left-6 top-1/2 -translate-y-1/2 z-40 hidden sm:flex flex-col gap-6">
         {sectionIds.map((_, idx) => (
           <button
             key={`dot-${idx}`}
@@ -63,26 +66,26 @@ function Founder() {
       <div id="founder-hero" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" data-reveal>
         <div>
           <small className="uppercase text-majidTech">Founder</small>
-          <h1 className="text-white text-4xl lg:text-6xl mt-3 leading-tight">
+          <h1 className="text-white text-4xl lg:text-6xl mt-4 leading-tight">
             Jamal Majid
           </h1>
-          <p className="text-silverDark mt-5 lg:w-4/5">
+          <p className="text-silverDark mt-12 lg:w-4/5">
             Software engineer with professional experience shipping high‑quality products since 2020.
             I build reliable, performant web apps with clear communication, pragmatic engineering,
             and clean interfaces. I’ve supported startups and large enterprises across ecommerce,
             learning platforms, and experimentation at scale.
           </p>
-          <div className="flex gap-4 mt-8">
-            <NavHashLink
+          <div className="flex gap-6 mt-8">
+            <HashLink
               to="/#Contact"
-              className="px-5 py-3 bg-majidTech text-white rounded"
+              className="px-12 py-4 bg-majidTech text-white rounded"
               scroll={(el) => el && el.scrollIntoView({ behavior: 'smooth', block: 'end' })}
             >
               Start a Project
-            </NavHashLink>
+            </HashLink>
             <a
               href={ResumeFile}
-              className="px-5 py-3 border border-silverDark text-white rounded"
+              className="px-12 py-4 border border-silverDark text-white rounded"
               download
               rel="noopener noreferrer"
             >
@@ -96,11 +99,13 @@ function Founder() {
           </div>
         </div>
         <div className="flex justify-center lg:justify-end">
-          <img
+          <Image
             src={Portrait}
             alt="Founder portrait"
+            width={576}
+            height={832}
+            sizes="288px"
             className="w-72 h-[26rem] object-cover rounded-xl ring-1 ring-[#1f1f20] bg-[#0f0f10] brightness-90"
-            loading="lazy"
           />
         </div>
       </div>
@@ -141,18 +146,18 @@ function Founder() {
       <div id="founder-experience" className="mt-24" data-reveal>
         <SectionTitle eyebrow="Experience" title="Experience Timeline" />
         <ol className="relative border-l border-[#1f1f20] ml-3">
-          <li className="mb-10 ml-6">
+          <li className="mb-32 ml-6">
             <span className="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full bg-majidTech"></span>
-            <h4 className="text-white">Software Engineer — Myka Health Systems</h4>
+            <h3 className="text-white">Software Engineer — Myka Health Systems</h3>
             <p className="text-silverDark text-sm">Atlanta, GA • Aug 2024 – Present</p>
             <p className="text-silverDark mt-2">Designing and developing a healthcare website using React, collaborating cross‑functionally to implement scalable solutions. Tools: React, Figma, Sketch.</p>
           </li>
-          <li className="mb-10 ml-6">
+          <li className="mb-32 ml-6">
             <span className="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full bg-majidTech"></span>
-            <h4 className="text-white">Software Engineer — Cognizant Technology Solutions</h4>
+            <h3 className="text-white">Software Engineer — Cognizant Technology Solutions</h3>
             <p className="text-silverDark text-sm">Boston, MA • Feb 2019 – Jul 2024</p>
             <p className="text-silverDark mt-2">Created and maintained client features, advised on UI frameworks and tooling, and supported CI/CD and release processes.</p>
-            <ul className="list-disc ml-4 mt-4 text-silverDark space-y-2">
+            <ul className="list-disc ml-4 mt-6 text-silverDark space-y-2">
               <li>Verizon (Jun 2023 – Jul 2024): React, Redux, TypeScript, custom hooks, Adobe Target, Jest.</li>
               <li>Cengage (May 2022 – May 2023): React/Next.js, Bloomreach CMS, Node.js, Java; Release Manager for CI/CD launches.</li>
               <li>Home Depot (Oct 2020 – May 2022): A/B testing features across site; built RN internal app; Adobe Target, Figma, InVision.</li>
@@ -168,24 +173,24 @@ function Founder() {
       <div id="founder-education" className="mt-16 lg:w-1/2 ml-auto" data-reveal>
         <SectionTitle eyebrow="Education" title="Educational Timeline" alignRight />
         <ol className="relative border-r border-[#1f1f20] mr-3">
-          <li className="mb-10 mr-6 text-right">
+          <li className="mb-32 mr-6 text-right">
             <span className="absolute -right-1.5 mt-1.5 h-3 w-3 rounded-full bg-majidTech"></span>
-            <h4 className="text-white">Web Development — Udemy (Online)</h4>
+            <h3 className="text-white">Web Development — Udemy (Online)</h3>
             <p className="text-silverDark text-sm">2018 – 2019</p>
           </li>
-          <li className="mb-10 mr-6 text-right">
+          <li className="mb-32 mr-6 text-right">
             <span className="absolute -right-1.5 mt-1.5 h-3 w-3 rounded-full bg-majidTech"></span>
-            <h4 className="text-white">Front‑End Development — Codecademy (Online)</h4>
+            <h3 className="text-white">Front‑End Development — Codecademy (Online)</h3>
             <p className="text-silverDark text-sm">2018</p>
           </li>
-          <li className="mb-10 mr-6 text-right">
+          <li className="mb-32 mr-6 text-right">
             <span className="absolute -right-1.5 mt-1.5 h-3 w-3 rounded-full bg-majidTech"></span>
-            <h4 className="text-white">General Education — Georgia Perimeter College, Clarkston GA</h4>
+            <h3 className="text-white">General Education — Georgia Perimeter College, Clarkston GA</h3>
             <p className="text-silverDark text-sm">2013 – 2015</p>
           </li>
           <li className="mr-6 text-right">
             <span className="absolute -right-1.5 mt-1.5 h-3 w-3 rounded-full bg-majidTech"></span>
-            <h4 className="text-white">General Education — Miller Grove HS, Lithonia GA</h4>
+            <h3 className="text-white">General Education — Miller Grove HS, Lithonia GA</h3>
             <p className="text-silverDark text-sm">2011 – 2013</p>
           </li>
         </ol>
@@ -200,7 +205,7 @@ function Founder() {
           <button
             type="button"
             onClick={() => setShowSocials((s) => !s)}
-            className={`px-5 py-3 bg-majidTech text-white rounded w-max smooth-trans ease-smooth duration-500 ${showSocials ? 'mr-3' : 'mr-0'}`}
+            className={`px-12 py-4 bg-majidTech text-white rounded w-max smooth-trans ease-smooth duration-500 ${showSocials ? 'mr-3' : 'mr-0'}`}
             aria-expanded={showSocials}
             aria-controls="founder-socials"
           >

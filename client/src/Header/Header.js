@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
 
-import Brackets from "../utils/Resources/images/Brackets.svg";
+const Brackets = "/images/Brackets.svg";
 import { RightArrow } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
 import HeroAvatar, { AVATAR_ON } from "../HeroAvatar";
@@ -16,10 +18,10 @@ const Header = () => {
             <span className="text-majidTech">&lt;code&gt;</span>
             <span>,repeat</span>
           </h1>
-          <p className="text-silverDark break-keep mb-7 mt-4 lg:text-base xl:w-4/5">
+          <p className="text-silverDark break-keep mb-16 mt-6 lg:text-base xl:w-4/5">
             Majid Technical solutions strives for creative development in all of our work, with
             years of experience in building responsive, modern, coherent web applications.
-            Experienced in collaborating with SMEs as well as large enterprises including Macy's,
+            Experienced in collaborating with SMEs as well as large enterprises including Macy&apos;s,
             Verizon, Cengage Group and Home Depot.
           </p>
           <ButtonPrimary

@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useMemo, useState } from 'react';
 
 // Returns active index for the section whose top is at/above the current

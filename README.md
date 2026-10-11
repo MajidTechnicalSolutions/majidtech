@@ -1,76 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Majid Tech website
+
+The company site at [majidtech.com](https://majidtech.com): the home page (hero, Selected Work, Services, Blog, Testimonials, Contact), the App creation page (`/app-creation`) and the Founder page (`/founder`).
+
+- `client/`: the website, a [Next.js](https://nextjs.org) app (App Router) styled with Tailwind CSS. It is deployed on Vercel.
+- `server/`: the Majid Tech API, an Express + MongoDB app on Heroku. The site's blog reads its posts and images from it.
+
+## Working on the site
+
+In `client/`:
+
+| Command | What it does |
+| --- | --- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Run the site at http://localhost:3000 with live reload |
+| `npm run build` | Build for production (also checks every page renders) |
+| `npm start` | Serve the production build |
+| `npm run lint` | Lint with ESLint (Next.js core web vitals rules) |
+
+Where things are:
+
+- `client/app/`: the pages (`page.jsx`, `founder/`, `app-creation/`), the shared layout with the nav, page titles and descriptions, the share image (`opengraph-image.jsx`), `sitemap.js`, `robots.js`, and the contact form's server route (`api/contact/route.js`).
+- `client/src/`: the page sections and components (`Header`, `SelectedWork`, `Services`, `Blog`, `Contact`, `Navbar`, …). Components that run in the browser start with `"use client"`.
+- `client/public/`: files served as they are: the Selected Work loops and posters (`work/`), images, the founder photo, the résumé and the avatar's voice clip.
+
+## Environment variables
+
+Set these in Vercel (Project › Settings › Environment Variables), or in `client/.env.local` to try them locally.
+
+| Variable | Needed for |
+| --- | --- |
+| `RESEND_API_KEY` | The contact form. It emails each message to majidtechnicalsolutions@gmail.com through [Resend](https://resend.com), with Reply-To set to the visitor. Without it, messages are only logged by the server. |
+| `NEXT_PUBLIC_SITE_URL` | Optional. The site's address in links, the sitemap and share images. Defaults to https://majidtech.com. |
+| `BLOG_API_URL` | Optional. The Majid Tech API the blog reads from. Defaults to the Heroku app. The site proxies it at `/blog-api`, so the API's CORS list doesn't need the site's addresses. |
+| `NEXT_PUBLIC_HERO_AVATAR` | Optional. `on` shows the hero avatar outside preview deployments (see below). |
+
+## Deploying (Vercel)
+
+The Vercel project builds from this repo with **Root Directory** set to `client`; `client/vercel.json` pins the framework to Next.js, so no other settings are needed. Every pull request gets a preview deployment, and merging to `master` deploys to production.
 
 ## Home page avatar
 
 The home page hero has an avatar of Majid, large and centred behind the text, with a caption bar underneath (`client/src/HeroAvatar`). It greets the visitor while the hero is on screen and stops when they scroll away. Sound is off until the visitor taps the speaker; the caption always shows; with reduced motion on, only the caption shows.
 
-It is off unless `REACT_APP_HERO_AVATAR=on`. Deploy previews turn it on (`netlify.toml`); production stays off until the real clip is in. To try it locally: `REACT_APP_HERO_AVATAR=on npm start` in `client/`.
+It shows on Vercel preview deployments, and elsewhere only with `NEXT_PUBLIC_HERO_AVATAR=on`, so production stays as it is until the real clip is in. To try it locally: `NEXT_PUBLIC_HERO_AVATAR=on npm run dev` in `client/`.
 
-The clip and caption are set at the top of `client/src/HeroAvatar/HeroAvatar.jsx`. For now a stock voice reads the caption over a placeholder; add the rendered avatar video there (`video`, optional `webm`, and a `poster` still) to replace it.
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The clip and caption are set at the top of `client/src/HeroAvatar/HeroAvatar.jsx`. For now a stock voice (`client/public/avatar/home.m4a`) reads the caption over a placeholder; add the rendered avatar video there (`video`, optional `webm`, and a `poster` still) to replace it.

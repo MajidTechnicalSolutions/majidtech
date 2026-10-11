@@ -1,9 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./app/**/*.{js,jsx}", "./src/**/*.{js,jsx}"],
   theme: {
     fontFamily: {
-      modernEra: "ModernEraMono-Regular",
+      // Loaded and preloaded by next/font in app/layout.jsx.
+      modernEra: ["var(--font-modern-era)", "monospace"],
     },
     extend: {
       colors: {
