@@ -3,6 +3,7 @@ import { Toaster } from "sonner";
 import "../src/index.css";
 import Navbar from "../src/Navbar";
 import AskMajid from "../src/askMajid/AskMajid";
+import BookCall from "../src/components/BookCall";
 import ScrollToHash from "../src/components/ScrollToHash";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "../src/site";
 
@@ -51,6 +52,7 @@ export default function RootLayout({ children }) {
             {children}
           </main>
           <AskMajid />
+          <BookCall />
         </div>
       </body>
     </html>

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Book a call on Google Calendar after the contact form: once a message is sent, a pop-up shows Mr. Majid's Google Calendar booking page for a 30-minute Meet call; Ask Mr. Majid's "Book a call" opens it too.
 - "Ask Mr. Majid" AI assistant on the website (Claude): a chat on every page that answers visitors' questions from the site's own copy (services, packages without prices, how we work, the apps we built), writes a project brief from the conversation and, with the visitor's email and consent, sends it to Majid. Questions are limited per visitor and per day.
 - Update the phone number on the contact section: now +1 (404) 689-3416.
 - Move the website to Next.js and clear the outdated parts: the site now runs on Next.js (instead of Create React App) and is set up for Vercel. It looks the same, with these fixes: the contact form works again (it was sending to a development address, so messages from the live site never arrived) and now goes through the site's own server; the blog loads through the site, so it works on any address; the footer shows the current year; each page has a title, description and share image, and the site has a sitemap; pages load faster on phones (Lighthouse mobile performance about 95, up from 70); and the old Bootstrap, MUI, Redux and router packages are gone, leaving no known security issues in what the site ships.

@@ -15,6 +15,7 @@ import PhoneInput from "react-phone-number-input";
 import { GithubIcon } from "../utils/Resources/Svgs";
 import { TwitterIcon } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
+import { openBookCall } from "../components/bookCall";
 import { LinkedinIcon } from "../utils/Resources/Svgs";
 
 import "./Contact.css"; 
@@ -46,15 +47,9 @@ function Contact() {
 
       if (response.ok) {
         toast.dismiss(loadingToast);
-        toast.success("Message sent successfully! 🚀", {
-          description: "Thank you for reaching out. We'll get back to you soon!",
-          duration: 5000,
-          action: {
-            label: "Close",
-            onClick: () => {},
-          },
-        });
         reset(); // Clear the form
+        // "Message sent", and the chance to book a call with Mr. Majid straight away.
+        openBookCall("contact");
       } else {
         toast.dismiss(loadingToast);
         toast.error("Failed to send message", {
