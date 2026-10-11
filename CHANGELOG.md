@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Site address fix: a trailing slash in NEXT_PUBLIC_SITE_URL no longer puts "//" in the sitemap and page links.
 - Move the website to Next.js and clear the outdated parts: the site now runs on Next.js (instead of Create React App) and is set up for Vercel. It looks the same, with these fixes: the contact form works again (it was sending to a development address, so messages from the live site never arrived) and now goes through the site's own server; the blog loads through the site, so it works on any address; the footer shows the current year; each page has a title, description and share image, and the site has a sitemap; pages load faster on phones (Lighthouse mobile performance about 95, up from 70); and the old Bootstrap, MUI, Redux and router packages are gone, leaving no known security issues in what the site ships.
 - Redesign Majid Tech website: an avatar of Majid in the home page hero, large and centred behind the text, that greets visitors while the hero is on screen, with a caption and a sound button (off until tapped). It shows on deploy previews only for now, with a stock voice and a placeholder until the real avatar is recorded.
 - Offer web app creation service on Majid Tech: a new App creation page (/app-creation), opened from a Services dropdown in the nav (desktop) and the Services group in the mobile menu. It covers how we work, what we build, the five packages without prices (quoted on a call), apps we have built with their device loops, and the contact form.
