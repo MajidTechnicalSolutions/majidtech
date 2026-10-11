@@ -60,7 +60,7 @@ After the contact form sends, a pop-up ("Message sent") offers a 30-minute video
 - The booking page is Google's and keeps Google's styling. Its hours, call length and Meet link are set in Google Calendar (the "Call with Mr. Majid" appointment schedule), not in the code.
 - Its two addresses are in `client/src/site.js`: `BOOKING_LINK` (the share link) and `BOOKING_EMBED` (the full address with `gv=true`, the form Google allows other sites to embed). Making a new schedule means updating both.
 - If Google is blocked (some ad blockers and work networks), the pop-up offers "Open Google Calendar" and the email address instead.
-- The pop-up is `client/src/components/BookCall.jsx`; open it from anywhere with `openBookCall("contact" | "chat")` from `client/src/components/bookCall.js`.
+- The pop-up is `client/src/components/BookCall.jsx`; open it from anywhere with `openBookCall("contact" | "chat")` from `client/src/components/bookCallEvents.js`.
 
 ## Home page avatar
 

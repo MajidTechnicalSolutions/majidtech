@@ -15,7 +15,7 @@ import PhoneInput from "react-phone-number-input";
 import { GithubIcon } from "../utils/Resources/Svgs";
 import { TwitterIcon } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
-import { openBookCall } from "../components/bookCall";
+import { openBookCall } from "../components/bookCallEvents";
 import { LinkedinIcon } from "../utils/Resources/Svgs";
 
 import "./Contact.css"; 

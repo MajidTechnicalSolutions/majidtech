@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import HashLink from "../components/HashLink";
-import { openBookCall } from "../components/bookCall";
+import { openBookCall } from "../components/bookCallEvents";
 
 // "Ask Mr. Majid": the AI assistant in the corner of every page. A button (with a
 // one-time greeting) opens a chat panel, full screen on phones. Answers come

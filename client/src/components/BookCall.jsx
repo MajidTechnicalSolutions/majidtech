@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { BOOKING_EMBED, BOOKING_LINK } from "../site";
-import { openAskMajid } from "./bookCall";
+import { openAskMajid } from "./bookCallEvents";
 
 // "Book a call": a pop-up holding Mr. Majid's Google Calendar booking page, so a
 // visitor books a 30-minute Meet call straight onto his calendar (Google sends
