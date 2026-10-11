@@ -228,7 +228,7 @@ function Contact() {
         </div>
         <div className="email py-6">
           <div className="mb-2 underline">majidtechnicalsolutions@gmail.com</div>{" "}
-          <span className="contactNumber"> +1(678)768-5875</span>
+          <span className="contactNumber"> +1 (404) 689-3416</span>
         </div>
         <div className="icons flex justify-start max-w-[12rem]">
           <a href="https://www.linkedin.com/in/jamal-majid-0ab9ab177/#/" aria-label="Jamal Majid on LinkedIn">
