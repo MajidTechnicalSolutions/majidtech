@@ -62,6 +62,10 @@ After the contact form sends, a pop-up ("Message sent") offers a 30-minute video
 - If Google is blocked (some ad blockers and work networks), the pop-up offers "Open Google Calendar" and the email address instead.
 - The pop-up is `client/src/components/BookCall.jsx`; open it from anywhere with `openBookCall("contact" | "chat")` from `client/src/components/bookCallEvents.js`.
 
+## Hero brackets
+
+On wide screens (1280px and up) the hero's `{ }` brackets are a 3D wireframe that sways slowly and tilts toward the cursor (`client/src/Header/HeroBrackets.jsx`, drawn by `heroBracketsMesh.js` on a canvas, no 3D library). The still picture (`client/public/images/Brackets.svg`) shows first; the 3D version is fetched and faded in only once the page has loaded and the browser is idle, and it pauses when scrolled out of view or the tab is hidden. Reduced motion, data saver and low-power devices (under 4 CPU cores) keep the still picture. The shape, thickness, colours and particles are set at the top of `heroBracketsMesh.js`.
+
 ## Home page avatar
 
 The home page hero has an avatar of Majid, large and centred behind the text, with a caption bar underneath (`client/src/HeroAvatar`). It greets the visitor while the hero is on screen and stops when they scroll away. Sound is off until the visitor taps the speaker; the caption always shows; with reduced motion on, only the caption shows.
