@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Home page avatar
+
+The home page has an avatar of Majid that speaks one short clip per section as you scroll (`client/src/ScrollAvatar`). It sits in the hero on wide screens and becomes a bubble in the corner further down (pinned at the top on phones). Sound is off until the visitor taps the speaker; captions always show; with reduced motion on, only the captions show.
+
+It is off unless `REACT_APP_SCROLL_AVATAR=on`. Deploy previews turn it on (`netlify.toml`); production stays off until the real clips are in. To try it locally: `REACT_APP_SCROLL_AVATAR=on npm start` in `client/`.
+
+Clips and captions live in `client/src/ScrollAvatar/clips.js`, one per section. For now each is a stock voice reading the caption over a placeholder frame; add the rendered avatar video (`video`, optional `webm`, and a `poster` still) there to replace it.
+
 ## Available Scripts
 
 In the project directory, you can run:
