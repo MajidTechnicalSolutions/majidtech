@@ -11,9 +11,9 @@ import HashLink from "../components/HashLink";
 // The conversation is kept for the browser tab in sessionStorage.
 
 const GREETING =
-  "Hi, I'm Majid's assistant. Ask me about building your app: what we make, how we work and how long it takes.";
+  "Hi, I'm Mr. Majid's assistant. Ask me about building your app: what we make, how we work and how long it takes.";
 const SUGGESTIONS = ["How long does a mobile app take?", "What's in a Discovery Sprint?", "Can you add AI features to my app?"];
-const DISCLAIMER = "AI can make mistakes. Majid confirms everything on a call.";
+const DISCLAIMER = "AI can make mistakes. Mr. Majid confirms everything on a call.";
 const EMAIL = "majidtechnicalsolutions@gmail.com";
 const BRIEF_FIELDS = [
   ["idea", "Idea"],
@@ -69,13 +69,13 @@ const Dots = ({ label }) => (
   <div
     role="status"
     aria-label={label}
-    className="self-start bg-backgroundDark border border-[#1f1f20] rounded-[12px_12px_12px_4px] px-4 py-3.5 flex gap-1.5"
+    className="self-start bg-backgroundDark border border-[#1f1f20] rounded-[12px_12px_12px_4px] px-4 pt-4 pb-3 flex items-end gap-1.5"
   >
-    {[1, 0.6, 0.3].map((opacity, i) => (
+    {[0, 160, 320].map((delay) => (
       <span
-        key={opacity}
-        className="w-2 h-2 rounded-full bg-majidTech motion-safe:animate-pulse"
-        style={{ opacity, animationDelay: `${i * 150}ms` }}
+        key={delay}
+        className="w-2 h-2 rounded-full bg-majidTech motion-safe:animate-typing motion-reduce:animate-typing-fade"
+        style={{ animationDelay: `${delay}ms` }}
       />
     ))}
   </div>
@@ -314,7 +314,7 @@ export default function AskMajid() {
               <path d="M5 12l5 5 9-10" />
             </svg>
           </span>
-          <h2 className="text-white text-[21px]">Sent to Majid</h2>
+          <h2 className="text-white text-[21px]">Sent to Mr. Majid</h2>
           <p className="max-w-[280px]">
             He&apos;ll reply to {email}, usually within a working day. A copy of your brief is in your inbox.
           </p>
@@ -391,7 +391,7 @@ export default function AskMajid() {
                 )}
                 {brief && (
                   <>
-                    <Bubble from="assistant">Here&apos;s a brief from what you told me. Check it, then I&apos;ll send it to Majid.</Bubble>
+                    <Bubble from="assistant">Here&apos;s a brief from what you told me. Check it, then I&apos;ll send it to Mr. Majid.</Bubble>
                     <article aria-label="Project brief" className="bg-black border border-[#1f1f20] rounded-xl p-3.5 flex flex-col gap-2.5">
                       <div className="flex justify-between items-center">
                         <span className="text-majidTech text-[11px] uppercase tracking-[0.08em]">Project brief</span>
@@ -431,7 +431,7 @@ export default function AskMajid() {
                     </article>
                     <form onSubmit={sendBrief} className="flex flex-col gap-2.5">
                       <label htmlFor="brief-email" className="text-silverLight text-[13px]">
-                        Your email, so Majid can reply
+                        Your email, so Mr. Majid can reply
                       </label>
                       <input
                         id="brief-email"
@@ -463,7 +463,7 @@ export default function AskMajid() {
                           disabled={!consent || sendStatus === "sending"}
                           className="flex-1 min-h-11 bg-majidTech rounded-[10px] text-black disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          {sendStatus === "sending" ? "Sending…" : "Send to Majid"}
+                          {sendStatus === "sending" ? "Sending…" : "Send to Mr. Majid"}
                         </button>
                         {contactLink("Book a call", `${outline} justify-center border-[#1f1f20] text-white hover:border-grayMid`)}
                       </div>
@@ -478,7 +478,7 @@ export default function AskMajid() {
 
             {status === "limit" && (
               <>
-                <Bubble from="assistant">That&apos;s all the questions I can answer for now. Majid can pick it up from here.</Bubble>
+                <Bubble from="assistant">That&apos;s all the questions I can answer for now. Mr. Majid can pick it up from here.</Bubble>
                 <div className="flex flex-col gap-2">
                   {contactLink("Use the contact form", `${outline} px-3.5 border-majidTech text-white hover:bg-[#151516]`)}
                   <a

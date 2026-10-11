@@ -58,7 +58,7 @@ export async function POST(request) {
     from: FROM,
     to: [email],
     subject: "Your project brief for Majid Tech",
-    html: `<p>Thanks for telling us about your app. Here is the brief you sent to Majid; he will reply, usually within a working day.</p>\n${rows}\n<p>Majid Technical Solutions</p>`,
+    html: `<p>Thanks for telling us about your app. Here is the brief you sent to Mr. Majid; he will reply, usually within a working day.</p>\n${rows}\n<p>Majid Technical Solutions</p>`,
   });
   if (copy.error) console.error("Resend error (visitor copy):", copy.error);
 

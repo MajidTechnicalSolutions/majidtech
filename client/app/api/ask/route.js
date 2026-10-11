@@ -9,7 +9,7 @@ import { FALLBACKS, MODEL, allow, claude, limitReached, readMessages } from "../
 //   {"error": true}  stop; show the "something went wrong" message
 // Needs ANTHROPIC_API_KEY on the server.
 
-const DECLINED = "I can't help with that one here. Majid can talk it through with you on a call.";
+const DECLINED = "I can't help with that one here. Mr. Majid can talk it through with you on a call.";
 
 export async function POST(request) {
   let body;
