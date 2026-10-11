@@ -36,7 +36,7 @@ Set these in Vercel (Project › Settings › Environment Variables), or in `cli
 
 ## Deploying (Vercel)
 
-The Vercel project builds from this repo with **Root Directory** set to `client`; Vercel detects Next.js and needs no other settings. Every pull request gets a preview deployment, and merging to `master` deploys to production.
+The Vercel project builds from this repo with **Root Directory** set to `client`; `client/vercel.json` pins the framework to Next.js, so no other settings are needed. Every pull request gets a preview deployment, and merging to `master` deploys to production.
 
 ## Home page avatar
 
