@@ -1,12 +1,10 @@
 import { Resend } from "resend";
+import { FROM, TO, clean, escape, isEmail } from "../../../src/email";
 
 // The contact form posts here. It emails the message to Majid Tech through
 // Resend, with Reply-To set to the visitor. Needs RESEND_API_KEY on the server
 // (Vercel › Settings › Environment Variables); without it the message is only
 // logged, which is fine for local development.
-
-const TO = "majidtechnicalsolutions@gmail.com";
-const FROM = "Jamal from MajidTech <mail@majidtechnicalsolutions.com>";
 
 const FIELDS = {
   name: "Name",
@@ -17,12 +15,6 @@ const FIELDS = {
   inbound: "How they found us",
   message: "Message",
 };
-
-// Visitors' text goes into an HTML email, so escape it.
-const escape = (value) =>
-  String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-
-const clean = (value, max) => (typeof value === "string" ? value.trim().slice(0, max) : "");
 
 export async function POST(request) {
   let body;
@@ -35,7 +27,7 @@ export async function POST(request) {
   const data = Object.fromEntries(
     Object.keys(FIELDS).map((key) => [key, clean(body?.[key], key === "message" ? 5000 : 200)])
   );
-  if (!data.name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+  if (!data.name || !isEmail(data.email)) {
     return Response.json({ success: false, message: "Name and a valid email are required" }, { status: 400 });
   }
 
