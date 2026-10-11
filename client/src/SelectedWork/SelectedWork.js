@@ -1,58 +1,61 @@
+"use client";
+
 // @ts-ignore
 import React from "react";
 import { ArrowDown, UpArrow } from "../utils/Resources/Svgs";
 import useIsMobile from '../hooks/useIsMobile';
 import Tag from "../utils/Tags";
 import DeviceVideo from "../components/DeviceVideo";
-import MykaVideo from "../utils/Resources/work/myka.mp4";
-import MykaPoster from "../utils/Resources/work/myka.jpg";
-import LingLingVideo from "../utils/Resources/work/lingling.mp4";
-import LingLingPoster from "../utils/Resources/work/lingling.jpg";
-import MyNightsVideo from "../utils/Resources/work/mynights.mp4";
-import MyNightsPoster from "../utils/Resources/work/mynights.jpg";
-import MuhaarybVideo from "../utils/Resources/work/muhaaryb.mp4";
-import MuhaarybPoster from "../utils/Resources/work/muhaaryb.jpg";
-import InspireVideo from "../utils/Resources/work/inspire.mp4";
-import InspirePoster from "../utils/Resources/work/inspire.jpg";
+const MykaVideo = "/work/myka.mp4";
+const MykaPoster = "/work/myka.jpg";
+const LingLingVideo = "/work/lingling.mp4";
+const LingLingPoster = "/work/lingling.jpg";
+const MyNightsVideo = "/work/mynights.mp4";
+const MyNightsPoster = "/work/mynights.jpg";
+const MuhaarybVideo = "/work/muhaaryb.mp4";
+const MuhaarybPoster = "/work/muhaaryb.jpg";
+const InspireVideo = "/work/inspire.mp4";
+const InspirePoster = "/work/inspire.jpg";
+
+const WorkComponent = ({ title, text, tags, video, poster, device, customStyle = "", tagStyle, link }) => (
+  <article className={`text-silverDark flex flex-col ${device === "phone" ? "items-center" : ""} ${customStyle || ""}`}>
+    <DeviceVideo src={video} poster={poster} device={device} title={title} />
+    <div className={`w-full ${device === "phone" ? "max-w-[440px] mt-8" : "mt-6 lg:px-10"}`}>
+      <p className="mb-6">
+        <span className="text-white">{title} — </span>
+        {text}
+      </p>
+      <div id="additionalInfo" className="flex justify-between">
+        {link ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-grayMid flex h-0 pt-2 hover:text-white transition-colors duration-200"
+            aria-label={`Visit ${title} website`}
+          >
+            Website{" "}
+            <UpArrow
+              customStyle={{
+                general: { width: 26, height: 26, fill: "none", viewBox: "-12 3 43 25" },
+                color: "#686869",
+              }}
+              viewBoxSetting="-5 -1 35 31"
+            />
+          </a>
+        ) : (
+          <span />
+        )}
+        <Tag tagNames={tags} tagStyle={tagStyle} />
+      </div>
+    </div>
+  </article>
+);
 
 const SelectedWork = () => {
   const isMobile = useIsMobile();
   // Cards stack below Tailwind's lg breakpoint; there each laptop is followed by a phone.
   const isStacked = useIsMobile(1023);
-  const WorkComponent = ({ title, text, tags, video, poster, device, customStyle = "", tagStyle, link }) => (
-    <article className={`text-silverDark flex flex-col ${device === "phone" ? "items-center" : ""} ${customStyle || ""}`}>
-      <DeviceVideo src={video} poster={poster} device={device} title={title} />
-      <div className={`w-full ${device === "phone" ? "max-w-[440px] mt-8" : "mt-6 lg:px-10"}`}>
-        <p className="mb-4">
-          <span className="text-white">{title} — </span>
-          {text}
-        </p>
-        <div id="additionalInfo" className="flex justify-between">
-          {link ? (
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-grayMid flex h-0 pt-2 hover:text-white transition-colors duration-200"
-              aria-label={`Visit ${title} website`}
-            >
-              Website{" "}
-              <UpArrow
-                customStyle={{
-                  general: { width: 26, height: 26, fill: "none", viewBox: "-12 3 43 25" },
-                  color: "#686869",
-                }}
-                viewBoxSetting="-5 -1 35 31"
-              />
-            </a>
-          ) : (
-            <span />
-          )}
-          <Tag tagNames={tags} tagStyle={tagStyle} />
-        </div>
-      </div>
-    </article>
-  );
   const myNights = (
     <WorkComponent
       title="MyNights"
@@ -77,8 +80,8 @@ const SelectedWork = () => {
     />
   );
   return (
-    <section id="Selectedwork" className="container mx-auto px-4">
-      <div className={isMobile ? "flex justify-between flex-col lg:flex-row mb-10": "flex justify-between flex-col lg:flex-row mb-36" }>
+    <section id="Selectedwork" className="container mx-auto px-6">
+      <div className={isMobile ? "flex justify-between flex-col lg:flex-row mb-32": "flex justify-between flex-col lg:flex-row mb-36" }>
         <h1 className="text-white font-medium not-italic text-2xl sm:text-3xl lg:text-3xl flex items-center justify-center gap-2 w-full lg:w-auto">
           <span className="whitespace-nowrap">Selected Work</span> <ArrowDown color="#FD5A1E" />
         </h1>

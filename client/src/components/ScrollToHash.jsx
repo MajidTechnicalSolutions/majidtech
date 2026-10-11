@@ -1,8 +1,12 @@
+"use client";
+
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
+import useHash from "../hooks/useHash";
 
 export default function ScrollToHash({ offset = 120 }) {
-    const { pathname, hash } = useLocation();
+    const pathname = usePathname();
+    const hash = useHash();
 
     useEffect(() => {
         if (!hash) return;

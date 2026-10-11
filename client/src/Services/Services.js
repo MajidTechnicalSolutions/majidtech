@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   MongodbCube,
@@ -90,16 +92,16 @@ function Services() {
         </div>
         <div className="services flex flex-col justify-center items-center text-center flex-wrap w-[45%]">
           <small className="uppercase text-majidTech"> Skills & Offered services </small>
-          <h2 className="text-white text-4xl mb-2 mt-4">
+          <h2 className="text-white text-4xl mb-2 mt-6">
             No matter the technology or architecture – I have you covered.
           </h2>
-          <p className="text-silverDark mb-8">
+          <p className="text-silverDark mb-20">
             Whether you are envisioning a sleek and responsive website, a robust e-commerce
             platform, or a dynamic web application, we thrive on embracing diverse technologies and
             architectures. Our seasoned team of developers is well-versed in the latest industry
             trends, ensuring that your digital presence not only meets but exceeds the ever-evolving
             standards. From classic HTML/CSS designs to cutting-edge frameworks and cloud-based
-            solutions, we tailor our services to your unique needs. Partner with us, and let's turn
+            solutions, we tailor our services to your unique needs. Partner with us, and let&apos;s turn
             your digital dreams into reality, irrespective of the technological landscape you wish
             to explore.
           </p>

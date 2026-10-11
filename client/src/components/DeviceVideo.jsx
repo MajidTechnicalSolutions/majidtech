@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 
 // A device (phone or laptop) playing a short silent loop of the project in use.
@@ -22,6 +24,9 @@ const DeviceVideo = ({ src, poster, device, title, sizeClass }) => {
     video.setAttribute("muted", "");
     const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion || !("IntersectionObserver" in window)) {
+      // Only known in the browser, so it can't be the initial state (the
+      // server-rendered page has to match the first render).
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFallback("tap");
       return undefined;
     }

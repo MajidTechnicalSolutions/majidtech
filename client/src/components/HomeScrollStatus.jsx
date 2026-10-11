@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import useScrollSpy from "../hooks/useScrollSpy";
 import useRevealOnScroll from "../hooks/useRevealOnScroll";
@@ -20,7 +22,7 @@ function HomeScrollStatus() {
     };
 
     return (
-        <div className="fixed left-4 lg:left-6 top-1/2 -translate-y-1/2 z-40 hidden sm:flex flex-col gap-4">
+        <div className="fixed left-4 lg:left-6 top-1/2 -translate-y-1/2 z-40 hidden sm:flex flex-col gap-6">
             {sections.map((_, idx) => (
                 <button
                     key={`home-dot-${idx}`}

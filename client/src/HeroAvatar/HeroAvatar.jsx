@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import HomeVoice from "./media/home.m4a";
+"use client";
+
+import React, { useEffect, useRef, useState, useSyncExternalStore } from "react";
+const HomeVoice = "/avatar/home.m4a";
 
 // The avatar of Majid in the home page hero: large, centred behind the text,
 // fading into the background at its edges, with a caption bar underneath.
@@ -8,10 +10,12 @@ import HomeVoice from "./media/home.m4a";
 // block autoplay with sound); the caption always shows. With reduced motion
 // on, nothing plays and only the caption shows.
 //
-// It is off unless REACT_APP_HERO_AVATAR=on, so it can be reviewed on deploy
-// previews before the real avatar clip exists.
+// It shows on Vercel preview deployments, and elsewhere only with
+// NEXT_PUBLIC_HERO_AVATAR=on, so it can be reviewed before the real avatar
+// clip exists.
 
-export const AVATAR_ON = process.env.REACT_APP_HERO_AVATAR === "on";
+export const AVATAR_ON =
+  process.env.NEXT_PUBLIC_HERO_AVATAR === "on" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
 
 // Until the real avatar is rendered, a stock voice reads the caption over a
 // placeholder. To drop in the avatar, add its render to ./media and set
@@ -42,6 +46,16 @@ const start = (media) => {
   });
 };
 
+// Whether the visitor asked for reduced motion; false while rendering on the server.
+const REDUCED = "(prefers-reduced-motion: reduce)";
+const subscribeReduced = (onChange) => {
+  const query = window.matchMedia?.(REDUCED);
+  query?.addEventListener?.("change", onChange);
+  return () => query?.removeEventListener?.("change", onChange);
+};
+const useReducedMotion = () =>
+  useSyncExternalStore(subscribeReduced, () => !!window.matchMedia?.(REDUCED).matches, () => false);
+
 // The edges fade out so the avatar sits in the black background.
 const fade = "radial-gradient(closest-side, #000 55%, transparent 100%)";
 
@@ -49,9 +63,7 @@ const HeroAvatar = () => {
   const layerRef = useRef(null);
   const mediaRef = useRef(null);
   const [soundOn, setSoundOn] = useState(false);
-  const [reduceMotion] = useState(
-    () => !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
-  );
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const media = mediaRef.current;
@@ -100,7 +112,7 @@ const HeroAvatar = () => {
           <source src={src} />
         </video>
         {!CLIP.video && (
-          <div className="absolute inset-0 flex flex-col items-center justify-end gap-3 pb-10 bg-[#141415]">
+          <div className="absolute inset-0 flex flex-col items-center justify-end gap-4 pb-10 bg-[#141415]">
             <svg width="320" height="374" viewBox="0 0 24 28" fill="none" stroke="#686869" strokeWidth="0.6">
               <circle cx="12" cy="8" r="5" />
               <path d="M2 28c0-7 4.5-10 10-10s10 3 10 10" />
@@ -110,7 +122,7 @@ const HeroAvatar = () => {
           </div>
         )}
       </div>
-      <div className="relative z-10 mx-auto mt-16 max-w-[520px] flex items-center gap-3 bg-backgroundDark border-[1px] border-[#1f1f20] rounded-xl py-2 pl-4 pr-2">
+      <div className="relative z-10 mx-auto mt-16 max-w-[520px] flex items-center gap-4 bg-backgroundDark border-[1px] border-[#1f1f20] rounded-xl py-2 pl-4 pr-2">
         <p className="flex-1 m-0 text-white text-sm lg:text-base">{CLIP.caption}</p>
         {!reduceMotion && (
           <button

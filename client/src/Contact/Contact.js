@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { toast } from "sonner";
 // styling for react phone # input
@@ -32,7 +34,7 @@ function Contact() {
     });
 
     try {
-      const response = await fetch(`http://localhost:8000/contact`, {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -78,33 +80,33 @@ function Contact() {
     // Consider adding user feedback here
   };
 
-  const Form = () => (
+  const form = (
     <form
       className="w-full"
       name="contact-form"
       onSubmit={handleSubmit(onSubmit, onError)}
     >
-      <label htmlFor="name" className="m-0 w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+      <label htmlFor="name" className="m-0 w-6/12 h-[86px] text-[#FD5A1E] uppercase px-6 py-0">
         Full Name
         <input
           type="text"
           id="name"
           name="name"
           placeholder="Enter name"
-          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-silverDark"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-6 p-6 rounded-md border-[1.5px] border-solid border-silverDark"
           {...register("name", { required: true })}
         />
         {errors.name && <span className="text-red-500">Name is required</span>}
       </label>
 
-      <label htmlFor="email" className="m-0 w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+      <label htmlFor="email" className="m-0 w-6/12 h-[86px] text-[#FD5A1E] uppercase px-6 py-0">
         Email
         <input
           type="email"
           id="email"
           name="email"
           placeholder="Your email address ..."
-          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-silverDark"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-6 p-6 rounded-md border-[1.5px] border-solid border-silverDark"
           {...register("email", { 
             required: true,
             pattern: {
@@ -116,7 +118,7 @@ function Contact() {
         {errors.email && <span className="text-red-500">{errors.email.message || "Email is required"}</span>}
       </label>
 
-      <label htmlFor="phone" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+      <label htmlFor="phone" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-6 py-0">
         Phone
         <Controller
           name="phone"
@@ -144,12 +146,12 @@ function Contact() {
         {errors.phone && <span className="text-red-500">{errors.phone.message}</span>}
       </label>
 
-      <label htmlFor="interests" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+      <label htmlFor="interests" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-6 py-0">
         Interested In
         <select
           id="interests"
           name="interests"
-          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-silverDark"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-6 pl-4 rounded-md border-[1.5px] border-solid border-silverDark"
           {...register("interests", { required: true })}
         >
           <option value="Please Select">Please Select</option>
@@ -159,12 +161,12 @@ function Contact() {
           <option value="Something else"> Something else </option>
         </select>
       </label>
-      <label htmlFor="budget" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+      <label htmlFor="budget" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-6 py-0">
         Budget
         <select
           id="budget"
           name="budget"
-          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-silverDark"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-6 pl-4 rounded-md border-[1.5px] border-solid border-silverDark"
           {...register("budget", { required: true })}
         >
           <option value="Select Range">Select Range</option>
@@ -174,12 +176,12 @@ function Contact() {
           <option value="Something else"> 10k+ </option>
         </select>
       </label>
-      <label htmlFor="inbound" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-4 py-0">
+      <label htmlFor="inbound" className="w-6/12 h-[86px] text-[#FD5A1E] uppercase mt-8 px-6 py-0">
         How did you learn about us?
         <select
           id="inbound"
           name="inbound"
-          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-4 pl-4 rounded-md border-[1.5px] border-solid border-silverDark"
+          className="w-full h-14 bg-[black] text-[#D7D7D8] mt-6 pl-4 rounded-md border-[1.5px] border-solid border-silverDark"
           {...register("inbound")}
         >
           <option value="Please Select">Please Select</option>
@@ -190,15 +192,15 @@ function Contact() {
           <option value="Something else"> Instagram </option>
         </select>
       </label>
-      <div className="flex flex-column  items-end">
+      <div className="flex flex-col  items-end">
         <label
-          className="message w-full h-[184px] text-[#FD5A1E] uppercase mt-8 px-4 py-0"
+          className="message w-full h-[184px] text-[#FD5A1E] uppercase mt-8 px-6 py-0"
           htmlFor="message"
           {...register("message")}
         >
           Message
           <textarea
-            className="message h-full w-full bg-[black] text-[#D7D7D8] mt-4 p-4 rounded-md border-[1.5px] border-solid border-silverDark"
+            className="message h-full w-full bg-[black] text-[#D7D7D8] mt-6 p-6 rounded-md border-[1.5px] border-solid border-silverDark"
             type="text"
             id="message"
             name="message"
@@ -217,31 +219,31 @@ function Contact() {
 
   return (
     <section id="Contact" className="w-full flex flex-col lg:flex-row">
-      <div className="leftBox flex flex-column w-3/4 px-4 mb-24 xl:p-0">
+      <div className="leftBox flex flex-col w-3/4 !px-6 mb-24 xl:p-0">
         <small className="text-majidTech uppercase">Have a project in mind?</small>
-        <h1 className="text-white text-6xl mb-2 mt-4">Let's Get Started</h1>
-        <div className="address py-4">
+        <h1 className="text-white text-6xl mb-2 mt-6">Let&apos;s Get Started</h1>
+        <div className="address py-6">
           <div className="mb-2">158 FAIRVIEW RD STE B</div>
           <span>Ellenwood, GA</span>
         </div>
-        <div className="email py-4">
+        <div className="email py-6">
           <div className="mb-2 underline">majidtechnicalsolutions@gmail.com</div>{" "}
           <span className="contactNumber"> +1(678)768-5875</span>
         </div>
         <div className="icons flex justify-start max-w-[12rem]">
-          <a href="https://www.linkedin.com/in/jamal-majid-0ab9ab177/#/">
+          <a href="https://www.linkedin.com/in/jamal-majid-0ab9ab177/#/" aria-label="Jamal Majid on LinkedIn">
             <LinkedinIcon customStyle={{ marginRight: "2rem" }} />
           </a>
-          <a href="https://github.com/jamalabd">
+          <a href="https://github.com/jamalabd" aria-label="Jamal Majid on GitHub">
             <GithubIcon customStyle={{ marginRight: "2rem" }} />
           </a>
-          <a href="https://twitter.com/_jamalMajid">
+          <a href="https://twitter.com/_jamalMajid" aria-label="Jamal Majid on X (Twitter)">
             <TwitterIcon />{" "}
           </a>
         </div>
       </div>
-      <div className="rightBox flex flex-column">
-        <Form />
+      <div className="rightBox flex flex-col">
+        {form}
       </div>
     </section>
   );

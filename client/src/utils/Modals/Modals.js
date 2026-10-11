@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Tags from "../../utils/Tags";
 
@@ -11,8 +13,8 @@ export const Modal = ({ onSubmit, closeModal, data, getImage }) => {
     >
       <div className=" bg-tagDark w-[30em] justify-between p-6 rounded-lg">
         <img src={getImage()} className="w-full" alt="Example of work done" />
-        <Tags tagNames={data.tags} tagStyle="mt-4 mr-1" />
-        <p className="my-4 text-white">{data.title}</p>
+        <Tags tagNames={data.tags} tagStyle="mt-6 mr-1" />
+        <p className="my-6 text-white">{data.title}</p>
         <div id="additionalInfo" className="flex justify-between">
           <p className="text-silverDark">{data.desc}</p>
         </div>

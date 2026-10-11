@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import useIsMobile from "../hooks/useIsMobile";
 
@@ -11,16 +13,16 @@ const Testimonials = () => {
     >
       <div className={`leftBox ${isMobile ? 'w-full mb-8' : 'w-3/5'}`}>
         <small className="text-white uppercase">What clients Have to say</small>
-        <h1 className="text-white text-4xl mb-2 mt-4">Testimonials</h1>
+        <h1 className="text-white text-4xl mb-2 mt-6">Testimonials</h1>
       </div>
       <div className={`rightbox ${isMobile ? 'w-full' : 'w-full'}`}>
-        <p className="mb-4 text-silverDark text-md lg:text-xl">
-          "Jamal's passion and dedication to the tasks is impressive. I can't say enough good things
+        <p className="mb-6 text-silverDark text-md lg:text-xl">
+          &quot;Jamal&apos;s passion and dedication to the tasks is impressive. I can&apos;t say enough good things
           about him. He was a great partner, really drove the creative direction and successfully
           delivered the web app which garnered love from millions of users. We enjoyed the sprint
-          progress with them. Highly recommended."
+          progress with them. Highly recommended.&quot;
         </p>
-        <div className={`rightbox_subtext ${isMobile ? 'w-full' : 'flex flex-column w-1/3'}`}>
+        <div className={`rightbox_subtext ${isMobile ? 'w-full' : 'flex flex-col w-1/3'}`}>
           <small className="text-white mb-2">Katherine A.</small>
           <small>Experience design & Innovation leader at Progressive Insurance</small>
         </div>
