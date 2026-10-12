@@ -4,6 +4,7 @@
 
 import { BUILDS, PACKAGES, STEPS } from "../content/appCreation";
 import { WORK } from "../content/work";
+import { SERVICES, HIRE, STACK } from "../content/services";
 
 const list = (items, line) => items.map(line).join("\n");
 
@@ -24,6 +25,13 @@ ${list(STEPS, (s, i) => `${i + 1}. ${s.title}: ${s.text}`)}
 
 What we build:
 ${list(BUILDS, (b) => `- ${b.title}: ${b.text}`)}
+
+Services on the home page:
+${list(SERVICES, (sv) => `- ${sv.title}: ${sv.text}`)}
+- ${HIRE.title}: ${HIRE.text}
+
+The stack:
+${list(STACK, (st) => `- ${st.area}: ${st.tools}`)}
 
 Packages (every app is different, so prices are quoted on a call from the scope agreed with the client):
 ${list(PACKAGES, (p) => `- ${p.title} (${p.time}): ${p.text}`)}
