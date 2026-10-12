@@ -2,10 +2,9 @@
 // as an engineer, and the stack. The section shows it, and the "Ask Mr. Majid"
 // assistant answers from it.
 
-// `href` is where each card leads. Websites goes to the contact form until the
-// website creation page exists.
+// `href` is where each card leads.
 export const SERVICES = [
-  { id: "websites", title: "Websites", text: "Business sites, landing pages and online stores that load fast and are easy to update.", tags: ["Next.js", "Shopify"], href: "#Contact" },
+  { id: "websites", title: "Websites", text: "Business sites, landing pages and online stores that load fast and are easy to update.", tags: ["Next.js", "Shopify"], href: "/website-creation" },
   { id: "web", title: "Web apps", text: "Apps that run in the browser, on any computer or phone, with dashboards for your team.", tags: ["React", "Next.js"], href: "/app-creation" },
   { id: "mobile", title: "Mobile apps", text: "iPhone and Android from one codebase, through the app stores.", tags: ["Capacitor", "React"], href: "/app-creation" },
   { id: "backend", title: "Back end and APIs", text: "Sign-in, payments, real-time chat and the database behind them.", tags: ["Node.js", "Supabase"], href: "/app-creation" },
