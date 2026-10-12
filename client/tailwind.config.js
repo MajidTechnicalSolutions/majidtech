@@ -27,10 +27,15 @@ module.exports = {
           "0%, 60%, 100%": { opacity: "0.35" },
           "30%": { opacity: "1" },
         },
+        // The cursor at the end of the Services stack terminal.
+        blink: {
+          "50%": { opacity: "0" },
+        },
       },
       animation: {
         typing: "typing 1.2s ease-in-out infinite both",
         "typing-fade": "typing-fade 1.2s ease-in-out infinite both",
+        blink: "blink 1.1s steps(1) infinite",
       },
     },
   },
