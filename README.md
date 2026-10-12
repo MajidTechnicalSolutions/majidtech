@@ -1,6 +1,6 @@
 # Majid Tech website
 
-The company site at [www.majidtechnicalsolutions.com](https://www.majidtechnicalsolutions.com): the home page (hero, Selected Work, Services, Blog, Testimonials, Contact), the App creation page (`/app-creation`) and the Founder page (`/founder`), with the "Ask Mr. Majid" AI assistant on every page.
+The company site at [www.majidtechnicalsolutions.com](https://www.majidtechnicalsolutions.com): the home page (hero, Selected Work, Services, Blog, Testimonials, Contact), the App creation page (`/app-creation`), the Website creation page (`/website-creation`) and the Founder page (`/founder`), with the "Ask Mr. Majid" AI assistant on every page.
 
 - `client/`: the website, a [Next.js](https://nextjs.org) app (App Router) styled with Tailwind CSS. It is deployed on Vercel.
 - `server/`: the Majid Tech API, an Express + MongoDB app on Heroku. The site's blog reads its posts and images from it.
@@ -19,9 +19,9 @@ In `client/`:
 
 Where things are:
 
-- `client/app/`: the pages (`page.jsx`, `founder/`, `app-creation/`), the shared layout with the nav, page titles and descriptions, the share image (`opengraph-image.jsx`), `sitemap.js`, `robots.js`, and the server routes: the contact form (`api/contact`) and Ask Mr. Majid (`api/ask`).
+- `client/app/`: the pages (`page.jsx`, `founder/`, `app-creation/`, `website-creation/`), the shared layout with the nav, page titles and descriptions, the share image (`opengraph-image.jsx`), `sitemap.js`, `robots.js`, and the server routes: the contact form (`api/contact`) and Ask Mr. Majid (`api/ask`).
 - `client/src/`: the page sections and components (`Header`, `SelectedWork`, `Services`, `Blog`, `Contact`, `Navbar`, `AskMajid`, …). Components that run in the browser start with `"use client"`.
-- `client/src/content/`: the App creation, Selected Work and Skills and services copy. The pages show it and Ask Mr. Majid answers from it, so edit it there.
+- `client/src/content/`: the App creation, Website creation, Selected Work and Skills and services copy. The pages show it and Ask Mr. Majid answers from it, so edit it there.
 - `client/public/`: files served as they are: the Selected Work loops and posters (`work/`), images, the founder photo, the résumé and the avatar's voice clip.
 
 ## Environment variables

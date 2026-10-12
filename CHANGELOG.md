@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Website creation service page: a new page (/website-creation), opened from Services in the nav and the home page's Websites card, with how we work, what we build, five website packages without prices, the sites we have built and the contact form; its laptop turns slowly in 3D. Ask Mr. Majid answers from it too.
 - Redesign the skills and services section: the home page section is now six service cards (Websites, Web apps, Mobile apps, Back end and APIs, AI features, Care plans), a "Hire a software engineer" panel and the stack shown as a terminal listing, in the same column as the other sections. The floating tech cubes are gone, and Ask Mr. Majid now knows the services, hiring and the stack.
 - Interactive 3D brackets in the hero: on wide screens the { } brackets are now a 3D wireframe that sways slowly and tilts toward the cursor; the still picture stays for reduced motion, data saver and slower devices, and the page loads no slower.
 - Book a call on Google Calendar after the contact form: once a message is sent, a pop-up shows Mr. Majid's Google Calendar booking page for a 30-minute Meet call; Ask Mr. Majid's "Book a call" opens it too.
