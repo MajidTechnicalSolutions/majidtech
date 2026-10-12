@@ -8,6 +8,7 @@ import { ButtonPrimary } from "../utils/buttons";
 import Tag from "../utils/Tags";
 import DeviceVideo from "../components/DeviceVideo";
 import Turn3D from "../components/Turn3D";
+import Laptop3D from "../components/Laptop3D";
 import Contact from "../Contact";
 import useRevealOnScroll from "../hooks/useRevealOnScroll";
 import { BUILDS, PACKAGES, SITES, STEPS } from "../content/websiteCreation";
@@ -16,6 +17,9 @@ import { BUILDS, PACKAGES, SITES, STEPS } from "../content/websiteCreation";
 // in the nav. Laid out like the App creation page; packages show what each
 // covers and how long it takes, and prices are quoted on a call.
 
+// The hero's 3D laptop plays the screen-only clip; the other laptops have the
+// laptop drawn into the clip.
+const HERO = { video: "/work/muhaaryb-screen.mp4", poster: "/work/muhaaryb-screen.jpg" };
 const MEDIA = {
   Muhaaryb: { video: "/work/muhaaryb.mp4", poster: "/work/muhaaryb.jpg" },
   Inspire: { video: "/work/inspire.mp4", poster: "/work/inspire.jpg" },
@@ -43,7 +47,7 @@ const StartButton = ({ text = "Start a website" }) => (
 
 function WebsiteCreation() {
   // The hero laptop's still frame is the first big thing on screen; fetch it early.
-  preload(MEDIA.Muhaaryb.poster, { as: "image", fetchPriority: "high" });
+  preload(HERO.poster, { as: "image", fetchPriority: "high" });
   useRevealOnScroll();
 
   return (
@@ -64,13 +68,7 @@ function WebsiteCreation() {
           </div>
         </div>
         <Turn3D className="px-3 lg:px-0">
-          <DeviceVideo
-            src={MEDIA.Muhaaryb.video}
-            poster={MEDIA.Muhaaryb.poster}
-            device="laptop"
-            title="Muhaaryb"
-            sizeClass="w-full lg:w-[92%] aspect-[1140/706] mx-auto"
-          />
+          <Laptop3D src={HERO.video} poster={HERO.poster} title="Muhaaryb" />
         </Turn3D>
       </section>
 

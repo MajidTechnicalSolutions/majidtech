@@ -72,7 +72,7 @@ export default function Turn3D({ children, className = "" }) {
 
   return (
     <div className={`[perspective:1400px] ${className}`}>
-      <div ref={inner} className="[transform:rotateY(-12deg)_rotateX(4deg)] [transform-style:preserve-3d] will-change-transform">
+      <div ref={inner} className="[transform:rotateY(-12deg)_rotateX(4deg)] [transform-style:preserve-3d]">
         {children}
       </div>
     </div>
