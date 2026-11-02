@@ -16,13 +16,16 @@ let anthropic;
 export const claude = () => (anthropic ??= new Anthropic());
 
 // Limits per visitor (by IP) and for the whole site, per rolling day, so the
-// assistant can't be used as a free chatbot. Counted in Upstash Redis (added
+// assistant and the project estimator (`plan`, `planSend`) can't be used as a
+// free chatbot. Counted in Upstash Redis (added
 // from Vercel's Storage tab, which sets KV_REST_API_URL and KV_REST_API_TOKEN).
 // Without it, for local development, each server keeps its own count.
 const LIMITS = {
   question: { visitor: 20, site: 400 },
   brief: { visitor: 5, site: 60 },
   send: { visitor: 3, site: 40 },
+  plan: { visitor: 5, site: 60 },
+  planSend: { visitor: 3, site: 40 },
 };
 
 const redisUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;

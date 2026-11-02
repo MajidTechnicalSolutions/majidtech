@@ -103,6 +103,7 @@ function Navbar() {
           { title: "Skills and services", hash: "Services", id: 21, note: "What we work with" },
           { title: "App creation", href: "/app-creation", type: "route", id: 22, note: "Web and mobile apps, built for you" },
           { title: "Website creation", href: "/website-creation", type: "route", id: 23, note: "Business sites, landing pages and online stores" },
+          { title: "Project estimator", href: "/estimate", type: "route", id: 24, note: "Describe your idea, get a plan" },
         ],
       },
       { title: "Blog", id: 4 },

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { preload } from "react-dom";
+import Link from "next/link";
 import HashLink from "../components/HashLink";
 import { RightArrow, UpArrow } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
@@ -157,6 +158,12 @@ function AppCreation() {
         <div className="flex flex-col gap-4">
           <h2 className={h2}>Have an app in mind?</h2>
           <p>Tell us what it should do, and we will reply with the next steps.</p>
+          <p>
+            Not sure what you need?{" "}
+            <Link href="/estimate" className="text-white underline decoration-majidTech underline-offset-4 hover:decoration-white">
+              Get a rough plan from our project estimator
+            </Link>
+          </p>
         </div>
         <div className="self-start lg:self-auto">
           <StartButton />

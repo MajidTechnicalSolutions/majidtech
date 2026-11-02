@@ -7,7 +7,7 @@ import { openAskMajid } from "./bookCallEvents";
 // "Book a call": a pop-up holding Mr. Majid's Google Calendar booking page, so a
 // visitor books a 30-minute Meet call straight onto his calendar (Google sends
 // both of them the invite). Opened with openBookCall() after the contact form
-// sends, or from Ask Mr. Majid. Full screen on phones. The booking page inside
+// sends, from Ask Mr. Majid or from the project estimator. Full screen on phones. The booking page inside
 // is Google's own and keeps Google's styling.
 
 const EMAIL = "majidtechnicalsolutions@gmail.com";
@@ -24,6 +24,11 @@ const COPY = {
     text: "Pick a time for a 30-minute video call. Bring your idea; he'll take it from there.",
     dismiss: "Back to chat",
   },
+  estimate: {
+    title: "Book a call with Mr. Majid",
+    text: "Pick a time for a 30-minute video call. He'll go through your plan with you.",
+    dismiss: "Back to your plan",
+  },
 };
 
 const Check = () => (
@@ -33,7 +38,7 @@ const Check = () => (
 );
 
 export default function BookCall() {
-  const [from, setFrom] = useState(null); // null when closed, else "contact" | "chat"
+  const [from, setFrom] = useState(null); // null when closed, else a key of COPY
   const [frame, setFrame] = useState("loading"); // loading | ready | failed
   const closeButton = useRef(null);
   const opener = useRef(null);
@@ -42,7 +47,7 @@ export default function BookCall() {
     const open = (e) => {
       opener.current = document.activeElement;
       setFrame("loading");
-      setFrom(e.detail?.from === "chat" ? "chat" : "contact");
+      setFrom(COPY[e.detail?.from] ? e.detail.from : "contact");
     };
     window.addEventListener("book-call", open);
     return () => window.removeEventListener("book-call", open);
@@ -92,7 +97,7 @@ export default function BookCall() {
             aria-hidden="true"
             className="w-9 h-9 sm:w-10 sm:h-10 flex-none rounded-full border-2 border-majidTech text-majidTech flex items-center justify-center text-[13px]"
           >
-            {from === "chat" ? "MT" : <Check />}
+            {from === "contact" ? <Check /> : "MT"}
           </span>
           <div className="flex-1 flex flex-col gap-0.5 sm:gap-1">
             <h2 id="book-call-title" className="text-white text-lg sm:text-[21px] leading-6 sm:leading-7">

@@ -1,6 +1,6 @@
 # Majid Tech website
 
-The company site at [www.majidtechnicalsolutions.com](https://www.majidtechnicalsolutions.com): the home page (hero, Selected Work, Services, Blog, Testimonials, Contact), the App creation page (`/app-creation`), the Website creation page (`/website-creation`) and the Founder page (`/founder`), with the "Ask Mr. Majid" AI assistant on every page.
+The company site at [www.majidtechnicalsolutions.com](https://www.majidtechnicalsolutions.com): the home page (hero, Selected Work, Services, Blog, Testimonials, Contact), the App creation page (`/app-creation`), the Website creation page (`/website-creation`), the Project estimator (`/estimate`) and the Founder page (`/founder`), with the "Ask Mr. Majid" AI assistant on every page.
 
 - `client/`: the website, a [Next.js](https://nextjs.org) app (App Router) styled with Tailwind CSS. It is deployed on Vercel.
 - `server/`: the Majid Tech API, an Express + MongoDB app on Heroku. The site's blog reads its posts and images from it.
@@ -19,7 +19,7 @@ In `client/`:
 
 Where things are:
 
-- `client/app/`: the pages (`page.jsx`, `founder/`, `app-creation/`, `website-creation/`), the shared layout with the nav, page titles and descriptions, the share image (`opengraph-image.jsx`), `sitemap.js`, `robots.js`, and the server routes: the contact form (`api/contact`) and Ask Mr. Majid (`api/ask`).
+- `client/app/`: the pages (`page.jsx`, `founder/`, `app-creation/`, `website-creation/`, `estimate/`), the shared layout with the nav, page titles and descriptions, the share image (`opengraph-image.jsx`), `sitemap.js`, `robots.js`, and the server routes: the contact form (`api/contact`), Ask Mr. Majid (`api/ask`) and the Project estimator (`api/estimate`).
 - `client/src/`: the page sections and components (`Header`, `SelectedWork`, `Services`, `Blog`, `Contact`, `Navbar`, `AskMajid`, …). Components that run in the browser start with `"use client"`.
 - `client/src/content/`: the App creation, Website creation, Selected Work and Skills and services copy. The pages show it and Ask Mr. Majid answers from it, so edit it there.
 - `client/public/`: files served as they are: the Selected Work loops and posters (`work/`), images, the founder photo, the résumé and the avatar's voice clip.
@@ -31,7 +31,7 @@ Set these in Vercel (Project › Settings › Environment Variables), or in `cli
 | Variable | Needed for |
 | --- | --- |
 | `RESEND_API_KEY` | The contact form and Ask Mr. Majid's briefs. They are emailed to majidtechnicalsolutions@gmail.com through [Resend](https://resend.com), with Reply-To set to the visitor. Without it, they are only logged by the server. |
-| `ANTHROPIC_API_KEY` | Ask Mr. Majid. Its answers come from Claude; the key stays on the server. Without it the chat says something went wrong. |
+| `ANTHROPIC_API_KEY` | Ask Mr. Majid and the Project estimator. Its answers come from Claude; the key stays on the server. Without it the chat says something went wrong. |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Ask Mr. Majid's question limits, kept in Upstash Redis. Vercel sets both when you add Upstash from the project's Storage tab. Without them each server counts on its own, which is fine locally. |
 | `NEXT_PUBLIC_SITE_URL` | Optional. The site's address in links, the sitemap and share images. Defaults to https://majidtech.com. |
 | `BLOG_API_URL` | Optional. The Majid Tech API the blog reads from. Defaults to the Heroku app. The site proxies it at `/blog-api`, so the API's CORS list doesn't need the site's addresses. |
@@ -53,14 +53,24 @@ A chat in the corner of every page (`client/src/askMajid`) that answers visitors
 
 To try it locally, put `ANTHROPIC_API_KEY` in `client/.env.local` and run `npm run dev`.
 
+## Project estimator
+
+A page (`/estimate`, under Services in the nav, and linked from the App creation and Website creation pages) where a visitor describes an app or website idea and Claude turns it into a rough plan: the main screens or pages, the features, the package that fits (from the app and website packages in `client/src/content`, never a Care Plan) with why, a timeline in four steps (Plan, Design, Build, Launch) and two or three questions for the call. No prices.
+
+- The visitor picks "An app", "A website" or "Not sure yet" (Claude then chooses), and can start from one of the website or app starters, which fill in a first draft to finish. An idea under 30 characters, or one too vague to plan, gets a question back instead of a plan.
+- Under the plan: "Book a call" opens the Google Calendar booker, and "Email me this plan" sends it, with the idea, to Majid (Reply-To the visitor) and a copy to the visitor, only with their consent.
+- It shares Ask Mr. Majid's Claude client and limits. Per rolling day: 5 plans and 3 sent plans per visitor, 60 plans and 40 sent for the whole site (`plan` and `planSend` in `client/src/askMajid/server.js`).
+- The instructions are `ESTIMATE_PROMPT` in `client/src/askMajid/knowledge.js`; the plan's shape and checks, and the email, are in `client/src/Estimator/plan.js`; the page is `client/src/Estimator/Estimator.jsx`.
+- Routes: `api/estimate` (writes the plan), `api/estimate/send` (emails it). Needs `ANTHROPIC_API_KEY`, and `RESEND_API_KEY` to send.
+
 ## Booking a call
 
-After the contact form sends, a pop-up ("Message sent") offers a 30-minute video call with Mr. Majid. It shows his Google Calendar appointment schedule, so a visitor picks a slot and Google sends both of them the invite with a Meet link. Ask Mr. Majid's "Book a call" opens the same pop-up.
+After the contact form sends, a pop-up ("Message sent") offers a 30-minute video call with Mr. Majid. It shows his Google Calendar appointment schedule, so a visitor picks a slot and Google sends both of them the invite with a Meet link. Ask Mr. Majid's and the Project estimator's "Book a call" open the same pop-up.
 
 - The booking page is Google's and keeps Google's styling. Its hours, call length and Meet link are set in Google Calendar (the "Call with Mr. Majid" appointment schedule), not in the code.
 - Its two addresses are in `client/src/site.js`: `BOOKING_LINK` (the share link) and `BOOKING_EMBED` (the full address with `gv=true`, the form Google allows other sites to embed). Making a new schedule means updating both.
 - If Google is blocked (some ad blockers and work networks), the pop-up offers "Open Google Calendar" and the email address instead.
-- The pop-up is `client/src/components/BookCall.jsx`; open it from anywhere with `openBookCall("contact" | "chat")` from `client/src/components/bookCallEvents.js`.
+- The pop-up is `client/src/components/BookCall.jsx`; open it from anywhere with `openBookCall("contact" | "chat" | "estimate")` from `client/src/components/bookCallEvents.js`.
 
 ## Hero brackets
 
