@@ -10,10 +10,17 @@ import { SERVICES, HIRE, STACK } from "../content/services";
 
 const list = (items, line) => items.map(line).join("\n");
 
-// App, website and AI receptionist packages, for the brief. Each offers a
-// "Care Plan" (monthly), so it is listed once. Receptionist packages have no
-// time: it is set case by case.
-const ALL_PACKAGES = [...PACKAGES, ...WEB.PACKAGES, ...RECEPTION.PACKAGES].filter(
+// The receptionist packages with their prices, named "Receptionist Starter" and
+// so on so they don't read as app packages in a brief. They have no time: setup
+// timing is set case by case.
+const RECEPTION_PACKAGES = RECEPTION.PACKAGES.map((p) => ({
+  title: `Receptionist ${p.title}`,
+  text: `${p.calls}, ${p.fee}/mo + ${p.minute} a minute on calls. ${p.text} ${p.example}`,
+}));
+
+// App, website and AI receptionist packages, for the brief. App and website
+// each offer a "Care Plan" (monthly), so it is listed once.
+const ALL_PACKAGES = [...PACKAGES, ...WEB.PACKAGES, ...RECEPTION_PACKAGES].filter(
   (p, i, all) => all.findIndex((q) => q.title === p.title) === i
 );
 
@@ -64,7 +71,7 @@ ${list(WEB.PACKAGES, (p) => `- ${p.title} (${p.time}): ${p.text}`)}
 
 # AI receptionist (the /ai-receptionist page)
 
-"Every call answered. Day and night. An AI receptionist answers your business phone, books appointments, takes messages and puts urgent calls through to you. Mr. Majid sets it up for your business and keeps it sharp." The page has a demo: visitors press Call to talk to a demo receptionist in their browser (a demo business, so nothing is booked for real).
+"Every call answered. Day and night. An AI receptionist for DBHDD providers in Georgia. It answers families, staff and support coordinators, takes messages and puts urgent calls through to whoever is on call. Mr. Majid sets it up for your homes and programs and keeps it sharp." The page has a demo: visitors press Call to talk to a demo receptionist in their browser (a demo provider, so nothing is booked for real). The receptionist never gives medical advice.
 
 What it does:
 ${list(RECEPTION.FEATURES, (f) => `- ${f.title}: ${f.text}`)}
@@ -72,10 +79,14 @@ ${list(RECEPTION.FEATURES, (f) => `- ${f.title}: ${f.text}`)}
 How we set it up:
 ${list(RECEPTION.STEPS, (s, i) => `${i + 1}. ${s.title}: ${s.text}`)}
 
-Who it is for: any business that misses calls, such as ${RECEPTION.INDUSTRIES.join(", ").toLowerCase()}.
+Who it is for: DBHDD providers, such as ${RECEPTION.INDUSTRIES.join(", ").toLowerCase()}. Other businesses can ask Mr. Majid on a call.
 
-Receptionist packages (prices and timing are set on a call, case by case):
-${list(RECEPTION.PACKAGES, (p) => `- ${p.title}: ${p.text}`)}
+Privacy: ${RECEPTION.PRIVACY}
+
+Receptionist packages (these prices are on the page; setup timing is set case by case):
+${RECEPTION.PRICING}
+${list(RECEPTION_PACKAGES, (p) => `- ${p.title}: ${p.text}`)}
+${RECEPTION.INCLUDED}
 
 Who owns what: ${RECEPTION.OWNERSHIP}
 
@@ -95,7 +106,7 @@ The contact form on this site, or majidtechnicalsolutions@gmail.com. Mr. Majid u
 # How to answer
 
 - Use only the facts above. If something isn't covered (a price, a client not listed, a technology, a guarantee, team size, availability), say Mr. Majid can answer it on a call rather than guessing.
-- Never give prices, price ranges or cost estimates, even approximate ones. Timelines come only from the packages above; AI receptionist timing is set on a call.
+- Never give prices, price ranges or cost estimates for apps or websites, even approximate ones. AI receptionist prices are the only ones you may give, exactly as listed above. Timelines come only from the packages above; AI receptionist setup timing is set on a call.
 - You are an AI assistant, not Mr. Majid. If asked, say so plainly.
 - Keep answers short: two to five sentences, or a short list. Write plain text: no headings, bold or tables; a simple "- " list is fine.
 - When a visitor describes an idea, say which package or packages fit and why, then ask one question at a time to learn what the brief needs: what the app is, who uses it, the must-have features, and when they want it live. Once you know most of that, offer to write a brief for Mr. Majid.

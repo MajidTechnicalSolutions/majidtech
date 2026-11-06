@@ -150,7 +150,7 @@ function DemoCall() {
               </>
             ) : status === "ended"
                 ? "Thanks for trying it. Want one that answers your calls like that?"
-                : "Press call and ask what a customer would: your hours, a booking, a question about a service. It's a demo business, so nothing is booked for real."}
+                : "Press call and ask what a family member or staff member would: visiting hours, leaving a message, calling out of a shift. It's a demo provider, so nothing is booked for real."}
           </p>
           <button type="button" onClick={start} className={`${pill} border-majidTech hover:bg-majidTech/10`}>
             <PhoneIcon className="ring-shake" stroke="#fd5a1e" />
