@@ -16,3 +16,7 @@ export const SITE_DESCRIPTION =
 export const BOOKING_LINK = "https://calendar.app.google/Ku3tfrcSeJddta8r6";
 export const BOOKING_EMBED =
   "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2x-R7uukMLY5VeTiz-H9Tp81sT5JIo6sNp7UE0mOvxaPQpeI5RBTk5dXjqruHp9CvaWtOSqtEM?gv=true";
+
+// Majid Tech's phone number, as shown and as a tel: link.
+export const PHONE = "+1 (404) 689-3416";
+export const PHONE_LINK = "tel:+14046893416";

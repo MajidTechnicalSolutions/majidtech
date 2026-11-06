@@ -265,3 +265,47 @@ section.pt-7 {
     animation: float-gentle 5s ease-in-out infinite;
     animation-delay: 1.5s;
 }
+/* The AI receptionist demo's Call button: the phone icon rings every few seconds */
+@keyframes ring-shake {
+
+    0%,
+    70%,
+    100% {
+        transform: rotate(0);
+    }
+
+    74% {
+        transform: rotate(-16deg);
+    }
+
+    78% {
+        transform: rotate(14deg);
+    }
+
+    82% {
+        transform: rotate(-12deg);
+    }
+
+    86% {
+        transform: rotate(10deg);
+    }
+
+    90% {
+        transform: rotate(-6deg);
+    }
+
+    94% {
+        transform: rotate(4deg);
+    }
+}
+
+.ring-shake {
+    animation: ring-shake 2.4s ease-in-out infinite;
+    transform-origin: 50% 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ring-shake {
+        animation: none;
+    }
+}

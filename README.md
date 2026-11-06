@@ -1,6 +1,6 @@
 # Majid Tech website
 
-The company site at [www.majidtechnicalsolutions.com](https://www.majidtechnicalsolutions.com): the home page (hero, Selected Work, Services, Blog, Testimonials, Contact), the App creation page (`/app-creation`), the Website creation page (`/website-creation`), the Project estimator (`/estimate`) and the Founder page (`/founder`), with the "Ask Mr. Majid" AI assistant on every page.
+The company site at [www.majidtechnicalsolutions.com](https://www.majidtechnicalsolutions.com): the home page (hero, Selected Work, Services, Blog, Testimonials, Contact), the App creation page (`/app-creation`), the Website creation page (`/website-creation`), the AI receptionist page (`/ai-receptionist`), the Project estimator (`/estimate`) and the Founder page (`/founder`), with the "Ask Mr. Majid" AI assistant on every page.
 
 - `client/`: the website, a [Next.js](https://nextjs.org) app (App Router) styled with Tailwind CSS. It is deployed on Vercel.
 - `server/`: the Majid Tech API, an Express + MongoDB app on Heroku. The site's blog reads its posts and images from it.
@@ -19,9 +19,9 @@ In `client/`:
 
 Where things are:
 
-- `client/app/`: the pages (`page.jsx`, `founder/`, `app-creation/`, `website-creation/`, `estimate/`), the shared layout with the nav, page titles and descriptions, the share image (`opengraph-image.jsx`), `sitemap.js`, `robots.js`, and the server routes: the contact form (`api/contact`), Ask Mr. Majid (`api/ask`) and the Project estimator (`api/estimate`).
+- `client/app/`: the pages (`page.jsx`, `founder/`, `app-creation/`, `website-creation/`, `ai-receptionist/`, `estimate/`), the shared layout with the nav, page titles and descriptions, the share image (`opengraph-image.jsx`), `sitemap.js`, `robots.js`, and the server routes: the contact form (`api/contact`), Ask Mr. Majid (`api/ask`) and the Project estimator (`api/estimate`).
 - `client/src/`: the page sections and components (`Header`, `SelectedWork`, `Services`, `Blog`, `Contact`, `Navbar`, `AskMajid`, …). Components that run in the browser start with `"use client"`.
-- `client/src/content/`: the App creation, Website creation, Selected Work and Skills and services copy. The pages show it and Ask Mr. Majid answers from it, so edit it there.
+- `client/src/content/`: the App creation, Website creation, AI receptionist, Selected Work and Skills and services copy. The pages show it and Ask Mr. Majid answers from it, so edit it there.
 - `client/public/`: files served as they are: the Selected Work loops and posters (`work/`), images, the founder photo, the résumé and the avatar's voice clip.
 
 ## Environment variables
@@ -35,6 +35,7 @@ Set these in Vercel (Project › Settings › Environment Variables), or in `cli
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Ask Mr. Majid's question limits, kept in Upstash Redis. Vercel sets both when you add Upstash from the project's Storage tab. Without them each server counts on its own, which is fine locally. |
 | `NEXT_PUBLIC_SITE_URL` | Optional. The site's address in links, the sitemap and share images. Defaults to https://majidtech.com. |
 | `BLOG_API_URL` | Optional. The Majid Tech API the blog reads from. Defaults to the Heroku app. The site proxies it at `/blog-api`, so the API's CORS list doesn't need the site's addresses. |
+| `NEXT_PUBLIC_RETELL_PUBLIC_KEY`, `NEXT_PUBLIC_RETELL_AGENT_ID` | The AI receptionist page's demo call (see below). Without them the demo says "coming soon". |
 | `NEXT_PUBLIC_HERO_AVATAR` | Optional. `on` shows the hero avatar outside preview deployments (see below). |
 
 ## Deploying (Vercel)
@@ -62,6 +63,14 @@ A page (`/estimate`, under Services in the nav, and linked from the App creation
 - It shares Ask Mr. Majid's Claude client and limits. Per rolling day: 5 plans and 3 sent plans per visitor, 60 plans and 40 sent for the whole site (`plan` and `planSend` in `client/src/askMajid/server.js`).
 - The instructions are `ESTIMATE_PROMPT` in `client/src/askMajid/knowledge.js`; the plan's shape and checks, and the email, are in `client/src/Estimator/plan.js`; the page is `client/src/Estimator/Estimator.jsx`.
 - Routes: `api/estimate` (writes the plan), `api/estimate/send` (emails it). Needs `ANTHROPIC_API_KEY`, and `RESEND_API_KEY` to send.
+
+## AI receptionist
+
+A service page (`/ai-receptionist`, under Services in the nav) for the AI receptionists Mr. Majid builds on Retell, written for DBHDD providers in Georgia: the problem (missed calls, with one sourced figure), what it does, how we set it up, who it is for (with a privacy line) and three packages priced by calls a day (a monthly fee plus a per-minute rate; setup costs the same as the monthly fee). Its copy and prices are in `client/src/content/aiReceptionist.js`, and Ask Mr. Majid answers from it: receptionist prices are the only ones it may quote.
+
+- "Try a demo AI receptionist", in the hero, is a browser call to the demo receptionist (`client/src/AiReceptionist/DemoCall.jsx`). Pressing Call first asks for the microphone (a missing or blocked one gets a plain message with the phone number to call instead), then loads Retell's browser SDK (`retell-client-js-sdk`); the card then shows the call time, the receptionist's latest line and End call.
+- It needs a Retell **public key** and the demo agent's ID (`NEXT_PUBLIC_RETELL_PUBLIC_KEY`, `NEXT_PUBLIC_RETELL_AGENT_ID`). A public key is safe in the browser, but only from the domains it allows: in Retell, under API Keys › Public Keys, add `www.majidtechnicalsolutions.com`, `majidtechnicalsolutions.com`, `localhost` and any preview address you test on. Retell's optional reCAPTCHA isn't wired up yet.
+- No server route: demo calls are billed to the Retell account, so keep the agent's maximum call length short there.
 
 ## Booking a call
 

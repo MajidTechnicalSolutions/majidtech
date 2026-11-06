@@ -29,7 +29,7 @@ export async function POST(request) {
 
   const rows = [
     ...Object.entries(FIELDS).map(([key, label]) => `<p><strong>${label}:</strong> ${html(brief[key] || "Not discussed yet")}</p>`),
-    pkg ? `<p><strong>Fits:</strong> ${escape(`${pkg} · ${packageTime(pkg)}`)}</p>` : "",
+    pkg ? `<p><strong>Fits:</strong> ${escape([pkg, packageTime(pkg)].filter(Boolean).join(" · "))}</p>` : "",
   ].join("\n");
   const conversation = messages
     .map((m) => `<p><strong>${m.role === "user" ? "Visitor" : "Ask Mr. Majid"}:</strong> ${html(m.content)}</p>`)
