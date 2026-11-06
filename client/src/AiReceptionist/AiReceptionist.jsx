@@ -6,7 +6,7 @@ import { ButtonPrimary } from "../utils/buttons";
 import Contact from "../Contact";
 import useRevealOnScroll from "../hooks/useRevealOnScroll";
 import DemoCall from "./DemoCall";
-import { FEATURES, INDUSTRIES, OWNERSHIP, PACKAGES, STEPS } from "../content/aiReceptionist";
+import { FEATURES, INDUSTRIES, OWNERSHIP, PACKAGES, PROBLEM, STEPS } from "../content/aiReceptionist";
 
 // The AI receptionist service page (/ai-receptionist), opened from Services in
 // the nav. Laid out like the other service pages, with a demo call in the
@@ -40,6 +40,23 @@ function AiReceptionist() {
       </section>
 
       <section className="pt-20 lg:pt-36 flex flex-col gap-6 lg:gap-8" data-reveal>
+        <h2 className={h2}>Missed calls are lost customers</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 !gap-4 lg:gap-4">
+          {PROBLEM.map((p) => (
+            <div key={p.figure} className={`${card} flex flex-col !gap-3 lg:gap-3`}>
+              <span className="text-white text-4xl lg:text-5xl tracking-tight">{p.figure}</span>
+              <p>{p.text}</p>
+              {p.source && (
+                <a href={p.source.href} target="_blank" rel="noopener noreferrer" className="mt-auto text-sm text-grayMid hover:text-white">
+                  Source: {p.source.name} ↗
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="pt-20 lg:pt-36 flex flex-col gap-6 lg:gap-8" data-reveal>
         <div className="flex flex-col !gap-3 lg:gap-3 max-w-[680px]">
           <h2 className={h2}>What it does</h2>
           <p>It picks up on the first ring, sounds natural, and knows your business: your hours, your services and who takes which calls.</p>
@@ -55,7 +72,10 @@ function AiReceptionist() {
       </section>
 
       <section className="pt-20 lg:pt-36 flex flex-col gap-6 lg:gap-8" data-reveal>
-        <h2 className={h2}>How we set it up</h2>
+        <div className="flex flex-col !gap-3 lg:gap-3 max-w-[680px]">
+          <h2 className={h2}>How we set it up</h2>
+          <p>Your phone number stays the same. We forward your calls to the receptionist, and your customers dial the number they already know.</p>
+        </div>
         <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 !gap-8 lg:gap-8">
           {STEPS.map((step, i) => (
             <li key={step.title} className="flex flex-col !gap-2 lg:gap-3 pt-5 border-t border-[#1f1f20]">

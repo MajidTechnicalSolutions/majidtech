@@ -66,9 +66,9 @@ A page (`/estimate`, under Services in the nav, and linked from the App creation
 
 ## AI receptionist
 
-A service page (`/ai-receptionist`, under Services in the nav) for the AI receptionists Mr. Majid builds on Retell: what it does, how we set it up, who it is for and four packages with no prices or times (both are set on a call). Its copy is in `client/src/content/aiReceptionist.js`, and Ask Mr. Majid answers from it.
+A service page (`/ai-receptionist`, under Services in the nav) for the AI receptionists Mr. Majid builds on Retell: the problem (missed calls, with one sourced figure), what it does, how we set it up, who it is for and four packages with no prices or times (both are set on a call). Its copy is in `client/src/content/aiReceptionist.js`, and Ask Mr. Majid answers from it.
 
-- "Try a demo AI receptionist", in the hero, is a browser call to the demo receptionist (`client/src/AiReceptionist/DemoCall.jsx`). Pressing Call loads Retell's browser SDK (`retell-client-js-sdk`) and asks for the microphone; the card then shows the call time, the receptionist's latest line and End call.
+- "Try a demo AI receptionist", in the hero, is a browser call to the demo receptionist (`client/src/AiReceptionist/DemoCall.jsx`). Pressing Call first asks for the microphone (a missing or blocked one gets a plain message with the phone number to call instead), then loads Retell's browser SDK (`retell-client-js-sdk`); the card then shows the call time, the receptionist's latest line and End call.
 - It needs a Retell **public key** and the demo agent's ID (`NEXT_PUBLIC_RETELL_PUBLIC_KEY`, `NEXT_PUBLIC_RETELL_AGENT_ID`). A public key is safe in the browser, but only from the domains it allows: in Retell, under API Keys › Public Keys, add `www.majidtechnicalsolutions.com`, `majidtechnicalsolutions.com`, `localhost` and any preview address you test on. Retell's optional reCAPTCHA isn't wired up yet.
 - No server route: demo calls are billed to the Retell account, so keep the agent's maximum call length short there.
 

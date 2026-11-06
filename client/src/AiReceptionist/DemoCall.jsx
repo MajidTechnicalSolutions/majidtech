@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import HashLink from "../components/HashLink";
+import { PHONE, PHONE_LINK } from "../site";
 
 // "Try a demo AI receptionist": a browser call to the demo receptionist on
 // Retell. Needs NEXT_PUBLIC_RETELL_PUBLIC_KEY and NEXT_PUBLIC_RETELL_AGENT_ID;
@@ -19,10 +20,38 @@ const PhoneIcon = ({ size = 16, className = "", stroke = "currentColor" }) => (
 
 const pill = "inline-flex items-center justify-center gap-2.5 w-full sm:w-auto min-h-[48px] px-7 rounded-full border bg-transparent text-white transition-colors duration-200";
 
+// Why the microphone can't be used, from the browser's error: "missing" (no
+// microphone), "blocked" (permission denied) or "error" (anything else).
+const micTrouble = (error) =>
+  error?.name === "NotAllowedError" || error?.name === "SecurityError"
+    ? "blocked"
+    : error?.name === "NotFoundError" || error?.name === "OverconstrainedError"
+      ? "missing"
+      : "error";
+
+// Ask for the microphone before the call, so a missing or blocked one gets a
+// clear message instead of a failed call. Null when it is ready.
+async function checkMic() {
+  if (!navigator.mediaDevices?.getUserMedia) return "missing";
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    stream.getTracks().forEach((track) => track.stop());
+    return null;
+  } catch (error) {
+    return micTrouble(error);
+  }
+}
+
+const TROUBLE = {
+  missing: "Mic not found. Check your microphone and try again, or call us at",
+  blocked: "Your browser blocked the microphone. Allow it for this site and try again, or call us at",
+  error: "The call couldn't start. Try again in a moment, or call us at",
+};
+
 const clock = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 
 function DemoCall() {
-  // idle | connecting | live | ended | error
+  // idle | connecting | live | ended, or a TROUBLE key
   const [status, setStatus] = useState("idle");
   const [seconds, setSeconds] = useState(0);
   const [line, setLine] = useState("");
@@ -42,6 +71,8 @@ function DemoCall() {
     setStatus("connecting");
     setSeconds(0);
     setLine("");
+    const trouble = await checkMic();
+    if (trouble) return setStatus(trouble);
     try {
       const { RetellClient } = await import("retell-client-js-sdk");
       call.current = new RetellClient({ key: KEY }).createWebCall({
@@ -53,10 +84,10 @@ function DemoCall() {
             const said = items.filter((u) => u.role === "agent" && u.content).at(-1);
             if (said) setLine(said.content);
           },
-          onEnd: () => setStatus((s) => (s === "error" ? s : "ended")),
+          onEnd: () => setStatus((s) => (TROUBLE[s] ? s : "ended")),
           onError: (error) => {
             console.error("Demo call:", error);
-            setStatus("error");
+            setStatus(micTrouble(error));
           },
         },
       });
@@ -109,9 +140,15 @@ function DemoCall() {
       ) : (
         <div className="flex flex-col items-center gap-5 w-full">
           <p className="max-w-[360px]" aria-live="polite">
-            {status === "error"
-              ? "The call couldn't start. Check that your browser can use the microphone, then try again."
-              : status === "ended"
+            {TROUBLE[status] ? (
+              <>
+                {TROUBLE[status]}{" "}
+                <a href={PHONE_LINK} className="text-white underline decoration-majidTech underline-offset-4 whitespace-nowrap">
+                  {PHONE}
+                </a>
+                .
+              </>
+            ) : status === "ended"
                 ? "Thanks for trying it. Want one that answers your calls like that?"
                 : "Press call and ask what a customer would: your hours, a booking, a question about a service. It's a demo business, so nothing is booked for real."}
           </p>
