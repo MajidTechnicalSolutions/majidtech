@@ -449,7 +449,7 @@ export default function AskMajid() {
                         ))}
                         <dt className="text-[#8a8a8b]">Fits</dt>
                         <dd className="text-white">
-                          {brief.package} · {brief.time}
+                          {brief.time ? `${brief.package} · ${brief.time}` : brief.package}
                         </dd>
                       </dl>
                     </article>

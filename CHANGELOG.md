@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- AI receptionist service page: a new page (/ai-receptionist, under Services in the nav) for AI receptionists that answer every call, book appointments, transfer calls, take messages, filter spam, record calls and update the CRM, with how we set it up, who it is for and four packages without prices or times. Visitors can try a demo receptionist in their browser by pressing Call. Ask Mr. Majid answers from it too.
 - Project estimator: describe your app idea, get a plan: a new page (/estimate, under Services in the nav and linked from the App creation and Website creation pages) where a visitor describes an app or website idea and AI turns it into a rough plan (main screens or pages, features, the package that fits and a timeline, no prices), with "Book a call" and "Email me this plan" (sent to the visitor and to Majid). Five plans per visitor a day.
 - Website creation page polish: the hero laptop is now a real 3D laptop (screen, keyboard base and depth) that turns and tilts toward the cursor, and the Muhaaryb clip (here and on the home page) now scrolls through the site as well as hovering its buttons.
 - Website creation service page: a new page (/website-creation), opened from Services in the nav and the home page's Websites card, with how we work, what we build, five website packages without prices, the sites we have built and the contact form; its laptop turns slowly in 3D. Ask Mr. Majid answers from it too.
