@@ -45,7 +45,7 @@ export default function HexPattern() {
     <svg
       ref={svg}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10 w-full h-full"
+      className="lb-hex-fade pointer-events-none absolute inset-0 -z-10 w-full h-full"
       viewBox="300 100 1400 780"
       preserveAspectRatio="xMidYMid slice"
       fill="none"

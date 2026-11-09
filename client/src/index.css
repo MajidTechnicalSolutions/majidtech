@@ -382,6 +382,29 @@ section.pt-7 {
     background: radial-gradient(520px circle at var(--mx, -2000px) var(--my, -2000px), rgba(253, 90, 30, 0.07), transparent 60%);
 }
 
+/* Soft edges where the patterns stop. Each mask is a vertical fade combined
+   (intersected) with a horizontal one. */
+.lb-lines-fade {
+    --lb-fade-top: 0px;
+    -webkit-mask-image:
+        linear-gradient(to bottom, transparent 0, #000 var(--lb-fade-top), #000 calc(100% - 900px), transparent 100%),
+        linear-gradient(to right, #000 calc(100% - 420px), transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        linear-gradient(to bottom, transparent 0, #000 var(--lb-fade-top), #000 calc(100% - 900px), transparent 100%),
+        linear-gradient(to right, #000 calc(100% - 420px), transparent 100%);
+    mask-composite: intersect;
+}
+
+.lb-lines-fade-top {
+    --lb-fade-top: 520px;
+}
+
+.lb-hex-fade {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%);
+}
+
 @media (prefers-reduced-motion: reduce) {
     .lb-trace path,
     .lb-blob {

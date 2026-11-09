@@ -162,7 +162,9 @@ function Spotlight({ layer, secondTop }) {
     enabled && (
       <>
         <div className="lb-spot-dots absolute inset-0" />
-        <StaticLines className="lb-spot-lines" />
+        <LinesAt top={0}>
+          <StaticLines className="lb-spot-lines" />
+        </LinesAt>
         {secondTop !== null && (
           <LinesAt top={secondTop}>
             <StaticLines className="lb-spot-lines" />
@@ -184,10 +186,12 @@ function Particles() {
   return <canvas ref={canvas} className="fixed inset-0 w-full h-full" />;
 }
 
-// A second run of the diagonal lines, placed lower down the page.
+// A run of the diagonal lines placed `top` px down the page. Its edges fade out
+// (bottom, right, and top unless it starts at the top of the page) so there is
+// no hard line where the pattern stops.
 function LinesAt({ top, children }) {
   return (
-    <div className="absolute left-0 w-[1920px] h-[4000px]" style={{ top }}>
+    <div className={`lb-lines-fade absolute left-0 w-[1920px] h-[4000px] ${top > 0 ? "lb-lines-fade-top" : ""}`} style={{ top }}>
       {children}
     </div>
   );
@@ -244,7 +248,9 @@ export default function LivingBackground() {
       <div ref={layer} aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         {(mode === "aurora" || mode === "traces-aurora") && <Aurora />}
         {(mode === "particles" || mode === "traces-particles") && <Particles />}
-        <Lines />
+        <LinesAt top={0}>
+          <Lines />
+        </LinesAt>
         {secondTop !== null && (
           <LinesAt top={secondTop}>
             <Lines />
