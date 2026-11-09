@@ -5,6 +5,7 @@ import Link from "next/link";
 import { RightArrow } from "../utils/Resources/Svgs";
 import { ButtonPrimary } from "../utils/buttons";
 import { SERVICES, HIRE, STACK } from "../content/services";
+import HexPattern from "../components/LivingBackground/HexPattern";
 
 // One stroke icon per service card, drawn in currentColor.
 const ICONS = {
@@ -128,9 +129,10 @@ const StackTerminal = () => (
 
 function Services() {
   return (
-    // The section itself is a full-width band (index.css draws the hex pattern
+    // The section itself is a full-width band (HexPattern draws the hexagons
     // across it); its content sits in the same 9/12 column as the other sections.
     <section id="Services">
+      <HexPattern />
       <div className="m-auto w-9/12 flex flex-col gap-12 text-silverDark">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
           <div className="flex flex-col gap-4 max-w-[720px]">

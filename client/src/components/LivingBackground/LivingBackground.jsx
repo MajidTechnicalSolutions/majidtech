@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { usePathname } from "next/navigation";
 import PATTERN_LINES from "./patternLines";
 import { startParticles } from "./particles";
 
@@ -36,6 +37,16 @@ function getMode() {
 function setModeStore(id) {
   currentMode = id;
   modeListeners.forEach((fn) => fn());
+}
+
+// The chosen background, for other parts of the page (the Services hexagons).
+export function useBgMode() {
+  return useSyncExternalStore(subscribeMode, getMode, () => "off");
+}
+
+// True for the modes that run light along the lines (1, 1 + 2, 1 + 4).
+export function hasTraces(mode) {
+  return mode === "traces" || mode.startsWith("traces-");
 }
 
 const FINE_POINTER = "(hover: hover) and (pointer: fine)";
@@ -94,21 +105,18 @@ function Traces() {
 }
 
 // 2. Large, soft pools of colour drift slowly behind everything.
-function Aurora({ lines = <StaticLines /> }) {
+function Aurora() {
   return (
-    <>
-      <div className="fixed inset-0 overflow-hidden">
-        <div className="lb-blob lb-blob-1" />
-        <div className="lb-blob lb-blob-2" />
-        <div className="lb-blob lb-blob-3" />
-      </div>
-      {lines}
-    </>
+    <div className="fixed inset-0 overflow-hidden">
+      <div className="lb-blob lb-blob-1" />
+      <div className="lb-blob lb-blob-2" />
+      <div className="lb-blob lb-blob-3" />
+    </div>
   );
 }
 
 // 3. A soft light follows the mouse and lights up the lines and a dot grid under it.
-function Spotlight({ layer }) {
+function Spotlight({ layer, secondTop }) {
   const enabled = useSyncExternalStore(subscribePointer, () => window.matchMedia(FINE_POINTER).matches, () => false);
 
   useEffect(() => {
@@ -151,37 +159,72 @@ function Spotlight({ layer }) {
   }, [enabled, layer]);
 
   return (
-    <>
-      <StaticLines />
-      {enabled && (
-        <>
-          <div className="lb-spot-dots absolute inset-0" />
-          <StaticLines className="lb-spot-lines" />
-          <div className="lb-spot-glow absolute inset-0" />
-        </>
-      )}
-    </>
+    enabled && (
+      <>
+        <div className="lb-spot-dots absolute inset-0" />
+        <StaticLines className="lb-spot-lines" />
+        {secondTop !== null && (
+          <LinesAt top={secondTop}>
+            <StaticLines className="lb-spot-lines" />
+          </LinesAt>
+        )}
+        <div className="lb-spot-glow absolute inset-0" />
+      </>
+    )
   );
 }
 
 // 4. Drifting dots that join up with thin lines when they come close.
-function Particles({ lines = <StaticLines /> }) {
+function Particles() {
   const canvas = useRef(null);
   useEffect(() => {
     if (!canvas.current) return undefined;
     return startParticles(canvas.current, { still: window.matchMedia(REDUCED).matches });
   }, []);
+  return <canvas ref={canvas} className="fixed inset-0 w-full h-full" />;
+}
+
+// A second run of the diagonal lines, placed lower down the page.
+function LinesAt({ top, children }) {
   return (
-    <>
-      <canvas ref={canvas} className="fixed inset-0 w-full h-full" />
-      {lines}
-    </>
+    <div className="absolute left-0 w-[1920px] h-[4000px]" style={{ top }}>
+      {children}
+    </div>
   );
+}
+
+// Where the second run of lines starts: a little above the Testimonials
+// section, measured against the background layer. null when the page has none.
+const SECOND_LINES_LEAD = 160;
+function useSecondLinesTop(layer) {
+  const pathname = usePathname();
+  const [top, setTop] = useState(null);
+  useEffect(() => {
+    const el = layer.current;
+    if (!el) return undefined;
+    const measure = () => {
+      const target = document.getElementById("Testimonials");
+      if (!target) return setTop(null);
+      const y = target.getBoundingClientRect().top - el.getBoundingClientRect().top;
+      setTop(Math.max(0, Math.round(y - SECOND_LINES_LEAD)));
+    };
+    // Fires once on observe, then whenever the page height changes.
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [layer, pathname]);
+  return top;
 }
 
 export default function LivingBackground() {
   const layer = useRef(null);
-  const mode = useSyncExternalStore(subscribeMode, getMode, () => "off");
+  const mode = useBgMode();
+  const secondTop = useSecondLinesTop(layer);
+  const Lines = hasTraces(mode) ? Traces : StaticLines;
 
   const choose = (id) => {
     setModeStore(id);
@@ -199,13 +242,15 @@ export default function LivingBackground() {
   return (
     <>
       <div ref={layer} aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        {mode === "off" && <StaticLines />}
-        {mode === "traces" && <Traces />}
-        {mode === "aurora" && <Aurora />}
-        {mode === "spotlight" && <Spotlight layer={layer} />}
-        {mode === "particles" && <Particles />}
-        {mode === "traces-aurora" && <Aurora lines={<Traces />} />}
-        {mode === "traces-particles" && <Particles lines={<Traces />} />}
+        {(mode === "aurora" || mode === "traces-aurora") && <Aurora />}
+        {(mode === "particles" || mode === "traces-particles") && <Particles />}
+        <Lines />
+        {secondTop !== null && (
+          <LinesAt top={secondTop}>
+            <Lines />
+          </LinesAt>
+        )}
+        {mode === "spotlight" && <Spotlight layer={layer} secondTop={secondTop} />}
       </div>
 
       <div
