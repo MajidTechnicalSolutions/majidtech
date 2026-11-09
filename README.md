@@ -3,7 +3,6 @@
 The company site at [www.majidtechnicalsolutions.com](https://www.majidtechnicalsolutions.com): the home page (hero, Selected Work, Services, Blog, Testimonials, Contact), the App creation page (`/app-creation`), the Website creation page (`/website-creation`), the AI receptionist page (`/ai-receptionist`), the Project estimator (`/estimate`) and the Founder page (`/founder`), with the "Ask Mr. Majid" AI assistant on every page.
 
 - `client/`: the website, a [Next.js](https://nextjs.org) app (App Router) styled with Tailwind CSS. It is deployed on Vercel.
-- `server/`: the Majid Tech API, an Express + MongoDB app on Heroku. The site's blog reads its posts and images from it.
 
 ## Working on the site
 
@@ -19,7 +18,7 @@ In `client/`:
 
 Where things are:
 
-- `client/app/`: the pages (`page.jsx`, `founder/`, `app-creation/`, `website-creation/`, `ai-receptionist/`, `estimate/`), the shared layout with the nav, page titles and descriptions, the share image (`opengraph-image.jsx`), `sitemap.js`, `robots.js`, and the server routes: the contact form (`api/contact`), Ask Mr. Majid (`api/ask`) and the Project estimator (`api/estimate`).
+- `client/app/`: the pages (`page.jsx`, `founder/`, `app-creation/`, `website-creation/`, `ai-receptionist/`, `estimate/`), the shared layout with the nav, page titles and descriptions, the share image (`opengraph-image.jsx`), `sitemap.js`, `robots.js`, and the server routes: the contact form (`api/contact`), Ask Mr. Majid (`api/ask`), the Project estimator (`api/estimate`) and the blog's posts and pictures (`api/blog`, `api/images`).
 - `client/src/`: the page sections and components (`Header`, `SelectedWork`, `Services`, `Blog`, `Contact`, `Navbar`, `AskMajid`, …). Components that run in the browser start with `"use client"`.
 - `client/src/content/`: the App creation, Website creation, AI receptionist, Selected Work and Skills and services copy. The pages show it and Ask Mr. Majid answers from it, so edit it there.
 - `client/public/`: files served as they are: the Selected Work loops and posters (`work/`), images, the founder photo, the résumé and the avatar's voice clip.
@@ -34,7 +33,8 @@ Set these in Vercel (Project › Settings › Environment Variables), or in `cli
 | `ANTHROPIC_API_KEY` | Ask Mr. Majid and the Project estimator. Its answers come from Claude; the key stays on the server. Without it the chat says something went wrong. |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Ask Mr. Majid's question limits, kept in Upstash Redis. Vercel sets both when you add Upstash from the project's Storage tab. Without them each server counts on its own, which is fine locally. |
 | `NEXT_PUBLIC_SITE_URL` | Optional. The site's address in links, the sitemap and share images. Defaults to https://majidtech.com. |
-| `BLOG_API_URL` | Optional. The Majid Tech API the blog reads from. Defaults to the Heroku app. The site proxies it at `/blog-api`, so the API's CORS list doesn't need the site's addresses. |
+| `MONGODB_URI` | The blog's posts, from the `blogposts` collection in the `majid-tech` MongoDB database. Without it the blog section shows no posts. |
+| `UNSPLASH_ACCESS_KEY` | The pictures shown with the blog posts, from an [Unsplash](https://unsplash.com/developers) collection. Without it the posts show without pictures. |
 | `NEXT_PUBLIC_RETELL_PUBLIC_KEY`, `NEXT_PUBLIC_RETELL_AGENT_ID` | The AI receptionist page's demo call (see below). Without them the demo says "coming soon". |
 | `NEXT_PUBLIC_HERO_AVATAR` | Optional. `on` shows the hero avatar outside preview deployments (see below). |
 

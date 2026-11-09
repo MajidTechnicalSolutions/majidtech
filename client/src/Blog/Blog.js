@@ -66,8 +66,8 @@ const CustomRightArrow = ({ onClick }) => (
 );
 
 const Blog = () => {
-  // The blog lives on the Majid Tech API, proxied at /blog-api (next.config.mjs).
-  const url = "/blog-api";
+  // Posts and pictures come from the site's own routes (app/api/blog, app/api/images).
+  const url = "/api";
   const { data: blogPost = [], pending: pendingBlogpost } = useFetch(`${url}/blog`);
   const { data: imageObject } = useFetch(`${url}/images`);
 
