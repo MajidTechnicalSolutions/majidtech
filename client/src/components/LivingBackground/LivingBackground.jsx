@@ -104,12 +104,11 @@ function Traces() {
   );
 }
 
-// 2. Large, soft pools of colour drift slowly behind everything.
+// 2. Large, soft pools of orange and deep red drift slowly behind everything.
 function Aurora() {
   return (
     <div className="fixed inset-0 overflow-hidden">
       <div className="lb-blob lb-blob-1" />
-      <div className="lb-blob lb-blob-2" />
       <div className="lb-blob lb-blob-3" />
     </div>
   );
