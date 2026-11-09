@@ -1,35 +1,20 @@
 {
-  "name": "src",
+  "name": "majidtech-api",
   "version": "0.1.0",
   "engines": {
-    "node": "18.17.0"
+    "node": "22.x"
   },
   "main": "server.js",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "is-empty": "^1.2.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^5.10.7",
-    "nodemon": "^3.0.2",
-    "npm": "^10.3.0",
-    "passport": "^0.7.0",
-    "passport-jwt": "^4.0.0",
-    "react-scripts": "^5.0.1",
-    "resend": "^4.6.0",
-    "validator": "^13.1.17"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
   },
   "scripts": {
-    "start:backend": "nodemon server.js",
-    "start:frontend": "cd ../client && npm run start"
+    "start": "node server.js",
+    "dev": "node --watch server.js"
   },
   "author": "",
   "license": "ISC"
