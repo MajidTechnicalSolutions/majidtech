@@ -2,11 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import HEX_LINES from "./hexLines";
-import { hasTraces, useBgMode } from "./LivingBackground";
 
 // The concentric hexagons behind Skills & Services, filling the section the way
-// the old `background-size: cover` image did. With a Traces background chosen,
-// streaks of light run around some of the rings.
+// the old `background-size: cover` image did, with streaks of light running
+// around some of the rings (hidden with reduced motion).
 //
 // The rings differ a lot in length and the drawing is scaled to the section, so
 // each streak's length and lap time are set from its size on screen: every
@@ -28,18 +27,17 @@ function fitStreaks(svg) {
 
 export default function HexPattern() {
   const svg = useRef(null);
-  const traces = hasTraces(useBgMode());
   // Every third ring, skipping the innermost: at full speed it would lap every couple of seconds.
   const glints = HEX_LINES.filter((_, i) => i % 3 === 1 && i < HEX_LINES.length - 3);
 
   useEffect(() => {
     const el = svg.current;
-    if (!traces || !el) return undefined;
+    if (!el) return undefined;
     // Fires once on observe, then whenever the section changes size.
     const observer = new ResizeObserver(() => fitStreaks(el));
     observer.observe(el);
     return () => observer.disconnect();
-  }, [traces]);
+  }, []);
 
   return (
     <svg
@@ -55,8 +53,7 @@ export default function HexPattern() {
           <path key={i} d={d} />
         ))}
       </g>
-      {traces &&
-        glints.map((d, i) => {
+      {glints.map((d, i) => {
           // Duration, dash and offset are filled in by fitStreaks.
           const style = {
             animationDelay: `-${(i * 59) % 17}s`,

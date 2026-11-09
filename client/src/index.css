@@ -310,9 +310,9 @@ section.pt-7 {
     }
 }
 
-/* ---- Living background preview (src/components/LivingBackground) ---- */
+/* ---- Living background (src/components/LivingBackground) ---- */
 
-/* 1. Traces: a short dash runs along a line, then waits off the end. */
+/* Streaks: a short dash runs along a line, then waits off the end. */
 .lb-trace path {
     stroke-dasharray: 0.07 1.93;
     stroke-dashoffset: 2;
@@ -332,7 +332,7 @@ section.pt-7 {
     to { stroke-dashoffset: 0; }
 }
 
-/* 2. Glow: soft colour pools drifting across the viewport. */
+/* Glow: soft orange and deep red pools drifting across the viewport. */
 .lb-blob {
     position: absolute;
     border-radius: 9999px;
@@ -349,32 +349,14 @@ section.pt-7 {
 }
 
 
-.lb-blob-3 {
+.lb-blob-2 {
     width: 55vmax; height: 55vmax; left: 15vw; bottom: -30vmax;
     background: radial-gradient(circle, rgba(190, 50, 24, 0.07), transparent 62%);
-    animation-name: lb-drift-3; animation-duration: 50s;
+    animation-name: lb-drift-2; animation-duration: 50s;
 }
 
 @keyframes lb-drift-1 { to { transform: translate(28vw, 22vh) scale(1.15); } }
-@keyframes lb-drift-3 { to { transform: translate(22vw, -28vh) scale(1.2); } }
-
-/* 3. Spotlight: everything here is masked to a circle around the cursor. */
-.lb-spot-dots {
-    background-image: radial-gradient(rgba(215, 215, 216, 0.5) 1px, transparent 1.6px);
-    background-size: 26px 26px;
-    -webkit-mask-image: radial-gradient(240px circle at var(--mx, -2000px) var(--my, -2000px), #000, transparent 75%);
-    mask-image: radial-gradient(240px circle at var(--mx, -2000px) var(--my, -2000px), #000, transparent 75%);
-}
-
-.lb-spot-lines {
-    filter: brightness(4.5) sepia(1) saturate(6) hue-rotate(-18deg);
-    -webkit-mask-image: radial-gradient(320px circle at var(--mx, -2000px) var(--my, -2000px), #000, transparent 70%);
-    mask-image: radial-gradient(320px circle at var(--mx, -2000px) var(--my, -2000px), #000, transparent 70%);
-}
-
-.lb-spot-glow {
-    background: radial-gradient(520px circle at var(--mx, -2000px) var(--my, -2000px), rgba(253, 90, 30, 0.07), transparent 60%);
-}
+@keyframes lb-drift-2 { to { transform: translate(22vw, -28vh) scale(1.2); } }
 
 /* Soft edges where the patterns stop. Each mask is a vertical fade combined
    (intersected) with a horizontal one. */
@@ -400,8 +382,11 @@ section.pt-7 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .lb-trace path,
     .lb-blob {
         animation: none;
+    }
+
+    .lb-trace {
+        display: none;
     }
 }
