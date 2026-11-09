@@ -5,6 +5,7 @@ import Navbar from "../src/Navbar";
 import AskMajid from "../src/askMajid/AskMajid";
 import BookCall from "../src/components/BookCall";
 import ScrollToHash from "../src/components/ScrollToHash";
+import LivingBackground from "../src/components/LivingBackground/LivingBackground";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "../src/site";
 
 // The brand's mono typeface, self-hosted and preloaded so the hero text paints early.
@@ -30,9 +31,9 @@ export default function RootLayout({ children }) {
     <html lang="en" className={modernEra.variable}>
       <body>
         <div
-          className="bg-black min-h-screen m-0 p-0 font-modernEra"
-          style={{ backgroundImage: "url(/images/Pattern.svg)", backgroundRepeat: "no-repeat" }}
+          className="relative isolate bg-black min-h-screen m-0 p-0 font-modernEra"
         >
+          <LivingBackground />
           <Toaster
             position="top-right"
             theme="dark"

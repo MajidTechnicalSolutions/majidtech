@@ -309,3 +309,75 @@ section.pt-7 {
         animation: none;
     }
 }
+
+/* ---- Living background preview (src/components/LivingBackground) ---- */
+
+/* 1. Traces: a short dash runs along a line, then waits off the end. */
+.lb-trace path {
+    stroke-dasharray: 0.07 1.93;
+    stroke-dashoffset: 2;
+    animation-name: lb-trace;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes lb-trace {
+    to { stroke-dashoffset: 0; }
+}
+
+/* 2. Glow: soft colour pools drifting across the viewport. */
+.lb-blob {
+    position: absolute;
+    border-radius: 9999px;
+    will-change: transform;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.lb-blob-1 {
+    width: 70vmax; height: 70vmax; left: -20vmax; top: -25vmax;
+    background: radial-gradient(circle, rgba(253, 90, 30, 0.16), transparent 62%);
+    animation-name: lb-drift-1; animation-duration: 34s;
+}
+
+.lb-blob-2 {
+    width: 60vmax; height: 60vmax; right: -22vmax; top: 20vh;
+    background: radial-gradient(circle, rgba(70, 86, 160, 0.13), transparent 62%);
+    animation-name: lb-drift-2; animation-duration: 42s;
+}
+
+.lb-blob-3 {
+    width: 55vmax; height: 55vmax; left: 15vw; bottom: -30vmax;
+    background: radial-gradient(circle, rgba(190, 50, 24, 0.12), transparent 62%);
+    animation-name: lb-drift-3; animation-duration: 50s;
+}
+
+@keyframes lb-drift-1 { to { transform: translate(28vw, 22vh) scale(1.15); } }
+@keyframes lb-drift-2 { to { transform: translate(-30vw, -12vh) scale(0.9); } }
+@keyframes lb-drift-3 { to { transform: translate(22vw, -28vh) scale(1.2); } }
+
+/* 3. Spotlight: everything here is masked to a circle around the cursor. */
+.lb-spot-dots {
+    background-image: radial-gradient(rgba(215, 215, 216, 0.5) 1px, transparent 1.6px);
+    background-size: 26px 26px;
+    -webkit-mask-image: radial-gradient(240px circle at var(--mx, -2000px) var(--my, -2000px), #000, transparent 75%);
+    mask-image: radial-gradient(240px circle at var(--mx, -2000px) var(--my, -2000px), #000, transparent 75%);
+}
+
+.lb-spot-lines {
+    filter: brightness(4.5) sepia(1) saturate(6) hue-rotate(-18deg);
+    -webkit-mask-image: radial-gradient(320px circle at var(--mx, -2000px) var(--my, -2000px), #000, transparent 70%);
+    mask-image: radial-gradient(320px circle at var(--mx, -2000px) var(--my, -2000px), #000, transparent 70%);
+}
+
+.lb-spot-glow {
+    background: radial-gradient(520px circle at var(--mx, -2000px) var(--my, -2000px), rgba(253, 90, 30, 0.07), transparent 60%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lb-trace path,
+    .lb-blob {
+        animation: none;
+    }
+}
