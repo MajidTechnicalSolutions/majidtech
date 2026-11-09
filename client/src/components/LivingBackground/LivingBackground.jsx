@@ -5,7 +5,8 @@ import PATTERN_LINES from "./patternLines";
 import { startParticles } from "./particles";
 
 // Preview of four moving backgrounds behind the whole site. Pick one with the
-// switcher in the bottom-left corner (or ?bg=traces|aurora|spotlight|particles).
+// switcher at the bottom of the page (or ?bg=traces|aurora|spotlight|particles|
+// traces-aurora|traces-particles). The last two layer 1 Traces over 2 or 4.
 // "Current" is the site as it is today: the still diagonal lines.
 export const MODES = [
   { id: "off", label: "Current" },
@@ -13,6 +14,8 @@ export const MODES = [
   { id: "aurora", label: "2 Glow" },
   { id: "spotlight", label: "3 Spotlight" },
   { id: "particles", label: "4 Particles" },
+  { id: "traces-aurora", label: "1 + 2" },
+  { id: "traces-particles", label: "1 + 4" },
 ];
 
 const STORAGE_KEY = "majidtech.bgPreview";
@@ -91,7 +94,7 @@ function Traces() {
 }
 
 // 2. Large, soft pools of colour drift slowly behind everything.
-function Aurora() {
+function Aurora({ lines = <StaticLines /> }) {
   return (
     <>
       <div className="fixed inset-0 overflow-hidden">
@@ -99,7 +102,7 @@ function Aurora() {
         <div className="lb-blob lb-blob-2" />
         <div className="lb-blob lb-blob-3" />
       </div>
-      <StaticLines />
+      {lines}
     </>
   );
 }
@@ -162,7 +165,7 @@ function Spotlight({ layer }) {
 }
 
 // 4. Drifting dots that join up with thin lines when they come close.
-function Particles() {
+function Particles({ lines = <StaticLines /> }) {
   const canvas = useRef(null);
   useEffect(() => {
     if (!canvas.current) return undefined;
@@ -171,7 +174,7 @@ function Particles() {
   return (
     <>
       <canvas ref={canvas} className="fixed inset-0 w-full h-full" />
-      <StaticLines />
+      {lines}
     </>
   );
 }
@@ -201,6 +204,8 @@ export default function LivingBackground() {
         {mode === "aurora" && <Aurora />}
         {mode === "spotlight" && <Spotlight layer={layer} />}
         {mode === "particles" && <Particles />}
+        {mode === "traces-aurora" && <Aurora lines={<Traces />} />}
+        {mode === "traces-particles" && <Particles lines={<Traces />} />}
       </div>
 
       <div
