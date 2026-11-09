@@ -321,10 +321,11 @@ section.pt-7 {
     animation-iteration-count: infinite;
 }
 
-/* The hexagon rings are closed loops: one streak per lap, always on its way round. */
+/* The hexagon rings are closed loops: one streak per lap, always on its way
+   round. HexPattern.jsx sets each ring's dash and lap time from its length;
+   until then the streaks stay hidden. */
 .lb-trace.lb-trace-hex path {
-    stroke-dasharray: 0.05 0.95;
-    stroke-dashoffset: 1;
+    stroke-dasharray: 0 1;
 }
 
 @keyframes lb-trace {
