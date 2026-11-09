@@ -344,14 +344,14 @@ section.pt-7 {
 
 .lb-blob-1 {
     width: 70vmax; height: 70vmax; left: -20vmax; top: -25vmax;
-    background: radial-gradient(circle, rgba(253, 90, 30, 0.16), transparent 62%);
+    background: radial-gradient(circle, rgba(253, 90, 30, 0.09), transparent 62%);
     animation-name: lb-drift-1; animation-duration: 34s;
 }
 
 
 .lb-blob-3 {
     width: 55vmax; height: 55vmax; left: 15vw; bottom: -30vmax;
-    background: radial-gradient(circle, rgba(190, 50, 24, 0.12), transparent 62%);
+    background: radial-gradient(circle, rgba(190, 50, 24, 0.07), transparent 62%);
     animation-name: lb-drift-3; animation-duration: 50s;
 }
 
