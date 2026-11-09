@@ -55,7 +55,7 @@ export default function Laptop3D({ src, poster, title }) {
                 <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[9%] aspect-square rounded-full bg-[#1d2330]" />
               </span>
               <div className="relative w-full h-full overflow-hidden rounded-[1%] bg-black">
-                <DeviceVideo src={src} poster={poster} device="laptop" title={title} sizeClass="w-full h-full" />
+                <DeviceVideo src={src} poster={poster} device="laptop" title={title} sizeClass="w-full h-full" clip={false} />
               </div>
             </div>
           </div>
