@@ -142,9 +142,9 @@ a:hover {
     /* just to get an apsect ratio same as the SVG's: */
     /* padding-top: 48%;  */
     /* height: 0;  */
-    background-image: url(./utils/Resources/images/PatternHex.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
+    /* The hexagons are drawn by HexPattern.jsx inside the section. */
+    position: relative;
+    isolation: isolate;
 }
 
 /* Specific sections that need large margins */
@@ -307,5 +307,86 @@ section.pt-7 {
 @media (prefers-reduced-motion: reduce) {
     .ring-shake {
         animation: none;
+    }
+}
+
+/* ---- Living background (src/components/LivingBackground) ---- */
+
+/* Streaks: a short dash runs along a line, then waits off the end. */
+.lb-trace path {
+    stroke-dasharray: 0.07 1.93;
+    stroke-dashoffset: 2;
+    animation-name: lb-trace;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+/* The hexagon rings are closed loops: one streak per lap, always on its way
+   round. HexPattern.jsx sets each ring's dash and lap time from its length;
+   until then the streaks stay hidden. */
+.lb-trace.lb-trace-hex path {
+    stroke-dasharray: 0 1;
+}
+
+@keyframes lb-trace {
+    to { stroke-dashoffset: 0; }
+}
+
+/* Glow: soft orange and deep red pools drifting across the viewport. */
+.lb-blob {
+    position: absolute;
+    border-radius: 9999px;
+    will-change: transform;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.lb-blob-1 {
+    width: 70vmax; height: 70vmax; left: -20vmax; top: -25vmax;
+    background: radial-gradient(circle, rgba(253, 90, 30, 0.09), transparent 62%);
+    animation-name: lb-drift-1; animation-duration: 34s;
+}
+
+
+.lb-blob-2 {
+    width: 55vmax; height: 55vmax; left: 15vw; bottom: -30vmax;
+    background: radial-gradient(circle, rgba(190, 50, 24, 0.07), transparent 62%);
+    animation-name: lb-drift-2; animation-duration: 50s;
+}
+
+@keyframes lb-drift-1 { to { transform: translate(28vw, 22vh) scale(1.15); } }
+@keyframes lb-drift-2 { to { transform: translate(22vw, -28vh) scale(1.2); } }
+
+/* Soft edges where the patterns stop. Each mask is a vertical fade combined
+   (intersected) with a horizontal one. */
+.lb-lines-fade {
+    --lb-fade-top: 0px;
+    -webkit-mask-image:
+        linear-gradient(to bottom, transparent 0, #000 var(--lb-fade-top), #000 calc(100% - 900px), transparent 100%),
+        linear-gradient(to right, #000 calc(100% - 420px), transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        linear-gradient(to bottom, transparent 0, #000 var(--lb-fade-top), #000 calc(100% - 900px), transparent 100%),
+        linear-gradient(to right, #000 calc(100% - 420px), transparent 100%);
+    mask-composite: intersect;
+}
+
+.lb-lines-fade-top {
+    --lb-fade-top: 520px;
+}
+
+.lb-hex-fade {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lb-blob {
+        animation: none;
+    }
+
+    .lb-trace {
+        display: none;
     }
 }
