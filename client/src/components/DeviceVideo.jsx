@@ -8,7 +8,20 @@ import React, { useEffect, useRef, useState } from "react";
 // MP4 as an image instead; elsewhere, or when the viewer has asked for reduced
 // motion, it stays on its poster frame with a play button. `sizeClass` overrides
 // the default width and aspect ratio.
-const DeviceVideo = ({ src, poster, device, title, sizeClass }) => {
+//
+// The phone and laptop videos show the device on solid black. `clip` (on by
+// default) cuts the frame to the device's outline so the page background shows
+// around it instead of a black box. Turn it off for a screen-only video.
+const DEVICE_CLIP = {
+  // The phone body (528 x 1080 frames): 19-20px in from each side, ~86px corners.
+  phone: "inset(1.94% 3.6% 1.94% 3.6% round 16.29% / 7.96%)",
+  // The laptop (1140 x 706 frames): the lid with rounded top corners, then the
+  // wider base tapering at the bottom.
+  laptop:
+    "polygon(5.26% 3.68%, 5.53% 2.12%, 6.23% 0.99%, 7.54% 0%, 92.46% 0%, 93.77% 0.99%, 94.47% 2.12%, 94.74% 3.68%, 94.74% 94.33%, 100% 94.33%, 100% 96.32%, 98.68% 97.73%, 97.37% 98.02%, 97.19% 98.73%, 2.81% 98.73%, 2.63% 98.02%, 1.32% 97.73%, 0% 96.32%, 0% 94.33%, 5.26% 94.33%)",
+};
+
+const DeviceVideo = ({ src, poster, device, title, sizeClass, clip = true }) => {
   const ref = useRef(null);
   // null while the video autoplays; "image" when Safari blocks autoplay (it can
   // still play an MP4 as an image); "tap" when neither works or motion is reduced.
@@ -65,7 +78,7 @@ const DeviceVideo = ({ src, poster, device, title, sizeClass }) => {
     ? "w-[290px] lg:w-[352px] aspect-[528/1080]"
     : "w-full aspect-[1140/706]");
   return (
-    <div className={`relative ${size}`}>
+    <div className={`relative ${size}`} style={clip ? { clipPath: DEVICE_CLIP[device] } : undefined}>
       <video
         ref={ref}
         className="block w-full h-full"
