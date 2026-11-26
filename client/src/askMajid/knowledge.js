@@ -15,7 +15,7 @@ const list = (items, line) => items.map(line).join("\n");
 // timing is set case by case.
 const RECEPTION_PACKAGES = RECEPTION.PACKAGES.map((p) => ({
   title: `Receptionist ${p.title}`,
-  text: `${p.calls}, ${p.fee}/mo + ${p.minute} a minute on calls. ${p.text} ${p.example}`,
+  text: `${p.calls}, ${p.fee}/mo with ${p.minutes}; extra minutes ${RECEPTION.OVERAGE} each. ${p.text} ${p.example}`,
 }));
 
 // App, website and AI receptionist packages, for the brief. App and website

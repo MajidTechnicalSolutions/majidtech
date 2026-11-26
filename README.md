@@ -66,11 +66,12 @@ A page (`/estimate`, under Services in the nav, and linked from the App creation
 
 ## AI receptionist
 
-A service page (`/ai-receptionist`, under Services in the nav) for the AI receptionists Mr. Majid builds on Retell, written for DBHDD providers in Georgia: the problem (missed calls, with one sourced figure), what it does, how we set it up, who it is for (with a privacy line) and three packages priced by calls a day (a monthly fee plus a per-minute rate; setup costs the same as the monthly fee). Its copy and prices are in `client/src/content/aiReceptionist.js`, and Ask Mr. Majid answers from it: receptionist prices are the only ones it may quote.
+A service page (`/ai-receptionist`, under Services in the nav) for the AI receptionists Mr. Majid builds on Retell, written for DBHDD providers in Georgia: the problem (missed calls, with one sourced figure), what it does, how we set it up, who it is for (with a privacy line) and three packages priced by calls a day (one monthly price with the minutes included and $0.30 for each extra minute; setup costs the same as the monthly fee). We run the Retell account and pay for the calls, so customers need no account of their own; the cost math is in a comment above `PACKAGES`. Its copy and prices are in `client/src/content/aiReceptionist.js`, and Ask Mr. Majid answers from it: receptionist prices are the only ones it may quote.
 
 - "Try a demo AI receptionist", in the hero, is a browser call to the demo receptionist (`client/src/AiReceptionist/DemoCall.jsx`). Pressing Call first asks for the microphone (a missing or blocked one gets a plain message with the phone number to call instead), then loads Retell's browser SDK (`retell-client-js-sdk`); the card then shows the call time, the receptionist's latest line and End call.
 - It needs a Retell **public key** and the demo agent's ID (`NEXT_PUBLIC_RETELL_PUBLIC_KEY`, `NEXT_PUBLIC_RETELL_AGENT_ID`). A public key is safe in the browser, but only from the domains it allows: in Retell, under API Keys › Public Keys, add `www.majidtechnicalsolutions.com`, `majidtechnicalsolutions.com`, `localhost` and any preview address you test on. Retell's optional reCAPTCHA isn't wired up yet.
 - No server route: demo calls are billed to the Retell account, so keep the agent's maximum call length short there.
+- The demo agent's prompt, begin message and settings are in `retell/demo-agent-prompt.md`: paste them into the agent in Retell.
 
 ## Booking a call
 
