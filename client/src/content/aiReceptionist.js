@@ -37,40 +37,44 @@ export const INDUSTRIES = ["Group homes and community living", "Day programs", "
 export const PRIVACY =
   "Callers' personal details are removed from saved call records, and the receptionist never gives medical advice.";
 
-// Priced by calls a day: a monthly fee plus each minute on a call. Each step up
-// has a cheaper minute, set so a package is the cheapest one at its own volume
-// (Growth beats Starter from about 10 calls a day, Agency beats Growth from
-// about 30, at about 2 minutes a call). The examples use the same 2 minutes.
+// One monthly price with the minutes included, so customers never deal with
+// Retell or a separate phone bill: we run the Retell account and pay for the
+// calls. Allowances assume about 2 minutes a call over 30 days. Our cost is
+// about $0.13 a minute on Retell's own price list (voice infra $0.055, voice
+// $0.015, LLM about $0.03, phone line $0.015, PII removal $0.01, knowledge base
+// $0.005); we plan with $0.15, so a package that uses every minute still keeps
+// about 65 to 77% of its price, and extra minutes ($0.30) double our cost.
+export const OVERAGE = "$0.30";
+
 export const PACKAGES = [
   {
     title: "Starter",
     calls: "Up to 10 calls a day",
-    fee: "$197",
-    minute: "$0.50",
+    fee: "$397",
+    minutes: "600 minutes included",
     text: "For one home or program. Answers every call, takes messages, logs call-outs and puts urgent calls through to one on-call number.",
-    example: "5 calls a day is about 300 minutes: $347 a month.",
+    example: "600 minutes is about 10 calls a day of 2 minutes each.",
   },
   {
     title: "Growth",
     calls: "10 to 30 calls a day",
-    fee: "$257",
-    minute: "$0.40",
+    fee: "$797",
+    minutes: "1,800 minutes included",
     text: "For several homes or programs. Everything in Starter, plus on-call routing for each home or program.",
-    example: "20 calls a day is about 1,200 minutes: $737 a month.",
+    example: "1,800 minutes is about 30 calls a day of 2 minutes each.",
     featured: true,
   },
   {
     title: "Agency",
     calls: "30+ calls a day",
-    fee: "$347",
-    minute: "$0.35",
+    fee: "$1,297",
+    minutes: "3,000 minutes included",
     text: "For agencies with many locations. Everything in Growth, plus a number for each location or program and a monthly call report.",
-    example: "40 calls a day is about 2,400 minutes: $1,187 a month.",
+    example: "3,000 minutes is about 50 calls a day of 2 minutes each.",
   },
 ];
 
-export const PRICING =
-  "Pick a package by how many calls you get a day. You pay a monthly fee plus each minute the receptionist spends on a call, so a quiet month costs less. Move up or down a package any month.";
+export const PRICING = `Pick a package by how many calls you get a day. One monthly price covers the receptionist and its call minutes, with no other accounts or phone bills to set up. If a busy month goes over, extra minutes are ${OVERAGE} each. Move up or down a package any month.`;
 
 export const INCLUDED =
   "Every package includes crisis routing, call summaries, your CRM updated after every call, monthly call reviews and your same phone number. Setup is a one-time fee, the same as your package's monthly fee.";

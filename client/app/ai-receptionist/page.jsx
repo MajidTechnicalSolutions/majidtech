@@ -4,7 +4,7 @@ import Footer from "../../src/components/Footer";
 export const metadata = {
   title: "AI receptionist",
   description:
-    "An AI receptionist for DBHDD providers in Georgia that answers every call, day and night: it puts urgent calls through to whoever is on call, takes messages, logs staff call-outs and filters spam. From $197 a month. Try the demo.",
+    "An AI receptionist for DBHDD providers in Georgia that answers every call, day and night: it puts urgent calls through to whoever is on call, takes messages, logs staff call-outs and filters spam. From $397 a month, call minutes included. Try the demo.",
   alternates: { canonical: "/ai-receptionist" },
 };
 

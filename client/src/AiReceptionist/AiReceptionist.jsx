@@ -10,7 +10,7 @@ import { FEATURES, INCLUDED, INDUSTRIES, OWNERSHIP, PACKAGES, PRICING, PRIVACY, 
 
 // The AI receptionist service page (/ai-receptionist), opened from Services in
 // the nav. Laid out like the other service pages, with a demo call in the
-// hero. Written for DBHDD providers, with packages priced by calls a day.
+// hero. Written for DBHDD providers, with packages priced by calls a day, minutes included.
 
 const card = "bg-[#0b0b0c] border-[1px] border-[#1f1f20] rounded-xl !p-12 lg:p-6";
 const h2 = "text-white text-2xl lg:text-4xl tracking-tight";
@@ -125,7 +125,7 @@ function AiReceptionist() {
                 <p className="flex items-baseline gap-1.5">
                   <span className="text-white text-4xl lg:text-5xl leading-none tracking-tight">{p.fee}</span>/mo
                 </p>
-                <span className="text-silverLight">+ {p.minute} a minute on calls</span>
+                <span className="text-silverLight">{p.minutes}</span>
               </div>
               <p>{p.text}</p>
               <p className="mt-auto pt-4 border-t border-[#1f1f20] text-sm">{p.example}</p>
